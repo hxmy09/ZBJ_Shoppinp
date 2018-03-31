@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.shop.shopapp">
+
+    <application
+        android:name="com.android.shop.shopapp.ShopApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name">
+
+        </activity>
+
+        <activity
+            android:name=".activity.GroupActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"></activity>
+
+        <activity
+            android:name=".activity.LaunchActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.CodeGenerateActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_code"></activity>
+        <activity
+            android:name=".activity.UploadActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/upload_title"></activity>
+        <activity
+            android:name=".activity.ProductDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/product_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.UploadListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/upload_list_title"></activity>
+        <activity
+            android:name=".activity.MineActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/mine_title"></activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/login_title"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/register_title"></activity>
+
+        <activity
+            android:name=".activity.UpdateInfoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/forgetpwd_title"></activity>
+    </application>
+
+</manifest>

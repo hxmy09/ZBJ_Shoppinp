@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">义乌市轩融电子商务有限公司</string>
+    <string name="title_home">首页</string>
+    <string name="title_shopping">购物车</string>
+    <string name="title_mine">我的</string>
+
+    <string name="navigation_drawer_open">打开</string>
+    <string name="navigation_drawer_close">关闭</string>
+
+    <string name="action_settings">设置</string>
+
+    <string name="shopping">购物车</string>
+    <string name="title_code">生成注册验证码</string>
+    <string name="upload_list_title">上传商品列表</string>
+    <string name="mine_title">我的</string>
+    <string name="upload_title">上传商品</string>
+    <string name="product_detail">商品详细</string>
+    <string name="login_title">登录</string>
+    <string name="forgetpwd_title">修改信息</string>
+    <string name="register_title">注册</string>
+</resources>

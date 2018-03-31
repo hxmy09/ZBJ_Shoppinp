@@ -1,0 +1,67 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+
+    ext {
+        _javaSdkVersion = JavaVersion.VERSION_1_8
+        _compileSdkVersion = 27
+        _buildToolsVersion = "27.0.3"
+        _minSdkVersion = 21
+        _targetSdkVersion = 27
+        _kotlin_version = '1.2.31'
+        _kotlin_mock_version = '1.5.0'
+        _kotlinx_coroutines_version = '0.22.3'
+        _supportLibraryVersion = "27.0.2"
+        _googlePlayServicesLibraryVersion = "11.8.0"
+        _autoParcelLibraryVersion = "0.3.1"
+//        _usbankLibraryVersion = "1.1"
+        _supportTestLibraryVersion = "1.0.1"
+        _espressoLibraryVersion = "3.0.1"
+        _retrofit2Version = "2.3.0"
+        _simpleXmlVersion = "2.7.1"
+        _jsr305Version = "3.0.1"
+        _okhttp3Version = "3.9.1"
+        _gsonVersion = "2.8.0"
+//        _jUnitVersion = "4.12"a
+//        _jacocoToolVersion = "0.7.4.201502262128"
+//        _mockitoCoreVersion = "2.8.9"
+//        _powerMockLibraryVersion = "1.7.3"
+        _rxJavaVersion = "2.1.7"
+        _rxJavaAdapterVersion = '2.3.0'
+        _rxAndroidVersion = "2.0.1"
+        _rxKotlinVersion = "2.1.0"
+        _daggerVersion = "2.11"
+//        _androidArchVersion = "1.0.0"
+//        _guavaVersion = "23.2-android"
+        _butterKnifeLibraryVersion = "8.8.1"
+//        _resultVersion = '1.3.0'
+
+
+        _isCiEnv = System.getenv("IS_DOCKER_ENV") != null
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$_kotlin_version"
+        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
