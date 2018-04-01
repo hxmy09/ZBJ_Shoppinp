@@ -1,11 +1,11 @@
 package com.android.shop.shopapp.dao
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
-import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.*
 import android.os.Parcel
 import android.os.Parcelable
+import com.android.shop.shopapp.model.request.User
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * @author a488606
@@ -25,8 +25,20 @@ class ProductModel() : Parcelable {
     var desc: String? = null
     @ColumnInfo
     var price: Double? = null
-
-    @Ignore
+    //@ColumnInfo
+//    var createDate: String = ""
+//        get() {
+//            var sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+//            return sdf.format(Calendar.getInstance().time)
+//        }
+    //        set(value) {
+//            createDate = value
+//        }
+//    @ColumnInfo
+//    var userName: String? = null
+//    @ColumnInfo
+//    var userState: Int = 0
+    @ColumnInfo
     var isSelected: Boolean = true
 
     constructor(parcel: Parcel) : this() {

@@ -32,6 +32,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
         neiyiLayout.setOnClickListener(this)
         wanjuLayout.setOnClickListener(this)
         wenjuLayout.setOnClickListener(this)
+        wujinLayout.setOnClickListener(this)
+        childFragmentManager.beginTransaction().add(R.id.hot, HotFragment(), "Hot").commit()
     }
 
     override fun onClick(v: View?) {
@@ -46,6 +48,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             R.id.neiyiLayout -> G_NEIYI
             R.id.wanjuLayout -> G_WANJU
             R.id.wenjuLayout -> G_WENJU
+            R.id.wujinLayout -> G_WUJIN
             else -> {
                 ""
             }

@@ -1,6 +1,7 @@
 package com.android.shop.shopapp.data
 
 import android.content.Context
+import android.net.Uri
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,6 +14,8 @@ import android.widget.TextView
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.dao.ShoppingModel
 import com.android.shop.shopapp.fragment.ShoppingTrolleyFragment
+import com.squareup.picasso.Picasso
+import java.io.File
 
 /**
  * @author a488606
@@ -66,6 +69,7 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
             price?.text = model?.price.toString()
             desc?.text = model?.desc
             buyAmount?.text = model?.amount.toString()
+            Picasso.with(itemView.context).load(Uri.fromFile(File(model?.imageUrl))).into(imageView)
             checkBox?.isChecked = model?.isSelected!!
             checkBox?.setOnCheckedChangeListener({ compoundButton: CompoundButton, b: Boolean ->
                 model.isSelected = b

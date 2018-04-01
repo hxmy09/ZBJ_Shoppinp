@@ -81,6 +81,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         }
 
         delete.setOnClickListener {
+            list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
             list.filter { it.isSelected }.forEach { it -> DBUtil(activity).mAppDatabase.shoppingDao()?.deleteByGroupId(it.groupId!!) }
             list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
             if (list.size == adapter!!.itemCount) {

@@ -11,10 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
-import com.android.shop.shopapp.activity.CodeGenerateActivity
-import com.android.shop.shopapp.activity.LoginActivity
-import com.android.shop.shopapp.activity.UpdateInfoActivity
-import com.android.shop.shopapp.activity.UploadActivity
+import com.android.shop.shopapp.activity.*
 import com.android.shop.shopapp.dao.DBUtil
 import com.android.shop.shopapp.dao.ProductModel
 import com.android.shop.shopapp.data.MineAdapter
@@ -49,6 +46,7 @@ class MineFragment : Fragment(), View.OnClickListener {
         update.setOnClickListener(this)
         upload.setOnClickListener(this)
         exit.setOnClickListener(this)
+        manageProduct.setOnClickListener(this)
 
     }
 
@@ -74,6 +72,10 @@ class MineFragment : Fragment(), View.OnClickListener {
                 startActivity(intent)
                 Toast.makeText(activity, "退出登录", Toast.LENGTH_SHORT).show()
                 activity.finish()
+            }
+            R.id.manageProduct -> {
+                var intent = Intent(activity, ManageActivity::class.java)
+                startActivity(intent)
             }
         }
     }

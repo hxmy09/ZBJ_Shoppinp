@@ -164,9 +164,6 @@
 
                 <TextView
                     android:id="@+id/code"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -177,6 +174,9 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:maxLines="1"
+                    android:paddingBottom="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="8dp"
                     android:text="生成注册码"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp" />
@@ -210,9 +210,6 @@
 
                 <TextView
                     android:id="@+id/upload"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -224,7 +221,57 @@
                     android:focusable="true"
                     android:gravity="center_vertical"
                     android:maxLines="4"
+                    android:paddingBottom="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="8dp"
                     android:text="上传商品"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/cardMarginVertical"
+            android:layout_marginLeft="@dimen/cardMarginHorizontal"
+            android:layout_marginRight="@dimen/cardMarginHorizontal"
+            android:layout_marginTop="@dimen/cardMarginVertical"
+
+            app:cardCornerRadius="2dp"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="false"
+            app:contentPaddingLeft="0dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/manageProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableLeft="@drawable/ic_create"
+                    android:drawablePadding="10dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:paddingBottom="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="8dp"
+                    android:text="管理上传的商品"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -256,9 +303,6 @@
 
                 <TextView
                     android:id="@+id/update"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -269,6 +313,9 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:maxLines="1"
+                    android:paddingBottom="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="8dp"
                     android:text="修改个人信息"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp" />
@@ -303,9 +350,6 @@
 
                 <TextView
                     android:id="@+id/exit"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -316,6 +360,9 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:maxLines="1"
+                    android:paddingBottom="8dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="8dp"
                     android:text="退出登录"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp" />

@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.dao.DBUtil
 import com.android.shop.shopapp.dao.ProductModel
-import com.android.shop.shopapp.data.MineAdapter
-import kotlinx.android.synthetic.main.fragment_shopping_trolley.*
+import com.android.shop.shopapp.data.GroupAdapter
+import kotlinx.android.synthetic.main.fragment_hot.*
 
 /**
  * Created by myron on 3/31/18.
@@ -19,13 +19,14 @@ import kotlinx.android.synthetic.main.fragment_shopping_trolley.*
 class HotFragment : Fragment() {
 
     var list = arrayListOf<ProductModel>()
-    var adapter: MineAdapter? = null
-
+    //    var adapter: MineAdapter? = null
+//
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return inflater?.inflate(R.layout.fragment_hot, container, false)
     }
 
+    //
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         list = DBUtil(activity).mAppDatabase.productDao().findAll() as ArrayList<ProductModel>
@@ -34,8 +35,7 @@ class HotFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)
             addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.HORIZONTAL))
-            adapter = MineAdapter(activity, list)
+            adapter = GroupAdapter(activity, list!!)
         }
-
     }
 }

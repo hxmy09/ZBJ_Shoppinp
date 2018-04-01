@@ -15,6 +15,7 @@
     <string name="mine_title">我的</string>
     <string name="upload_title">上传商品</string>
     <string name="product_detail">商品详细</string>
+    <string name="product_management">商品管理</string>
     <string name="login_title">登录</string>
     <string name="forgetpwd_title">修改信息</string>
     <string name="register_title">注册</string>

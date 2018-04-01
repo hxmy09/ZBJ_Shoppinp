@@ -45,9 +45,14 @@
             android:label="@string/product_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".activity.UploadListActivity"
+        android:name=".activity.UploadListActivity"
+        android:configChanges="orientation|keyboardHidden"
+        android:label="@string/upload_list_title"></activity>
+
+        <activity
+            android:name=".activity.ManageActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/upload_list_title"></activity>
+            android:label="@string/product_management"></activity>
         <activity
             android:name=".activity.MineActivity"
             android:configChanges="orientation|keyboardHidden"

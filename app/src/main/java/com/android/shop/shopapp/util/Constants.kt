@@ -19,6 +19,7 @@ const val G_MEIZHUANG = "美妆"
 const val G_NEIYI = "内衣"
 const val G_WANJU = "玩具"
 const val G_WENJU = "文具"
+const val G_WUJIN = "五金"
 
 
 
