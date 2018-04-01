@@ -27,8 +27,11 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
     lateinit var list: List<ShoppingModel>
 
     override fun countTotal(number: Int, model: ShoppingModel) {
-        //更新本地数据库 先更新数据库。在计算
-        DBUtil(activity).mAppDatabase.shoppingDao()?.insert(model)
+        //更新本地数据库 先更新数据库。在计算 （需要先检测数据库中是否有这一条，如果没有。就不更新。这个insert 是用来更新数据库，不是插入数据库）
+        var isExit = DBUtil(activity).mAppDatabase.shoppingDao()?.findByGroupId(model.groupId!!)
+        if (isExit != null) {
+            DBUtil(activity).mAppDatabase.shoppingDao()?.insert(model)
+        }
         cal()
     }
 
@@ -65,7 +68,11 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
             list.forEach {
                 it.isSelected = b
-                DBUtil(activity).mAppDatabase.shoppingDao()?.insert(it)
+                //更新本地数据库 先更新数据库。在计算 （需要先检测数据库中是否有这一条，如果没有。就不更新。这个insert 是用来更新数据库，不是插入数据库）
+                var isExit = DBUtil(activity).mAppDatabase.shoppingDao()?.findByGroupId(it.groupId!!)
+                if (isExit != null) {
+                    DBUtil(activity).mAppDatabase.shoppingDao()?.insert(it)
+                }
             }
             adapter!!.contents = list
             adapter!!.notifyDataSetChanged()
@@ -81,7 +88,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         }
 
         delete.setOnClickListener {
-            list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
+            //            list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
             list.filter { it.isSelected }.forEach { it -> DBUtil(activity).mAppDatabase.shoppingDao()?.deleteByGroupId(it.groupId!!) }
             list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
             if (list.size == adapter!!.itemCount) {
