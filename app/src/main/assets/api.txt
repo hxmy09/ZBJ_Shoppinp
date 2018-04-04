@@ -1,0 +1,174 @@
+1.登录
+{
+	"userName":"userName"，
+	"password" : "password"，
+	
+}
+2 登录返回
+
+{
+	"code":"100"，
+	"msg" : "登陆成功"，
+	“userState”: 1,
+	"phone":"18640949502",
+	"address":"大连旅顺"
+	“userName”:"大连你好"
+	
+}
+
+3 查询所有需要审核的新用户， 这个查询出所有userState = 0  的用户，下面是返回数据格式
+{
+	"users": [
+
+	{
+		"code": "100",
+		"msg": "",
+		"userState": 0,
+		"phone": "18640949502",
+		"address": "大连旅顺1111",
+		"userName": "麦伦吉尔111"
+	}, {
+		"code": "100",
+		"msg": "",
+		"userState": 0,
+		"phone": "18640949502",
+		"address": "大连旅顺",
+		"userName": "麦伦吉尔"
+	}
+
+	]
+}
+
+4 审核通过。  （只需要处理这两个字段。根据用户名更新用户状态）
+{
+	"userState": 1,
+	"userName": "麦伦吉尔"
+}
+
+5 管理上传的商品
+根据请求参数userName and userState 返回商品
+
+{
+    "orders":[
+
+    {
+    "userName":"麦伦吉尔",
+    "orderNum":"333333333333",
+    "orderAmount":"100.33",
+    "orderTime":"2018-03-22"
+    },
+    {
+    "userName":"麦伦吉尔",
+    "orderNum":"4444444",
+    "orderAmount":"100.33",
+    "orderTime":"2018-03-22"
+    }
+    ]
+}
+
+6删除选中的商品。进行删除
+{
+"productIds":["1522663027251","1522663033077"]
+}
+6删除选中的商品。返回
+{
+"code":"100",
+"msg":"成功"
+}
+
+
+7 请求orderlist
+POST 请求，参数为userName
+
+8 得到orderlist 返回数据
+{
+    "orders":[
+
+    {
+    "userName":"麦伦吉尔",
+    "orderNum":"333333333333",
+    "orderAmount":"100.33",
+    "orderTime":"2018-03-22"
+    },
+    {
+    "userName":"麦伦吉尔",
+    "orderNum":"4444444",
+    "orderAmount":"100.33",
+    "orderTime":"2018-03-22"
+    }
+    ]
+}
+
+9 查看订单详细。
+POST 传入订单号  orderNum
+10. 订单详细返回
+{
+    "products": [
+    {
+    "productId":"123445",
+     "groupName":"男装",
+     "imageUrl":"http://tigerday.org/wp-content/uploads/2013/04/Siberischer_tiger.jpg",
+     "desc":"123445",
+     "price":100.99,
+      "count":10
+    },{
+     "productId":"123445",
+         "groupName":"男装",
+         "imageUrl":"http://tigerday.org/wp-content/uploads/2013/04/Siberischer_tiger.jpg",
+         "desc":"123445",
+         "price":100.99,
+         "count":10
+    }
+
+    ]
+}
+
+11. 查看商品根据组查询
+参数 group
+
+12 商品返回
+{
+    "products": [
+    {
+    "productId":"123445",
+     "groupName":"男装",
+     "imageUrl":"http://tigerday.org/wp-content/uploads/2013/04/Siberischer_tiger.jpg",
+     "desc":"123445",
+     "price":100.99,
+      "count":10
+    },{
+     "productId":"123445",
+         "groupName":"男装",
+         "imageUrl":"http://i.imgur.com/DvpvklR.png",
+         "desc":"123445",
+         "price":100.99,
+          "count":10
+    }
+    ]
+}
+
+13 模糊查询 ，根据商品组和描述内容。模糊查询
+参数一个输入的文本 queryText
+14 模糊查询返回。跟之前的类似
+12 商品返回
+{
+    "products": [
+    {
+    "productId":"123445",
+     "groupName":"男装",
+     "imageUrl":"http://tigerday.org/wp-content/uploads/2013/04/Siberischer_tiger.jpg",
+     "desc":"123445",
+     "price":100.99,
+      "count":10
+    },{
+     "productId":"123445",
+      "groupName":"男装",
+      "imageUrl":"http://i.imgur.com/DvpvklR.png",
+      "desc":"123445",
+      "price":100.99,
+       "count":10
+    }
+    ]
+}
+
+********************7， 8. 9， 10 ************暂时不需要实现。等待支付功能可用后，才能用到

@@ -11,14 +11,19 @@ class ProductReqeust() : Parcelable {
     var price: Double? = null
     var desc: String? = null
     var img: String? = null
-    var groupId: String? = null //商品唯一性
+    //var groupId: String? = null //商品唯一性
+    var userName: String? = null
+    var productId: String? = null
+    var isSelected: Boolean = false
 
     constructor(parcel: Parcel) : this() {
         groupName = parcel.readString()
         price = parcel.readValue(Double::class.java.classLoader) as? Double
         desc = parcel.readString()
         img = parcel.readString()
-        groupId = parcel.readString()
+        userName = parcel.readString()
+        productId = parcel.readString()
+        isSelected = parcel.readByte() != 0.toByte()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -26,7 +31,9 @@ class ProductReqeust() : Parcelable {
         parcel.writeValue(price)
         parcel.writeString(desc)
         parcel.writeString(img)
-        parcel.writeString(groupId)
+        parcel.writeString(userName)
+        parcel.writeString(productId)
+        parcel.writeByte(if (isSelected) 1 else 0)
     }
 
     override fun describeContents(): Int {

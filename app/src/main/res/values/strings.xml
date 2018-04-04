@@ -11,6 +11,7 @@
 
     <string name="shopping">购物车</string>
     <string name="title_code">生成注册验证码</string>
+    <string name="title_orders">订单详细</string>
     <string name="upload_list_title">上传商品列表</string>
     <string name="mine_title">我的</string>
     <string name="upload_title">上传商品</string>

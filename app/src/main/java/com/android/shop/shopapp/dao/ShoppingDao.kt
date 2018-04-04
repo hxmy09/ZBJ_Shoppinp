@@ -17,9 +17,9 @@ interface ShoppingDao {
     @Query("SELECT * FROM ShoppingModel")
     fun findAll(): List<ShoppingModel>
 
-    @Query("SELECT * FROM ShoppingModel where ShoppingModel.groupId=:groupId")
-    fun findByGroupId(groupId: String): ShoppingModel
+    @Query("SELECT * FROM ShoppingModel where ShoppingModel.productId=:productId")
+    fun findByProductId(productId: String): ShoppingModel
 
-    @Query("DELETE FROM ShoppingModel where ShoppingModel.groupId=:groupId")
-    fun deleteByGroupId(groupId: String)
+    @Query("DELETE FROM ShoppingModel where ShoppingModel.productId=:productId")
+    fun deleteByProductId(productId: String)
 }

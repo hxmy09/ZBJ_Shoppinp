@@ -1,15 +1,14 @@
 package com.android.shop.shopapp.model.network
 
+import com.android.shop.shopapp.network.JsonAndXmlConverters
 import com.android.shop.shopapp.network.services.UploadsImService
-import com.hxmy.sm.network.services.ForgetPwdService
-import com.hxmy.sm.network.services.LoginService
-import com.hxmy.sm.network.services.RegisterService
+import com.android.shop.shopapp.network.services.GetProductsService
+import com.hxmy.sm.network.services.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
-import com.android.shop.shopapp.network.JsonAndXmlConverters
 import java.util.concurrent.TimeUnit
 
 
@@ -40,7 +39,25 @@ class RetrofitHelper() {
         val retrofit = createRetrofit()
         return retrofit.create(UploadsImService::class.java);
     }
+    fun getAllUserService(): GetAllUserService {
+        val retrofit = createRetrofit()
+        return retrofit.create(GetAllUserService::class.java);
+    }
 
+    fun getProductsService(): GetProductsService {
+        val retrofit = createRetrofit()
+        return retrofit.create(GetProductsService::class.java);
+    }
+
+    fun getOrdersService(): OrderListService {
+        val retrofit = createRetrofit()
+        return retrofit.create(OrderListService::class.java);
+    }
+
+    fun getDeleteProductService(): DeleteProductService {
+        val retrofit = createRetrofit()
+        return retrofit.create(DeleteProductService::class.java);
+    }
 
     private fun createOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS)

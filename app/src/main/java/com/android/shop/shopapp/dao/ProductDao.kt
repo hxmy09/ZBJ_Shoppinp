@@ -21,9 +21,9 @@ interface ProductDao {
     @Query("SELECT * FROM ProductModel where groupName = :group")
     fun findByGroup(group: String): List<ProductModel>
 
-    @Query("SELECT * FROM ProductModel where ProductModel.groupId=:groupId")
-    fun findByGroupId(groupId: String): ProductModel
+    @Query("SELECT * FROM ProductModel where ProductModel.productId=:productId")
+    fun findByProductId(productId: String): ProductModel
 
-    @Query("DELETE FROM ProductModel where ProductModel.groupId=:groupId")
-    fun deleteByGroupId(groupId: String)
+    @Query("DELETE FROM ProductModel where ProductModel.productId=:productId")
+    fun deleteByProductId(productId: String)
 }

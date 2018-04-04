@@ -1,0 +1,57 @@
+package com.android.shop.shopapp.activity
+
+import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
+import com.android.shop.shopapp.R
+import com.android.shop.shopapp.ShopApplication
+import com.android.shop.shopapp.data.OrdersAdapter
+import com.android.shop.shopapp.model.network.RetrofitHelper
+import com.android.shop.shopapp.model.response.Order
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_group.*
+
+/**
+ * @author a488606
+ * @since 4/4/18
+ */
+
+class OrdersListActivity : BaseActivity() {
+
+    var list = arrayListOf<Order>()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_orders)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        swipeRefreshLayout.setOnRefreshListener {
+            getOrders()
+        }
+        swipeRefreshLayout.isRefreshing = true
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@OrdersListActivity)
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(this@OrdersListActivity, DividerItemDecoration.HORIZONTAL))
+            adapter = OrdersAdapter(this@OrdersListActivity, list)
+        }
+        getOrders()
+    }
+
+    private fun getOrders() {
+        val orderService = RetrofitHelper().getOrdersService()
+        var userName = (application as ShopApplication).sharedPreferences?.getString("userName", "")
+        mCompositeDisposable.add(orderService.getAllOrders(userName!!)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ t ->
+                    list = t.orders!!
+                    (recyclerView.adapter as OrdersAdapter).contents = list
+                    recyclerView.adapter?.notifyDataSetChanged()
+                    swipeRefreshLayout.isRefreshing = false
+                }, { _ ->
+                    Toast.makeText(this@OrdersListActivity, "请求数据失败", Toast.LENGTH_LONG).show()
+                }))
+    }
+}

@@ -1,7 +1,6 @@
 package com.android.shop.shopapp.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import com.android.shop.shopapp.R
@@ -10,7 +9,6 @@ import com.android.shop.shopapp.dao.ProductModel
 import com.android.shop.shopapp.dao.ShoppingModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.product_detal.*
-import java.io.File
 
 /**
  * Created by myron on 3/31/18.
@@ -24,7 +22,7 @@ class ProductDetailActivity : BaseActivity() {
 
         var model = intent.getParcelableExtra<ProductModel>("Details")
 
-        Picasso.with(this@ProductDetailActivity).load(Uri.fromFile(File(model?.imageUrl))).into(img)
+        Picasso.get().load(model?.imageUrl).into(img)
         price.text = model?.price?.toString()
         desc.text = model?.desc
         total.text = price.text
@@ -62,17 +60,17 @@ class ProductDetailActivity : BaseActivity() {
             shoppingModel.imageUrl = model.imageUrl
             shoppingModel.price = model.price
             shoppingModel.amount = buyAmount.text.toString().toInt()
-            shoppingModel.groupId = model.groupId
+            shoppingModel.productId = model.productId
 
 
-            var sM = DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao()?.findByGroupId(shoppingModel.groupId!!)
+            var sM = DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao().findByProductId(shoppingModel.productId!!)
 
-            if (sM == null || sM.groupId?.isEmpty()!!) {
-                DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao()?.insert(shoppingModel)
+            if (sM.productId?.isEmpty()!!) {
+                DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao().insert(shoppingModel)
             }else
             {
                 sM.amount = sM.amount!! + shoppingModel.amount!!
-                DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao()?.insert(sM)
+                DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao().insert(sM)
             }
 
 

@@ -2,7 +2,6 @@ package com.android.shop.shopapp.data
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import com.android.shop.shopapp.R
 import com.android.shop.shopapp.activity.ProductDetailActivity
 import com.android.shop.shopapp.dao.ProductModel
 import com.squareup.picasso.Picasso
-import java.io.File
 
 
 class GroupAdapter(var context: Context?, list: ArrayList<ProductModel>) : RecyclerView.Adapter<GroupAdapter.ViewHolder>() {
@@ -21,7 +19,7 @@ class GroupAdapter(var context: Context?, list: ArrayList<ProductModel>) : Recyc
     var contents: ArrayList<ProductModel> = list
 
     override
-    fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
+    fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.group_card_item, parent, false)
         return ViewHolder(view!!)
@@ -54,11 +52,11 @@ class GroupAdapter(var context: Context?, list: ArrayList<ProductModel>) : Recyc
         fun bind(model: ProductModel?) {
             price?.text = model?.price.toString()
             desc?.text = model?.desc
-            Picasso.with(itemView.context).load(Uri.fromFile(File(model?.imageUrl))).into(imageView)
+            Picasso.get().load(model?.imageUrl).into(imageView)
 
             itemView.setOnClickListener {
                 var intent = Intent(itemView.context, ProductDetailActivity::class.java).apply {
-                    putExtra("Details",model)
+                    putExtra("Details", model)
                 }
 
                 itemView?.context?.startActivity(intent)

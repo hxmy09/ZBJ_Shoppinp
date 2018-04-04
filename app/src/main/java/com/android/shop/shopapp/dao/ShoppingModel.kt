@@ -2,7 +2,6 @@ package com.android.shop.shopapp.dao
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
@@ -16,7 +15,7 @@ class ShoppingModel() : Parcelable {
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0
     @ColumnInfo
-    var groupId: String? = null//商品id
+    var productId: String? = null//商品id
     @ColumnInfo
     var groupName: String? = null //商品组
     @ColumnInfo
@@ -33,7 +32,7 @@ class ShoppingModel() : Parcelable {
 
     constructor(parcel: Parcel) : this() {
         uid = parcel.readInt()
-        groupId = parcel.readString()
+        productId = parcel.readString()
         groupName = parcel.readString()
         imageUrl = parcel.readString()
         desc = parcel.readString()
@@ -44,7 +43,7 @@ class ShoppingModel() : Parcelable {
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(uid)
-        parcel.writeString(groupId)
+        parcel.writeString(productId)
         parcel.writeString(groupName)
         parcel.writeString(imageUrl)
         parcel.writeString(desc)

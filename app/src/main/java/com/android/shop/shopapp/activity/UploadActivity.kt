@@ -10,6 +10,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import com.android.shop.shopapp.R
+import com.android.shop.shopapp.ShopApplication
 import com.android.shop.shopapp.dao.DBUtil
 import com.android.shop.shopapp.dao.ProductModel
 import com.android.shop.shopapp.model.KindsModel
@@ -19,17 +20,17 @@ import com.android.shop.shopapp.upload.FileResolver
 import com.android.shop.shopapp.upload.FileUploaderContract
 import com.android.shop.shopapp.upload.FileUploaderModel
 import com.android.shop.shopapp.upload.FileUploaderPresenter
+import com.android.shop.shopapp.util.GrayscaleImageLoader
 import com.esafirm.imagepicker.features.ImagePicker
 import com.esafirm.imagepicker.features.ReturnMode
 import com.esafirm.imagepicker.model.Image
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_upload.*
 import java.io.File
 import java.io.InputStream
 import java.io.InputStreamReader
-import java.util.*
+import java.net.URLEncoder
 
 /**
  * @author a488606
@@ -41,7 +42,6 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
 
     var product = ProductReqeust()
 
-    private val mCompositeDisposable = CompositeDisposable()
     private lateinit var presenter: FileUploaderPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,7 +139,7 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
         }
       //  Toast.makeText(this@UploadActivity, stringBuffer.toString(), Toast.LENGTH_LONG).show()
 
-        Picasso.with(this@UploadActivity).load(Uri.fromFile(File(stringBuffer.toString()))).into(img)
+        Picasso.get().load(Uri.fromFile(File(stringBuffer.toString()))).into(img)
         product.img = stringBuffer.toString()
     }
 
@@ -160,15 +160,18 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
         } else if (TextUtils.isEmpty(product.img)) {
             Toast.makeText(this@UploadActivity, "请选择商品图片", Toast.LENGTH_SHORT).show()
         } else {
-            product.groupName = spinner.text.toString()
+          //   String(encode(""), StandardCharsets.ISO_8859_1)
+//            Base64.encodeToString(spinner.text.toString(),Base64.NO_WRAP)
+            product.groupName =URLEncoder.encode(spinner.text.toString(),"utf-8")
             product.price = edit_price.text.toString().toDouble()
-            product.desc = edit_desc.text.toString()
-            product.groupId = System.currentTimeMillis().toString() //唯一性
+            product.desc = URLEncoder.encode(edit_desc.text.toString(),"utf-8")
+            product.productId = System.currentTimeMillis().toString()
+            product.userName = URLEncoder.encode((application as ShopApplication).sharedPreferences?.getString("userName",""),"utf-8")//(application as ShopApplication).sharedPreferences?.getString("userName","")
             //上传商品信息
-            // presenter.onImageSelected(product);
-            //将数据保存在本地数据库
+             presenter.onImageSelected(product)
+//            //将数据保存在本地数据库
             DBUtil(this@UploadActivity).mAppDatabase.productDao().insert(convertFromProductReqeust2ProductModel(product))
-            Toast.makeText(this@UploadActivity, "上传成功", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this@UploadActivity, "上传成功", Toast.LENGTH_LONG).show()
             finish()
 //            var intent = Intent(this@UploadActivity, MineActivity::class.java)
 //            startActivity(intent)
@@ -182,7 +185,7 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
         model.groupName = request.groupName
         model.imageUrl = request.img
         model.price = request.price
-        model.groupId = request.groupId
+        model.productId = request.productId
         return model
     }
 

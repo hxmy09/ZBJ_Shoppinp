@@ -19,7 +19,7 @@ class RecyclerViewAdapter(contents: ArrayList<ShoppingModel>) : RecyclerView.Ada
     private var contents: List<ShoppingModel> = contents
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.list_item_card_small, parent, false)
         return ViewHolder(view!!)

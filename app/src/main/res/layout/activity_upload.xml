@@ -39,7 +39,6 @@
                     app:met_underlineColor="@android:color/holo_orange_dark"
                     app:ms_background_color="#dddddd"
                     app:ms_dropdown_height="match_parent"
-                    app:ms_hint="选择商品种类"
                     app:ms_text_color="@android:color/black"/>
 
                 <com.rengwuxian.materialedittext.MaterialEditText

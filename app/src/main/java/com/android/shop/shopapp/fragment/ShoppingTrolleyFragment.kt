@@ -28,15 +28,13 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
     override fun countTotal(number: Int, model: ShoppingModel) {
         //更新本地数据库 先更新数据库。在计算 （需要先检测数据库中是否有这一条，如果没有。就不更新。这个insert 是用来更新数据库，不是插入数据库）
-        var isExit = DBUtil(activity).mAppDatabase.shoppingDao()?.findByGroupId(model.groupId!!)
-        if (isExit != null) {
-            DBUtil(activity).mAppDatabase.shoppingDao()?.insert(model)
-        }
+        var isExit = DBUtil(activity).mAppDatabase.shoppingDao().findByProductId(model.productId!!)
+        isExit.groupName?.let { DBUtil(activity).mAppDatabase.shoppingDao().insert(model) }
         cal()
     }
 
     private fun cal() {
-        list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
+        list = DBUtil(activity).mAppDatabase.shoppingDao().findAll()
 //        adapter!!.contents = list
 //        adapter!!.notifyDataSetChanged()
         var amount: Double = 0.00
@@ -56,22 +54,22 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
+        list = DBUtil(activity).mAppDatabase.shoppingDao().findAll()
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
-        adapter = ShoppingAdapter(activity, this@ShoppingTrolleyFragment, list!!)
+        adapter = ShoppingAdapter(activity, this@ShoppingTrolleyFragment, list)
         //Use this now
         recyclerView.addItemDecoration(MaterialViewPagerHeaderDecorator())
         recyclerView.adapter = adapter
 
-        selectAll.setOnCheckedChangeListener({ compoundButton: CompoundButton, b: Boolean ->
+        selectAll.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
 
             list.forEach {
                 it.isSelected = b
                 //更新本地数据库 先更新数据库。在计算 （需要先检测数据库中是否有这一条，如果没有。就不更新。这个insert 是用来更新数据库，不是插入数据库）
-                var isExit = DBUtil(activity).mAppDatabase.shoppingDao()?.findByGroupId(it.groupId!!)
-                if (isExit != null) {
-                    DBUtil(activity).mAppDatabase.shoppingDao()?.insert(it)
+                var isExit = DBUtil(activity).mAppDatabase.shoppingDao().findByProductId(it.productId!!)
+                if (isExit.groupName != null) {
+                    DBUtil(activity).mAppDatabase.shoppingDao().insert(it)
                 }
             }
             adapter!!.contents = list
@@ -89,8 +87,8 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
         delete.setOnClickListener {
             //            list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
-            list.filter { it.isSelected }.forEach { it -> DBUtil(activity).mAppDatabase.shoppingDao()?.deleteByGroupId(it.groupId!!) }
-            list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
+            list.filter { it.isSelected }.forEach { it -> DBUtil(activity).mAppDatabase.shoppingDao().deleteByProductId(it.productId!!) }
+            list = DBUtil(activity).mAppDatabase.shoppingDao().findAll()
             if (list.size == adapter!!.itemCount) {
                 Toast.makeText(activity, "请选择至少一条数据", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -132,6 +130,6 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 }
 
 interface CountTotalCallBack {
-    fun countTotal(amount: Int, model: ShoppingModel)
-    fun checkAll(amount: Int, model: ShoppingModel)
+    fun countTotal(am: Int, model: ShoppingModel)
+    fun checkAll(am: Int, model: ShoppingModel)
 }

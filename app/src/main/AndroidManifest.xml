@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.shop.shopapp">
+<manifest package="com.android.shop.shopapp"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name="com.android.shop.shopapp.ShopApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -26,37 +33,51 @@
             android:configChanges="orientation|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.CodeGenerateActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_code"></activity>
         <activity
             android:name=".activity.UploadActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/upload_title"></activity>
         <activity
+            android:name=".activity.OrdersListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_orders"></activity>
+
+        <activity
+            android:name=".activity.OrderDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_orders"></activity>
+        <activity
+            android:name=".activity.SearchActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:label="@string/title_orders">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+        </activity>
+        <activity
             android:name=".activity.ProductDetailActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/product_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-        android:name=".activity.UploadListActivity"
-        android:configChanges="orientation|keyboardHidden"
-        android:label="@string/upload_list_title"></activity>
 
         <activity
-            android:name=".activity.ManageActivity"
+            android:name=".activity.ManageProductsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/product_management"></activity>
         <activity
-            android:name=".activity.MineActivity"
+            android:name=".activity.ManagerNewUserActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/mine_title"></activity>
+            android:label="@string/product_management"></activity>
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/login_title"
@@ -71,6 +92,10 @@
             android:name=".activity.UpdateInfoActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/forgetpwd_title"></activity>
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value="com.android.shop.shopapp.activity.SearchActivity" />
     </application>
 
 </manifest>

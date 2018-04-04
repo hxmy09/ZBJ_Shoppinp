@@ -1,4 +1,4 @@
-package com.android.shop.shopapp.activity;
+package com.android.shop.shopapp.util;
 
 import android.widget.ImageView;
 

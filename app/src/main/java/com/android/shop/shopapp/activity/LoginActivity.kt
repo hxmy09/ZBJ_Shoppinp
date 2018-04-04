@@ -8,7 +8,6 @@ import com.android.shop.shopapp.ShopApplication
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.model.request.LoginRequest
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -18,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_login.*
  * @since 3/22/18
  */
 class LoginActivity : BaseActivity() {
-    private val mCompositeDisposable = CompositeDisposable()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -58,6 +57,9 @@ class LoginActivity : BaseActivity() {
 
                                 //保存登录状态
                                 (application as ShopApplication).sharedPreferences?.edit()?.putBoolean("loggedin", true)?.apply()
+                                (application as ShopApplication).sharedPreferences?.edit()?.putString("address", t.address)?.apply()
+                                (application as ShopApplication).sharedPreferences?.edit()?.putString("phone", t.phone)?.apply()
+                                (application as ShopApplication).sharedPreferences?.edit()?.putString("userName", t.userName)?.apply()
                                 (application as ShopApplication).sharedPreferences?.edit()?.putInt("userState", t.userState)?.apply() //1管理员，0 普通客户
                                 var intent = Intent(this@LoginActivity, MainActivity::class.java);
                                 startActivity(intent)
@@ -66,15 +68,14 @@ class LoginActivity : BaseActivity() {
                                 Toast.makeText(this@LoginActivity, "用户名，密码输入错误", Toast.LENGTH_LONG).show()
                             }
                             stopAnim()
-                        }, { e ->
+                        }, {
 
                             //TODO  need to remove
-                            var intent = Intent(this@LoginActivity, MainActivity::class.java);
-                            startActivity(intent)
-                            (application as ShopApplication).sharedPreferences?.edit()?.putBoolean("loggedin", true)?.apply()
-                            (application as ShopApplication).sharedPreferences?.edit()?.putInt("userState", 1)?.apply() //1管理员，0 普通客户
-                            finish()
-                           // Toast.makeText(this@LoginActivity, "用户名，密码输入错误", Toast.LENGTH_LONG).show()
+//                            var intent = Intent(this@LoginActivity, MainActivity::class.java);
+//                            startActivity(intent)
+                            (application as ShopApplication).sharedPreferences?.edit()?.clear() //1管理员，0 普通客户
+//                            finish()
+                            Toast.makeText(this@LoginActivity, "用户名，密码输入错误", Toast.LENGTH_LONG).show()
                             stopAnim()
 
                         }))
@@ -86,11 +87,6 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    override fun onDestroy() {
-        // DO NOT CALL .dispose()
-        mCompositeDisposable.clear()
-        super.onDestroy()
-    }
 
     private fun startAnim() {
         avi.show()

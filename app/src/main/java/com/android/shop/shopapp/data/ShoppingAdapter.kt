@@ -1,7 +1,6 @@
 package com.android.shop.shopapp.data
 
 import android.content.Context
-import android.net.Uri
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ import com.android.shop.shopapp.R
 import com.android.shop.shopapp.dao.ShoppingModel
 import com.android.shop.shopapp.fragment.ShoppingTrolleyFragment
 import com.squareup.picasso.Picasso
-import java.io.File
 
 /**
  * @author a488606
@@ -27,7 +25,7 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
     var contents: List<ShoppingModel> = list
 
     override
-    fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingAdapter.ViewHolder? {
+    fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.shopping_trolley_card_item, parent, false)
         return ViewHolder(view!!)
@@ -69,9 +67,9 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
             price?.text = model?.price.toString()
             desc?.text = model?.desc
             buyAmount?.text = model?.amount.toString()
-            Picasso.with(itemView.context).load(Uri.fromFile(File(model?.imageUrl))).into(imageView)
+            Picasso.get().load(model?.imageUrl).into(imageView)
             checkBox?.isChecked = model?.isSelected!!
-            checkBox?.setOnCheckedChangeListener({ compoundButton: CompoundButton, b: Boolean ->
+            checkBox?.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
                 model.isSelected = b
                 fragment.countTotal(buyAmount?.text.toString().toInt(), model)
             })
@@ -80,7 +78,7 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
                 var amout = buyAmount?.text.toString().toInt()
                 buyAmount?.text = (++amout).toString()
                 //更改对象的amount 数量
-                model?.amount = amout
+                model.amount = amout
                 reduce?.isEnabled = amout > 0
                 fragment.countTotal(amout, model)
             }
@@ -95,7 +93,7 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
 
                 }
                 //更改对象的amount 数量
-                model?.amount = amout
+                model.amount = amout
                 buyAmount?.text = amout.toString()
                 fragment.countTotal(amout, model)
                 // total.text = (amout * model!!.price!!).toString()

@@ -1,11 +1,10 @@
 package com.android.shop.shopapp.dao
 
-import android.arch.persistence.room.*
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
-import com.android.shop.shopapp.model.request.User
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * @author a488606
@@ -16,7 +15,7 @@ class ProductModel() : Parcelable {
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0
     @ColumnInfo
-    var groupId: String? = null
+    var productId: String? = null
     @ColumnInfo
     var groupName: String? = null
     @ColumnInfo
@@ -25,39 +24,30 @@ class ProductModel() : Parcelable {
     var desc: String? = null
     @ColumnInfo
     var price: Double? = null
-    //@ColumnInfo
-//    var createDate: String = ""
-//        get() {
-//            var sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-//            return sdf.format(Calendar.getInstance().time)
-//        }
-    //        set(value) {
-//            createDate = value
-//        }
-//    @ColumnInfo
-//    var userName: String? = null
-//    @ColumnInfo
-//    var userState: Int = 0
+    var count: Int? = null
+
     @ColumnInfo
-    var isSelected: Boolean = true
+    var isSelected: Boolean = false
 
     constructor(parcel: Parcel) : this() {
         uid = parcel.readInt()
-        groupId = parcel.readString()
+        productId = parcel.readString()
         groupName = parcel.readString()
         imageUrl = parcel.readString()
         desc = parcel.readString()
         price = parcel.readValue(Double::class.java.classLoader) as? Double
+        count = parcel.readValue(Int::class.java.classLoader) as? Int
         isSelected = parcel.readByte() != 0.toByte()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(uid)
-        parcel.writeString(groupId)
+        parcel.writeString(productId)
         parcel.writeString(groupName)
         parcel.writeString(imageUrl)
         parcel.writeString(desc)
         parcel.writeValue(price)
+        parcel.writeValue(count)
         parcel.writeByte(if (isSelected) 1 else 0)
     }
 
