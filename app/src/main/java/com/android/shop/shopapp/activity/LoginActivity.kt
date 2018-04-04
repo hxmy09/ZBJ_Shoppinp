@@ -71,8 +71,8 @@ class LoginActivity : BaseActivity() {
                         }, {
 
                             //TODO  need to remove
-//                            var intent = Intent(this@LoginActivity, MainActivity::class.java);
-//                            startActivity(intent)
+                            var intent = Intent(this@LoginActivity, MainActivity::class.java);
+                            startActivity(intent)
                             (application as ShopApplication).sharedPreferences?.edit()?.clear() //1管理员，0 普通客户
 //                            finish()
                             Toast.makeText(this@LoginActivity, "用户名，密码输入错误", Toast.LENGTH_LONG).show()
