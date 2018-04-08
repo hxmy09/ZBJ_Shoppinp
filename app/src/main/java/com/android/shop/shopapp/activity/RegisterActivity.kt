@@ -25,16 +25,16 @@ open class RegisterActivity : BaseActivity() {
         btnLogin.setOnClickListener {
             //login
             startAnim()
-            if (edit_pwd.text != edit_repwd.text) {
+            if (edit_pwd.text.toString() != edit_repwd.text.toString()) {
                 Toast.makeText(this@RegisterActivity, "密码不匹配", Toast.LENGTH_LONG).show()
-            }
-            if (edit_userName.text.isNotEmpty() && edit_pwd.text.isNotEmpty() && edit_pwd.text.isNotEmpty() && edit_address.text.isNotEmpty() && edit_phone.text.isNotEmpty()) {
+            } else if (edit_userName.text.toString().isNotEmpty() && edit_pwd.text.toString().isNotEmpty() && edit_pwd.text.toString().isNotEmpty() && edit_address.text.toString().isNotEmpty() && edit_phone.text.toString().isNotEmpty()) {
 
                 var request = RegisterRequest()
                 request.userName = edit_userName.text.toString()
                 request.password = edit_pwd.text.toString()
 //                request.code = code.text.toString()
                 request.address = edit_address.text.toString()
+                request.phone = edit_phone.text.toString()
 //                request.repwd = edit_repwd.text.toString()
 
                 submit(request)
@@ -58,15 +58,17 @@ open class RegisterActivity : BaseActivity() {
                     if (t.code == "100") {//101失败
                         var intent = Intent(this@RegisterActivity, LoginActivity::class.java);
                         startActivity(intent)
-                        Toast.makeText(this@RegisterActivity, "注册成功", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@RegisterActivity, t.msg, Toast.LENGTH_LONG).show()
                         finish()
+                    } else if (t.code == "501") {
+                        Toast.makeText(this@RegisterActivity, t.msg, Toast.LENGTH_LONG).show()
                     } else {
                         Toast.makeText(this@RegisterActivity, "注册失败", Toast.LENGTH_LONG).show()
                     }
                     stopAnim()
                 }, { _ ->
 
-//                    //TODO  need to remove
+                    //                    //TODO  need to remove
 //                    var intent = Intent(this@RegisterActivity, MainActivity::class.java);
 //                    startActivity(intent)
 //                    finish()

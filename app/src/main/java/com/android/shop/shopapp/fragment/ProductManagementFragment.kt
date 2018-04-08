@@ -14,6 +14,7 @@ import com.android.shop.shopapp.dao.ProductModel
 import com.android.shop.shopapp.data.ProductManagementAdapter
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.model.request.ProductIdsReqeust
+import com.android.shop.shopapp.network.services.ProductParameterRequest
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -82,10 +83,14 @@ open class ProductManagementFragment : Fragment() {
         mCompositeDisposable.add(deleteService.deleteProducts(pIds)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ _ ->
-                    swipeRefreshLayout.isRefreshing = true
-                    fetchProducts()
-                    Toast.makeText(activity, "删除成功", Toast.LENGTH_LONG).show()
+                .subscribe({ t ->
+                    if (t.code == "100") {
+                        swipeRefreshLayout.isRefreshing = true
+                        fetchProducts()
+                        Toast.makeText(activity, "删除成功", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(activity, "删除失败", Toast.LENGTH_LONG).show()
+                    }
 
                 }, { _ ->
                     Toast.makeText(activity, "删除失败", Toast.LENGTH_LONG).show()
@@ -98,16 +103,21 @@ open class ProductManagementFragment : Fragment() {
         var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0)
         var userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
 
-        mCompositeDisposable.add(productsService.getAllProductByUser(userName, userState)
+        var request = ProductParameterRequest()
+        request.userName = userName
+        request.userState = userState
+        mCompositeDisposable.add(productsService.getAllProductByUser(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ t ->
-                    list = t.products!!
-                    (recyclerView.adapter as ProductManagementAdapter).contents = list
-                    recyclerView.adapter?.notifyDataSetChanged()
+                    if (t.code == "100") {
+                        list = t.products!!
+                        (recyclerView.adapter as ProductManagementAdapter).contents = list
+                        recyclerView.adapter?.notifyDataSetChanged()
 
-                    swipeRefreshLayout.isRefreshing = false
-                }, { _ ->
+                        swipeRefreshLayout.isRefreshing = false
+                    }
+                }, { t ->
                     Toast.makeText(activity, "网络错误,请重新刷新", Toast.LENGTH_LONG).show()
 //                    swipeRefreshLayout.isRefreshing = false
                 }))

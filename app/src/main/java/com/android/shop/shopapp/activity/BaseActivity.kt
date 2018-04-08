@@ -33,9 +33,10 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.search, menu)
-        return true
+//        val inflater = menuInflater
+//        inflater.inflate(R.menu.search, menu)
+//        return true
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onUserInteraction() {

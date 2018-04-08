@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.android.shop.shopapp"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.shop.shopapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name="com.android.shop.shopapp.ShopApplication"
@@ -19,45 +19,51 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name">
-
-        </activity>
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.GroupActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.LaunchActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.UploadActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/upload_title"></activity>
+            android:label="@string/upload_title"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.OrdersListActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_orders"></activity>
+            android:label="@string/title_orders"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.OrderDetailActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_orders"></activity>
+            android:label="@string/title_orders"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.SearchActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_orders"
             android:launchMode="singleTop"
-            android:label="@string/title_orders">
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
             <meta-data
                 android:name="android.app.searchable"
@@ -68,30 +74,36 @@
             android:name=".activity.ProductDetailActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/product_detail"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
             android:name=".activity.ManageProductsActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/product_management"></activity>
+            android:label="@string/product_management"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.ManagerNewUserActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/product_management"></activity>
+            android:label="@string/adult"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/login_title"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
             android:name=".activity.RegisterActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/register_title"></activity>
+            android:label="@string/register_title"
+            android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.UpdateInfoActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/forgetpwd_title"></activity>
+            android:label="@string/forgetpwd_title"
+            android:screenOrientation="portrait"></activity>
 
         <meta-data
             android:name="android.app.default_searchable"

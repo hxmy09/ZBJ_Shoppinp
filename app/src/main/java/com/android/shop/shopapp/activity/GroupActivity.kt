@@ -8,6 +8,8 @@ import com.android.shop.shopapp.R
 import com.android.shop.shopapp.dao.ProductModel
 import com.android.shop.shopapp.data.GroupAdapter
 import com.android.shop.shopapp.model.network.RetrofitHelper
+import com.android.shop.shopapp.model.request.ProductReqeust
+import com.android.shop.shopapp.network.services.ProductParameterRequest
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_group.*
@@ -48,7 +50,9 @@ class GroupActivity : BaseActivity() {
 
     private fun getProductsByGroup(group: String) {
         val productService = RetrofitHelper().getProductsService()
-        mCompositeDisposable.add(productService.getAllProductGroup(group)
+        var request = ProductParameterRequest()
+        request.groupName = group
+        mCompositeDisposable.add(productService.getAllProductGroup(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ t ->

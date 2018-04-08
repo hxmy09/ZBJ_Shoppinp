@@ -15,8 +15,13 @@ import com.android.shop.shopapp.network.JsonAndXmlConverters
  */
 
 interface RegisterService {
-    @POST("api/authentication")
-    @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))
+    @POST("mall/api/user/reg")
+    @Headers(*arrayOf("Content-Type: application/json", "session_id:78c6d5bc30cc3c664c6c53dbcdff792b"))
     @JsonAndXmlConverters.Json
     fun register(@JsonAndXmlConverters.Json @Body login: RegisterRequest): Observable<RegisterResponse>
+
+    @POST("mall/api/user/validate")
+    @Headers(*arrayOf("Content-Type: application/json", "session_id:5ce8d31cbf2863733eecee81cb66acf3"))
+    @JsonAndXmlConverters.Json
+    fun validate(@JsonAndXmlConverters.Json @Body login: RegisterRequest): Observable<RegisterResponse>
 }

@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 /**
  * @author a488606
@@ -13,12 +14,16 @@ import android.os.Parcelable
 @Entity(tableName = "ProductModel")
 class ProductModel() : Parcelable {
     @PrimaryKey(autoGenerate = true)
+
     var uid: Int = 0
     @ColumnInfo
+    @SerializedName("product_id")
     var productId: String? = null
     @ColumnInfo
+    @SerializedName("group_name")
     var groupName: String? = null
     @ColumnInfo
+    @SerializedName("img_url")
     var imageUrl: String? = null
     @ColumnInfo
     var desc: String? = null

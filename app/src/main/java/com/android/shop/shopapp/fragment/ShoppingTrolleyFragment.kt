@@ -19,11 +19,6 @@ import kotlinx.android.synthetic.main.fragment_shopping_trolley.*
  */
 class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
-    override fun checkAll(amount: Int, model: ShoppingModel) {
-//        DBUtil(activity).mAppDatabase.shoppingDao()?.insert(model)
-//        cal()
-    }
-
     lateinit var list: List<ShoppingModel>
 
     override fun countTotal(number: Int, model: ShoppingModel) {
@@ -131,5 +126,4 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
 interface CountTotalCallBack {
     fun countTotal(am: Int, model: ShoppingModel)
-    fun checkAll(am: Int, model: ShoppingModel)
 }

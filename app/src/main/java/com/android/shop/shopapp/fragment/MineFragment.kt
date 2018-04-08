@@ -32,16 +32,16 @@ class MineFragment : Fragment(), View.OnClickListener {
         upload.setOnClickListener(this)
         exit.setOnClickListener(this)
         manageProduct.setOnClickListener(this)
-        orderList.setOnClickListener(this)
+//        orderList.setOnClickListener(this)
 
 
-        var userNameStr = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
-        var addressStr = (activity.application as ShopApplication).sharedPreferences?.getString("address", "")
-        var phoneStr = (activity.application as ShopApplication).sharedPreferences?.getString("phone", "")
+//        var userNameStr = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
+//        var addressStr = (activity.application as ShopApplication).sharedPreferences?.getString("address", "")
+//        var phoneStr = (activity.application as ShopApplication).sharedPreferences?.getString("phone", "")
         var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0)
-        address.text = addressStr
-        phone.text = phoneStr
-        userName.text = userNameStr
+//        address.text = addressStr
+//        phone.text = phoneStr
+//        userName.text = userNameStr
 
         //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
         when (userState) {
@@ -94,10 +94,10 @@ class MineFragment : Fragment(), View.OnClickListener {
                 var intent = Intent(activity, ManageProductsActivity::class.java)
                 startActivity(intent)
             }
-            R.id.orderList -> {
-                var intent = Intent(activity, OrdersListActivity::class.java)
-                startActivity(intent)
-            }
+//            R.id.orderList -> {
+//                var intent = Intent(activity, OrdersListActivity::class.java)
+//                startActivity(intent)
+//            }
         }
     }
 }

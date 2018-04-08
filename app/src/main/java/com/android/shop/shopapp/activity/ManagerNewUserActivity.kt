@@ -24,7 +24,7 @@ class ManagerNewUserActivity : BaseActivity(), UserAuditCall {
         setContentView(R.layout.activity_manage_user)
 
         swipeRefreshLayout.setOnRefreshListener {
-            getAllUsers();
+            getAllUsers()
         }
         swipeRefreshLayout.isRefreshing = true
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -43,25 +43,30 @@ class ManagerNewUserActivity : BaseActivity(), UserAuditCall {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ t ->
-                    list = t.users as ArrayList<RegisterRequest>
-                    (recyclerView.adapter as UsersAdapter).contents = list
-                    recyclerView.adapter?.notifyDataSetChanged()
-                    swipeRefreshLayout.isRefreshing = false
-                }, { _ ->
+                    if (t.code == "100") {
+                        list = t.data as ArrayList<RegisterRequest>
+                        (recyclerView.adapter as UsersAdapter).contents = list
+                        recyclerView.adapter?.notifyDataSetChanged()
+                        swipeRefreshLayout.isRefreshing = false
+                    } else {
+                        Toast.makeText(this@ManagerNewUserActivity, "请求数据失败", Toast.LENGTH_LONG).show()
+                    }
+                }, { t ->
                     Toast.makeText(this@ManagerNewUserActivity, "请求数据失败", Toast.LENGTH_LONG).show()
                 }))
     }
 
     override fun submit(user: RegisterRequest) {
         val registerService = RetrofitHelper().getRegisterService()
-        mCompositeDisposable.add(registerService.register(user)
+        mCompositeDisposable.add(registerService.validate(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ t ->
                     //成功
                     if (t.code == "100") {//101失败
                         Toast.makeText(this@ManagerNewUserActivity, "审核成功", Toast.LENGTH_LONG).show()
-                        swipeRefreshLayout.refreshDrawableState()
+                        getAllUsers()
+                        swipeRefreshLayout.isRefreshing = true
                     } else {
                         Toast.makeText(this@ManagerNewUserActivity, "审核失败", Toast.LENGTH_LONG).show()
                     }

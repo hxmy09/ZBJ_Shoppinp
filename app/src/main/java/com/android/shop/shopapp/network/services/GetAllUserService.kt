@@ -13,8 +13,8 @@ import retrofit2.http.POST
  */
 
 interface GetAllUserService {
-    @POST("api/allUser")
-    @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))
+    @POST("mall/api/users/get/uncheck")
+    @Headers(*arrayOf("Content-Type: application/json", "session_id:bcd2dbef917e85c08c45639785f88371"))
     @JsonAndXmlConverters.Json
     fun getAllUser(): Observable<UserResponse>
 

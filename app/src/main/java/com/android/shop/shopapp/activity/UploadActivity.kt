@@ -1,20 +1,21 @@
 package com.android.shop.shopapp.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
-import com.android.shop.shopapp.dao.DBUtil
-import com.android.shop.shopapp.dao.ProductModel
+import com.android.shop.shopapp.fragment.AddImgsFragment
 import com.android.shop.shopapp.model.KindsModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
+import com.android.shop.shopapp.model.request.AddImgsRequest
 import com.android.shop.shopapp.model.request.ProductReqeust
 import com.android.shop.shopapp.upload.FileResolver
 import com.android.shop.shopapp.upload.FileUploaderContract
@@ -27,10 +28,12 @@ import com.esafirm.imagepicker.model.Image
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_upload.*
+import shopping.hxmy.com.shopping.util.compressImg
 import java.io.File
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.net.URLEncoder
+import java.util.*
 
 /**
  * @author a488606
@@ -41,7 +44,7 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
 
 
     var product = ProductReqeust()
-
+    var addImgsFragment = AddImgsFragment()
     private lateinit var presenter: FileUploaderPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +62,11 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
                 this,
                 FileResolver(contentResolver),
                 FileUploaderModel(RetrofitHelper().getUploadsImService())
-        );
+        )
+        //隐藏loading
+        stopAnim()
+        fragmentManager.beginTransaction().add(R.id.imgsLayout, addImgsFragment, "ADDIMAGES").commit()
+
 
     }
 
@@ -70,17 +77,18 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
         var json = Gson()
         var kindsModel = json.fromJson(InputStreamReader(inputStream), KindsModel::class.java)
         spinner.setItems(kindsModel.kinds)
+
     }
 
     private var images = ArrayList<Image>()
 
     private fun start() {
-        val returnAfterCapture = true
-        val isSingleMode = true
+        val returnAfterCapture = false
+        val isSingleMode = false
         val useCustomImageLoader = false
         val folderMode = true
         val includeVideo = false
-        val isExclude = true
+        val isExclude = false
 
         val imagePicker = ImagePicker.create(this)
 //                .language("zh-rCN") // Set image picker language
@@ -127,6 +135,7 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
         super.onActivityResult(requestCode, resultCode, data)
     }
 
+
     private fun printImages(images: List<Image>?) {
         if (images == null || images.isEmpty()) return
 
@@ -134,12 +143,30 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
         var i = 0
         val l = images.size
         while (i < l) {
-            stringBuffer.append(images[i].path)//.append("\n")
+            stringBuffer.append(images[i].path).append("\n")
             i++
         }
-      //  Toast.makeText(this@UploadActivity, stringBuffer.toString(), Toast.LENGTH_LONG).show()
+        //  Toast.makeText(this@UploadActivity, stringBuffer.toString(), Toast.LENGTH_LONG).show()
 
-        Picasso.get().load(Uri.fromFile(File(stringBuffer.toString()))).into(img)
+        var paths = stringBuffer.toString().split("\n")
+
+
+        Handler().post({
+            var imgsList = arrayListOf<AddImgsRequest>()
+            for (i in 0 until paths.size) {
+                if (paths[i].isNotEmpty()) {
+                    var air = AddImgsRequest()
+                    air.path = paths[i]
+                    imgsList.add(air)
+                }
+
+            }
+            addImgsFragment.setData(imgsList)
+        })
+
+
+        //TODO  增加多张图片
+//        Picasso.get().load(Uri.fromFile(File(stringBuffer.toString()))).into(img)
         product.img = stringBuffer.toString()
     }
 
@@ -160,49 +187,61 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
         } else if (TextUtils.isEmpty(product.img)) {
             Toast.makeText(this@UploadActivity, "请选择商品图片", Toast.LENGTH_SHORT).show()
         } else {
-          //   String(encode(""), StandardCharsets.ISO_8859_1)
-//            Base64.encodeToString(spinner.text.toString(),Base64.NO_WRAP)
-            product.groupName =URLEncoder.encode(spinner.text.toString(),"utf-8")
+
+            v?.isEnabled = false
+            startAnim()
+            product.groupName = URLEncoder.encode(spinner.text.toString(), "utf-8")
             product.price = edit_price.text.toString().toDouble()
-            product.desc = URLEncoder.encode(edit_desc.text.toString(),"utf-8")
+            product.desc = URLEncoder.encode(edit_desc.text.toString(), "utf-8")
             product.productId = System.currentTimeMillis().toString()
-            product.userName = URLEncoder.encode((application as ShopApplication).sharedPreferences?.getString("userName",""),"utf-8")//(application as ShopApplication).sharedPreferences?.getString("userName","")
+            product.userName = URLEncoder.encode((application as ShopApplication).sharedPreferences?.getString("userName", ""), "utf-8")//(application as ShopApplication).sharedPreferences?.getString("userName","")
             //上传商品信息
-             presenter.onImageSelected(product)
-//            //将数据保存在本地数据库
-            DBUtil(this@UploadActivity).mAppDatabase.productDao().insert(convertFromProductReqeust2ProductModel(product))
-//            Toast.makeText(this@UploadActivity, "上传成功", Toast.LENGTH_LONG).show()
-            finish()
-//            var intent = Intent(this@UploadActivity, MineActivity::class.java)
-//            startActivity(intent)
+            presenter.onImageSelected(product, this@UploadActivity)
+
         }
     }
 
-    private fun convertFromProductReqeust2ProductModel(request: ProductReqeust): ProductModel {
-
-        var model = ProductModel()
-        model.desc = request.desc
-        model.groupName = request.groupName
-        model.imageUrl = request.img
-        model.price = request.price
-        model.productId = request.productId
-        return model
-    }
 
     override fun showThumbnail(selectedImage: String?) {
     }
 
     override fun showErrorMessage(message: String?) {
         Toast.makeText(this@UploadActivity, "上传失败，请重新上传", Toast.LENGTH_LONG).show()
+        stopAnim()
     }
 
     override fun uploadCompleted() {
-        Toast.makeText(this@UploadActivity, "上传成功", Toast.LENGTH_LONG).show()
-        setResult(Activity.RESULT_OK, intent)
-        finish()
+
+        MaterialDialog.Builder(this)
+                .content("上传成功,继续上传？")
+                .positiveText("是的")
+                .negativeText("关闭")
+                .onPositive { dialog, which ->
+
+                }
+                .onNeutral { dialog, which ->
+                    // TODO
+                }
+                .onNegative { dialog, which ->
+                    finish()
+                }
+                .onAny { dialog, which ->
+                    // TODO
+                }.show()
     }
 
     override fun setUploadProgress(progress: Int) {
     }
+
+    fun startAnim() {
+        avi.show();
+        // or avi.smoothToShow();
+    }
+
+    fun stopAnim() {
+        avi.hide();
+        // or avi.smoothToHide();
+    }
+
 
 }

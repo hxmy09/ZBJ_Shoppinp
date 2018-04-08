@@ -3,10 +3,7 @@ package com.android.shop.shopapp.network.services
 import com.android.shop.shopapp.model.response.ProductsResponse
 import com.android.shop.shopapp.network.JsonAndXmlConverters
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * @author a488606
@@ -14,26 +11,29 @@ import retrofit2.http.POST
  */
 
 interface GetProductsService {
-    @POST("api/allProduct")
-    @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))
-    @JsonAndXmlConverters.Json
-    fun getAllProduct(): Observable<ProductsResponse>
+//    @POST("mall/api/products/get/by/users")
+//    @Headers(*arrayOf("Content-Type: application/json", "session_id:ec3af30ef54528b513b99888c6e8737a"))
+//    @JsonAndXmlConverters.Json
+//    fun getAllProduct(@JsonAndXmlConverters.Json @Body request: ProductParameterRequest): Observable<ProductsResponse>
 
-    @FormUrlEncoded
-    @POST("api/getProdctsByUserNameAndUserState")
-    @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))
+    @POST("mall/api/products/get/by/users")
+    @Headers(*arrayOf("Content-Type: application/json", "session_id:ec3af30ef54528b513b99888c6e8737a"))
     @JsonAndXmlConverters.Json
-    fun getAllProductByUser(@Field("userName") userName: String?, @Field("userState") userState: Int?): Observable<ProductsResponse>
+    fun getAllProductByUser(@JsonAndXmlConverters.Json @Body request: ProductParameterRequest): Observable<ProductsResponse>
 
-    @FormUrlEncoded
-    @POST("api/getProdctsByGroup")
-    @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))
+    @POST("mall/api/products/get")
+    @Headers(*arrayOf("Content-Type: application/json", "session_id:5b4465220bf25dbf556ab46d875c98bc"))
     @JsonAndXmlConverters.Json
-    fun getAllProductGroup(@Field("group") group: String?): Observable<ProductsResponse>
+    fun getAllProductGroup(@JsonAndXmlConverters.Json @Body request: ProductParameterRequest): Observable<ProductsResponse>
 
-    @FormUrlEncoded
-    @POST("api/search")
-    @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))
+    @POST("mall/api/products/get/by/users")
+    @Headers(*arrayOf("Content-Type: application/json", "session_id:ec3af30ef54528b513b99888c6e8737a"))
     @JsonAndXmlConverters.Json
-    fun search(@Field("queryText") queryText: String?): Observable<ProductsResponse>
+    fun search(@Field("query_text") queryText: String?): Observable<ProductsResponse>
+}
+
+class ProductParameterRequest {
+    var groupName: String? = null
+    var userName: String? = null
+    var userState: Int? = null
 }

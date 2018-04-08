@@ -57,10 +57,10 @@ class LoginActivity : BaseActivity() {
 
                                 //保存登录状态
                                 (application as ShopApplication).sharedPreferences?.edit()?.putBoolean("loggedin", true)?.apply()
-                                (application as ShopApplication).sharedPreferences?.edit()?.putString("address", t.address)?.apply()
-                                (application as ShopApplication).sharedPreferences?.edit()?.putString("phone", t.phone)?.apply()
-                                (application as ShopApplication).sharedPreferences?.edit()?.putString("userName", t.userName)?.apply()
-                                (application as ShopApplication).sharedPreferences?.edit()?.putInt("userState", t.userState)?.apply() //1管理员，0 普通客户
+                                (application as ShopApplication).sharedPreferences?.edit()?.putString("address", t.data?.address)?.apply()
+                                (application as ShopApplication).sharedPreferences?.edit()?.putString("phone", t.data?.phone)?.apply()
+                                (application as ShopApplication).sharedPreferences?.edit()?.putString("userName", t.data?.userName)?.apply()
+                                (application as ShopApplication).sharedPreferences?.edit()?.putInt("userState", t.data?.userState!!)?.apply() //1管理员，0 普通客户
                                 var intent = Intent(this@LoginActivity, MainActivity::class.java);
                                 startActivity(intent)
                                 finish()
@@ -71,8 +71,8 @@ class LoginActivity : BaseActivity() {
                         }, {
 
                             //TODO  need to remove
-                            var intent = Intent(this@LoginActivity, MainActivity::class.java);
-                            startActivity(intent)
+//                            var intent = Intent(this@LoginActivity, MainActivity::class.java);
+//                            startActivity(intent)
                             (application as ShopApplication).sharedPreferences?.edit()?.clear() //1管理员，0 普通客户
 //                            finish()
                             Toast.makeText(this@LoginActivity, "用户名，密码输入错误", Toast.LENGTH_LONG).show()

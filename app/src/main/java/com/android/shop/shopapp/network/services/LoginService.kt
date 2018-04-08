@@ -15,8 +15,8 @@ import com.android.shop.shopapp.network.JsonAndXmlConverters
  */
 
 interface LoginService {
-    @POST("api/authentication")
-    @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))
+    @POST("mall/api/user/login")
+    @Headers(*arrayOf("Content-Type: application/json", "session_id:a945f9123981e29ccbebc98eed680786"))
     @JsonAndXmlConverters.Json
     fun login(@JsonAndXmlConverters.Json @Body login: LoginRequest): Observable<LoginResponse>
 }

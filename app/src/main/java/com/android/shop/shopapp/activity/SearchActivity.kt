@@ -29,7 +29,7 @@ class SearchActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_group)
+        setContentView(R.layout.activity_search)
 //        //模糊查询
 //        var group = intent.getStringExtra(GROUP)
 
@@ -38,16 +38,18 @@ class SearchActivity : BaseActivity() {
 //            swipeRefreshLayout.isRefreshing = false
 //        }
 //        swipeRefreshLayout.isRefreshing = true
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@SearchActivity)
-            setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(this@SearchActivity, DividerItemDecoration.HORIZONTAL))
-            adapter = GroupAdapter(this@SearchActivity, list)
-        }
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        recyclerView.apply {
+//            layoutManager = LinearLayoutManager(this@SearchActivity)
+//            setHasFixedSize(true)
+//            addItemDecoration(DividerItemDecoration(this@SearchActivity, DividerItemDecoration.HORIZONTAL))
+//            adapter = GroupAdapter(this@SearchActivity, list)
+//        }
+//
 
 
-        handleIntent(intent);
+//
+//        handleIntent(intent);
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

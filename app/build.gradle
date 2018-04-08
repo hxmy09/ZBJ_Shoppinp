@@ -125,5 +125,5 @@ dependencies {
 //压缩图片
     implementation 'id.zelory:compressor:2.1.0'
 //searchview
-    implementation 'com.lapism:searchview:27.1.0.0.0'
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 }

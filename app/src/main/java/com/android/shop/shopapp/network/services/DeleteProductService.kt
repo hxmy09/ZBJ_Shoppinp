@@ -15,8 +15,8 @@ import retrofit2.http.POST
  */
 
 interface DeleteProductService {
-    @POST("api/deleteProduct")
-    @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))
+    @POST("mall/api/products/delete")
+    @Headers(*arrayOf("Content-Type: application/json", "session_id:11d4cd4e9711d481abfd10c6a99c4a9c"))
     @JsonAndXmlConverters.Json
     fun deleteProducts(@JsonAndXmlConverters.Json @Body request: ProductIdsReqeust): Observable<CommonResponse>
 }

@@ -65,10 +65,10 @@ class ProductDetailActivity : BaseActivity() {
 
             var sM = DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao().findByProductId(shoppingModel.productId!!)
 
-            if (sM.productId?.isEmpty()!!) {
+
+            if (sM == null || sM.productId?.isEmpty()!!) {
                 DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao().insert(shoppingModel)
-            }else
-            {
+            } else {
                 sM.amount = sM.amount!! + shoppingModel.amount!!
                 DBUtil(this@ProductDetailActivity).mAppDatabase.shoppingDao().insert(sM)
             }

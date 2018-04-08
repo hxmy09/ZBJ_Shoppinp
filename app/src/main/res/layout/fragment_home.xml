@@ -19,14 +19,15 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-
+            <!--第一列-->
             <LinearLayout
-                android:id="@+id/baihuoLayout"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dp">
 
                 <LinearLayout
+                    android:id="@+id/baihuoLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -137,15 +138,16 @@
                         android:text="洗涤" />
                 </LinearLayout>
             </LinearLayout>
-
+            <!--第二列-->
             <LinearLayout
-                android:id="@+id/meizhuangLayout"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dp">
 
 
                 <LinearLayout
+                    android:id="@+id/meizhuangLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -250,6 +252,127 @@
 
                     <TextView
                         android:id="@+id/wujin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="五金" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--第三列-->
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp">
+
+
+                <LinearLayout
+                    android:id="@+id/xieziLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/ic_xiezi" />
+
+                    <TextView
+                        android:id="@+id/xiezi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="鞋子" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fangzhipinLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/ic_fangzhipin" />
+
+                    <TextView
+                        android:id="@+id/fangzhipin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="纺织品" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wanjuLayout11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/ic_wj" />
+
+                    <TextView
+                        android:id="@+id/wanju11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="玩具" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wenjuLayout11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/ic_wenj" />
+
+                    <TextView
+                        android:id="@+id/wenju11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="文具" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wujinLayout11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/ic_wuj" />
+
+                    <TextView
+                        android:id="@+id/wujin11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"

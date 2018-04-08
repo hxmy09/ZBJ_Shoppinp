@@ -1,5 +1,6 @@
 package com.android.shop.shopapp.upload;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.android.shop.shopapp.model.request.ProductReqeust;
@@ -29,7 +30,7 @@ public class FileUploaderPresenter implements FileUploaderContract.Presenter
     }
 
     @Override
-    public void onImageSelected(ProductReqeust request)
+    public void onImageSelected(ProductReqeust request,Context context)
     {
         String path = request.getImg();
         if (TextUtils.isEmpty(path))
@@ -38,7 +39,7 @@ public class FileUploaderPresenter implements FileUploaderContract.Presenter
             return;
         }
         view.showThumbnail(path);
-        photoUploadDisposable = model.uploadImage(request).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe(progress -> view.setUploadProgress((int) (100 * progress)), error -> view.showErrorMessage(error.getMessage()), view::uploadCompleted);
+        photoUploadDisposable = model.uploadImage(request,context).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe(progress -> view.setUploadProgress((int) (100 * progress)), error -> view.showErrorMessage(error.getMessage()), view::uploadCompleted);
     }
 
     @Override
