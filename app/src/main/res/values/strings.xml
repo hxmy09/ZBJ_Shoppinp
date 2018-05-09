@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">轩融电子商务</string>
+    <string name="app_name">冀汇聚</string>
     <string name="title_home">首页</string>
     <string name="title_shopping">购物车</string>
     <string name="title_mine">我的</string>
+    <string name="title_pay">支付信息</string>
 
     <string name="navigation_drawer_open">打开</string>
     <string name="navigation_drawer_close">关闭</string>
@@ -17,8 +18,22 @@
     <string name="upload_title">上传商品</string>
     <string name="product_detail">商品详细</string>
     <string name="product_management">商品管理</string>
+    <string name="users_management">用户管理</string>
     <string name="adult">审核</string>
     <string name="login_title">登录</string>
     <string name="forgetpwd_title">修改信息</string>
     <string name="register_title">注册</string>
+    <string name="search_hint_custom">查询</string>
+    <string name="upload_hint">上传说明</string>
+    <string-array name="usersTypes">
+        <item>超级管理员</item>
+        <item>普通管理员 </item>
+        <item>普通会员</item>
+    </string-array>
+
+
+    <!-- WXPayEntryActivity -->
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="app_tip">提示</string>
 </resources>

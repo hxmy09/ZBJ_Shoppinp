@@ -1,53 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/swipeRefreshLayout">
+    android:layout_height="match_parent">
 
-    <!--<RelativeLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="#DDD">-->
-
-    <!--<android.support.v7.widget.CardView-->
-    <!--android:id="@+id/top"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="30dp"-->
-    <!--android:layout_alignParentTop="true"-->
-    <!--app:cardCornerRadius="2dp"-->
-    <!--app:cardElevation="1dp"-->
-    <!--app:cardPreventCornerOverlap="false"-->
-    <!--app:contentPaddingLeft="0dp">-->
-
-    <!--<TextView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_marginStart="10dp"-->
-    <!--android:drawableStart="@drawable/ic_fiber_new"-->
-    <!--android:gravity="center_vertical"-->
-
-    <!--android:text="最新商品"-->
-    <!--android:textColor="@android:color/holo_orange_light"/>-->
-    <!--</android.support.v7.widget.CardView>-->
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pullLoadMoreRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/top"
-        android:layout_marginBottom="45dp"/>
+        android:layout_height="match_parent" />
 
 
-    <!--<com.wang.avi.AVLoadingIndicatorView-->
-    <!--android:id="@+id/avi"-->
-    <!--style="@style/AVLoadingIndicatorView"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_centerInParent="true"-->
-    <!--android:visibility="visible"-->
-    <!--app:indicatorColor="#DDD"-->
-    <!--app:indicatorName="BallSpinFadeLoaderIndicator" />-->
-    <!--</RelativeLayout>-->
-</android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        android:id="@+id/floatings">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingBuyer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_buyer" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingSeller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_seller" />
+    </LinearLayout>
+</RelativeLayout>

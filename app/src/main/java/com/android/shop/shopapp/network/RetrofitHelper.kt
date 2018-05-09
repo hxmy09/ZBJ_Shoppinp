@@ -1,8 +1,10 @@
 package com.android.shop.shopapp.model.network
 
 import com.android.shop.shopapp.network.JsonAndXmlConverters
-import com.android.shop.shopapp.network.services.UploadsImService
+import com.android.shop.shopapp.network.services.AppPayService
+import com.android.shop.shopapp.network.services.GetProductsDetailsService
 import com.android.shop.shopapp.network.services.GetProductsService
+import com.android.shop.shopapp.network.services.UploadsImService
 import com.hxmy.sm.network.services.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -11,11 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import java.util.concurrent.TimeUnit
 
-
-/**
- * @author a488606
- * @since 3/14/18
- */
 
 class RetrofitHelper() {
 
@@ -39,6 +36,7 @@ class RetrofitHelper() {
         val retrofit = createRetrofit()
         return retrofit.create(UploadsImService::class.java);
     }
+
     fun getAllUserService(): GetAllUserService {
         val retrofit = createRetrofit()
         return retrofit.create(GetAllUserService::class.java);
@@ -49,9 +47,24 @@ class RetrofitHelper() {
         return retrofit.create(GetProductsService::class.java);
     }
 
+    fun getProductDetailService(): GetProductsDetailsService {
+        val retrofit = createRetrofit()
+        return retrofit.create(GetProductsDetailsService::class.java);
+    }
+
     fun getOrdersService(): OrderListService {
         val retrofit = createRetrofit()
         return retrofit.create(OrderListService::class.java);
+    }
+
+    fun getUsersService(): UsersServices {
+        val retrofit = createRetrofit()
+        return retrofit.create(UsersServices::class.java);
+    }
+
+    fun getAppPay(): AppPayService {
+        val retrofit = createRetrofit()
+        return retrofit.create(AppPayService::class.java);
     }
 
     fun getDeleteProductService(): DeleteProductService {
@@ -82,7 +95,7 @@ class RetrofitHelper() {
 
     private fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://118.24.76.50:8080/")
+                .baseUrl("http://118.24.76.50:8080/")//http://118.24.76.50:8080///47.104.169.240
                 .addConverterFactory(JsonAndXmlConverters.QualifiedTypeConverterFactory(
                         GsonConverterFactory.create(),
                         SimpleXmlConverterFactory.create()))

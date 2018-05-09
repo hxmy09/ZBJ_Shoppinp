@@ -10,10 +10,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_register.*
 
-/**
- * @author a488606
- * @since 3/22/18
- */
 class UpdateInfoActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -10,8 +10,9 @@ import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
 import com.android.shop.shopapp.activity.*
-import com.android.shop.shopapp.dao.ProductModel
+import com.android.shop.shopapp.model.ProductModel
 import kotlinx.android.synthetic.main.fragment_mine.*
+import shopping.hxmy.com.shopping.util.*
 
 /**
  * Created by myron on 3/31/18.
@@ -32,6 +33,12 @@ class MineFragment : Fragment(), View.OnClickListener {
         upload.setOnClickListener(this)
         exit.setOnClickListener(this)
         manageProduct.setOnClickListener(this)
+        daiFukuan.setOnClickListener(this)
+        daiFahuo.setOnClickListener(this)
+        daiShouHuo.setOnClickListener(this)
+        tuihuoshouhou.setOnClickListener(this)
+        manageUser.setOnClickListener(this)
+        setHasOptionsMenu(false)
 //        orderList.setOnClickListener(this)
 
 
@@ -45,27 +52,23 @@ class MineFragment : Fragment(), View.OnClickListener {
 
         //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
         when (userState) {
-            0 -> Toast.makeText(activity, "未审核用户", Toast.LENGTH_SHORT).show()
-            1 -> {
-                audit.visibility = View.VISIBLE
-                upload.visibility = View.VISIBLE
-                manageProduct.visibility = View.VISIBLE
+            USER_STATE_REGISTER -> Toast.makeText(activity, "未审核用户", Toast.LENGTH_SHORT).show()
+            USER_STATE_ADMIN -> {
+                muLayout.visibility = View.VISIBLE
+                mProLayout.visibility = View.VISIBLE
             }
-            2 -> {
+            USER_STATE_MANAGER -> {
                 //没有审核的权限
-                audit.visibility = View.GONE
-                upload.visibility = View.VISIBLE
-                manageProduct.visibility = View.VISIBLE
+                muLayout.visibility = View.GONE
+                mProLayout.visibility = View.VISIBLE
             }
-            3 -> {
-                audit.visibility = View.GONE
-                upload.visibility = View.GONE
-                manageProduct.visibility = View.GONE
+            USER_STATE_USER -> {
+                muLayout.visibility = View.GONE
+                mProLayout.visibility = View.GONE
             }
             else -> {
-                audit.visibility = View.GONE
-                upload.visibility = View.GONE
-                manageProduct.visibility = View.GONE
+                mProLayout.visibility = View.GONE
+                muLayout.visibility = View.GONE
             }
         }
 
@@ -94,6 +97,37 @@ class MineFragment : Fragment(), View.OnClickListener {
                 var intent = Intent(activity, ManageProductsActivity::class.java)
                 startActivity(intent)
             }
+            R.id.daiFukuan -> {
+
+                var intent = Intent(activity, OrdersListActivity::class.java)
+                intent.putExtra("ProductState", WEI_FU_KUAN)
+                intent.putExtra("Title", "待付款清单")
+                startActivity(intent)
+            }
+            R.id.daiFahuo -> {
+                var intent = Intent(activity, OrdersListActivity::class.java)
+                intent.putExtra("ProductState", DAI_FA_HUO)
+                intent.putExtra("Title", "待发货清单")
+                startActivity(intent)
+            }
+            R.id.daiShouHuo -> {
+                var intent = Intent(activity, OrdersListActivity::class.java)
+                intent.putExtra("ProductState", DAI_SHOU_HUO)
+                intent.putExtra("Title", "待收货清单")
+                startActivity(intent)
+            }
+            R.id.tuihuoshouhou -> {
+                var intent = Intent(activity, OrdersListActivity::class.java)
+                intent.putExtra("ProductState", SHOU_HOU)
+                intent.putExtra("Title", "售后清单")
+                startActivity(intent)
+            }
+            R.id.manageUser -> {
+                var intent = Intent(activity, ManageUsersActivity::class.java)
+                startActivity(intent)
+
+            }
+
 //            R.id.orderList -> {
 //                var intent = Intent(activity, OrdersListActivity::class.java)
 //                startActivity(intent)

@@ -9,11 +9,6 @@ import retrofit2.http.POST
 import com.android.shop.shopapp.network.JsonAndXmlConverters
 
 
-/**
- * @author a488606
- * @since 3/14/18
- */
-
 interface ForgetPwdService {
     @POST("api/authentication")
     @Headers(*arrayOf("Content-Type: application/json", "session_id:2d9e7004e3a320755d1d554e234573b4"))

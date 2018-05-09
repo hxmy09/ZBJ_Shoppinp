@@ -29,3 +29,26 @@
 -keepattributes Signature
 # Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
+
+
+
+
+
+
+-keep class com.tencent.mm.opensdk.** {
+
+*;
+
+}
+
+-keep class com.tencent.wxop.** {
+
+*;
+
+}
+
+-keep class com.tencent.mm.sdk.** {
+
+*;
+
+}

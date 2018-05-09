@@ -10,13 +10,12 @@ buildscript {
     ext {
         _javaSdkVersion = JavaVersion.VERSION_1_8
         _compileSdkVersion = 27
-        _buildToolsVersion = "27.0.3"
         _minSdkVersion = 21
         _targetSdkVersion = 27
         _kotlin_version = '1.2.31'
         _kotlin_mock_version = '1.5.0'
         _kotlinx_coroutines_version = '0.22.3'
-        _supportLibraryVersion = "27.0.2"
+        _supportLibraryVersion = "27.1.0"
         _googlePlayServicesLibraryVersion = "11.8.0"
         _autoParcelLibraryVersion = "0.3.1"
 //        _usbankLibraryVersion = "1.1"

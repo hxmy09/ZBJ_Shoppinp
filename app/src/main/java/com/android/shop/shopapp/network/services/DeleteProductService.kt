@@ -9,11 +9,6 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 
-/**
- * @author a488606
- * @since 3/14/18
- */
-
 interface DeleteProductService {
     @POST("mall/api/products/delete")
     @Headers(*arrayOf("Content-Type: application/json", "session_id:11d4cd4e9711d481abfd10c6a99c4a9c"))

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content">-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <fragment
+        android:name="com.android.shop.shopapp.fragment.AdvFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/adv"/>
+</LinearLayout>

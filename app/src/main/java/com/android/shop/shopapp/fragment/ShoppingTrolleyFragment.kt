@@ -2,100 +2,239 @@ package com.android.shop.shopapp.fragment
 
 import android.app.Fragment
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
-import com.android.shop.shopapp.dao.DBUtil
-import com.android.shop.shopapp.dao.ShoppingModel
+import com.android.shop.shopapp.ShopApplication
 import com.android.shop.shopapp.data.ShoppingAdapter
-import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator
+import com.android.shop.shopapp.model.ShoppingModel
+import com.android.shop.shopapp.model.network.RetrofitHelper
+import com.android.shop.shopapp.model.response.ProductOrder
+import com.android.shop.shopapp.network.services.ProductParameterRequest
+import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_shopping_trolley.*
+import shopping.hxmy.com.shopping.util.DEFAULT_ITEM_SIZE
+import shopping.hxmy.com.shopping.util.MSG_CODE_LOADMORE
+import shopping.hxmy.com.shopping.util.MSG_CODE_REFRESH
+import java.text.DecimalFormat
 
 /**
  * Created by myron on 3/31/18.
  */
 class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
-    lateinit var list: List<ShoppingModel>
 
+    var list: MutableList<ShoppingModel> = arrayListOf()
+    val mCompositeDisposable = CompositeDisposable()
     override fun countTotal(number: Int, model: ShoppingModel) {
-        //更新本地数据库 先更新数据库。在计算 （需要先检测数据库中是否有这一条，如果没有。就不更新。这个insert 是用来更新数据库，不是插入数据库）
-        var isExit = DBUtil(activity).mAppDatabase.shoppingDao().findByProductId(model.productId!!)
-        isExit.groupName?.let { DBUtil(activity).mAppDatabase.shoppingDao().insert(model) }
+        model.orderAmount = number
         cal()
     }
 
-    private fun cal() {
-        list = DBUtil(activity).mAppDatabase.shoppingDao().findAll()
-//        adapter!!.contents = list
-//        adapter!!.notifyDataSetChanged()
-        var amount: Double = 0.00
-        list.forEach {
-            if (it.isSelected)
-                amount += it.price!! * it.amount!!
-        }
-        total.text = amount.toString()
+
+    lateinit var mAdapter: ShoppingAdapter
+    private fun findViews() {
+
+        pullLoadMoreRecyclerView.setLinearLayout()
+//        pullLoadMoreRecyclerView.setGridLayout(2);//参数为列数
+//        pullLoadMoreRecyclerView.setStaggeredGridLayout(2);//参数为列数
+
+        mAdapter = ShoppingAdapter(activity, this, list)
+        pullLoadMoreRecyclerView.setAdapter(mAdapter)
+        pullLoadMoreRecyclerView.setFooterViewText("加载。。。");
+        pullLoadMoreRecyclerView.setFooterViewTextColor(R.color.primaryColor)
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener(object : PullLoadMoreRecyclerView.PullLoadMoreListener {
+            override fun onRefresh() {
+                fetchData(MSG_CODE_REFRESH)
+            }
+
+            override fun onLoadMore() {
+                fetchData(MSG_CODE_LOADMORE)
+            }
+        })
+
     }
 
-    var adapter: ShoppingAdapter? = null
+    private fun startAnim() {
+        avi.show();
+    }
+
+    private fun stopAnim() {
+        avi.hide();
+    }
+
+    private fun cal() {
+        var amount: Double = 0.00
+        mAdapter.contents.forEach {
+            if (it.isSelected)
+                amount += it.price!! * it.orderAmount!!
+        }
+        var format = DecimalFormat("#.00")
+        total.text = format.format(amount.toString().toDouble())
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return inflater?.inflate(R.layout.fragment_shopping_trolley, container, false)
     }
 
+
+    private fun fetchData(loadingType: Int) {
+        //查询购物车商品。 需要传入userName 和 productState = 0
+        var request = ProductParameterRequest()
+        request.productState = 0 //购物车
+
+        if (loadingType == MSG_CODE_LOADMORE) {
+            request.start = mAdapter.contents.size
+            request.end = mAdapter.contents.size + DEFAULT_ITEM_SIZE
+        } else {
+            request.start = 0
+            request.end = DEFAULT_ITEM_SIZE
+        }
+//        startAnim()
+        request.userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
+        val detailService = RetrofitHelper().getProductDetailService()
+        mCompositeDisposable.add(detailService.queryShoppingTrolley(request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ t ->
+                    if (t.code == "100") {
+
+                        if (loadingType != MSG_CODE_LOADMORE) {
+                            mAdapter.contents = t.products!!
+                            mAdapter.notifyDataSetChanged()
+                            pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+
+                        } else {
+                            mAdapter.contents.addAll(t.products!!)
+                            mAdapter.notifyDataSetChanged()
+                            pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                        }
+
+                    } else {
+                        Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
+                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                    }
+//                    stopAnim()
+                }, { e ->
+                    Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
+                    pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+//                    stopAnim()
+                }))
+
+
+    }
+
+
+    //删除购物车内容的话，根据唯一的购物id
+    private fun deleteByProductId(shoppingIds: List<String>) {
+        startAnim()
+        var request = ProductParameterRequest()
+//        request.userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
+        request.shoppingIds = shoppingIds
+        val detailService = RetrofitHelper().getProductDetailService()
+        mCompositeDisposable.add(detailService.deleteShoppingTrolley(request)//.flatMap { fetchData() }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ t ->
+                    if (t.code == "100") {
+                        Toast.makeText(activity, "删除成功", Toast.LENGTH_LONG).show()
+                        fetchData(MSG_CODE_REFRESH)
+
+                    } else {
+                        Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
+                    }
+                    stopAnim()
+
+                }, { e ->
+                    Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
+                    stopAnim()
+                }))
+
+    }
+
+    override fun onDestroy() {
+        // DO NOT CALL .dispose()
+        mCompositeDisposable.clear()
+        super.onDestroy()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        list = DBUtil(activity).mAppDatabase.shoppingDao().findAll()
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.setHasFixedSize(true)
-        adapter = ShoppingAdapter(activity, this@ShoppingTrolleyFragment, list)
-        //Use this now
-        recyclerView.addItemDecoration(MaterialViewPagerHeaderDecorator())
-        recyclerView.adapter = adapter
+        findViews()
+        fetchData(MSG_CODE_REFRESH)
 
         selectAll.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
 
-            list.forEach {
+            mAdapter.contents.forEach {
                 it.isSelected = b
-                //更新本地数据库 先更新数据库。在计算 （需要先检测数据库中是否有这一条，如果没有。就不更新。这个insert 是用来更新数据库，不是插入数据库）
-                var isExit = DBUtil(activity).mAppDatabase.shoppingDao().findByProductId(it.productId!!)
-                if (isExit.groupName != null) {
-                    DBUtil(activity).mAppDatabase.shoppingDao().insert(it)
-                }
             }
-            adapter!!.contents = list
-            adapter!!.notifyDataSetChanged()
+            mAdapter.notifyDataSetChanged()
 
             cal()
 
         })
         result.setOnClickListener {
-            MaterialDialog.Builder(activity)
-                    .content("很抱歉，支付功能暂未实现。如需支付，请人工支付。所购商品合计￥${total.text.toString()}")
-                    .show()
+
+            var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0) //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+
+            if (userState != 3) {
+                MaterialDialog.Builder(activity)
+                        .content("对不起，你的客户端不支持购买商品，请注册其他账户，有任何问题，请你拨打电话0579-85876692")
+                        .positiveText("确定")
+                        .show()
+
+                return@setOnClickListener
+            }
+            //            shoppingModel.total = total.text.toString().toDouble()
+            var orderList = mAdapter.contents.filter { it.isSelected }
+            val orderService = RetrofitHelper().getOrdersService()
+            var order = ProductOrder(orderList, "", total.text.toString().toDouble())
+            mCompositeDisposable.add(orderService.buyProducts(order)//.flatMap { fetchData() }
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ t ->
+                        if (t.code == "100") {
+                            Toast.makeText(activity, "购买成功", Toast.LENGTH_LONG).show()
+                            fetchData(MSG_CODE_REFRESH)
+
+                        } else {
+                            Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
+                        }
+                        stopAnim()
+
+                    }, { e ->
+                        Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
+                        stopAnim()
+                    }))
+//            MaterialDialog.Builder(activity)
+//                    .content("很抱歉，支付功能暂未实现。如需支付，请人工支付。所购商品合计￥${total.text.toString()}")
+//                    .show()
 
         }
 
         delete.setOnClickListener {
             //            list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
-            list.filter { it.isSelected }.forEach { it -> DBUtil(activity).mAppDatabase.shoppingDao().deleteByProductId(it.productId!!) }
-            list = DBUtil(activity).mAppDatabase.shoppingDao().findAll()
-            if (list.size == adapter!!.itemCount) {
+//            list.map { it.isSelected }
+            var filterList = mAdapter.contents.filter { it.isSelected }
+
+            //  list = DBUtil(activity).mAppDatabase.shoppingDao().findAll()
+//            fetchData()
+            if (filterList.size <= 0) {
                 Toast.makeText(activity, "请选择至少一条数据", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            adapter!!.contents = list
-            adapter!!.notifyDataSetChanged()
-            if (adapter!!.itemCount == 0) {
-                editLayout.visibility = View.GONE
-                resultLayout.visibility = View.VISIBLE
-            }
-            //更新显示
-            cal()
+            var productsIds = arrayListOf<String>()
+            filterList.forEach { productsIds.add(it.shoppingId!!) }
+            deleteByProductId(productsIds)
 
         }
         cancel.setOnClickListener {
@@ -106,10 +245,6 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.trolleymenu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
@@ -122,6 +257,8 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }
 
 interface CountTotalCallBack {

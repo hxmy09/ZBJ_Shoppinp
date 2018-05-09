@@ -2,7 +2,8 @@ package com.android.shop.shopapp.upload;
 
 import android.content.Context;
 
-import com.android.shop.shopapp.model.request.ProductReqeust;
+
+import com.android.shop.shopapp.model.ProductModel;
 
 import io.reactivex.Flowable;
 import io.reactivex.Single;
@@ -24,16 +25,16 @@ public interface FileUploaderContract {
     }
 
     interface Presenter {
-        void onImageSelected(ProductReqeust request, Context context);
+        void onImageSelected(ProductModel request, Context context);
 
-        void onImageSelectedWithoutShowProgress(ProductReqeust request);
+        void onImageSelectedWithoutShowProgress(ProductModel request);
 
         void cancel();
     }
 
     interface Model {
-        Flowable<Double> uploadImage(ProductReqeust request, Context context);
+        Flowable<Double> uploadImage(ProductModel request, Context context);
 
-        Single<ResponseBody> uploadImageWithoutProgress(ProductReqeust request);
+        Single<ResponseBody> uploadImageWithoutProgress(ProductModel request);
     }
 }

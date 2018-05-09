@@ -7,5 +7,5 @@ package com.android.shop.shopapp.model.response
 
 class OrderListResponse {
 
-    var orders: ArrayList<Order>? = null
+    var orders: ArrayList<ProductOrder>? = null
 }

@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.util.FileUtil
+import com.squareup.picasso.Picasso
 import id.zelory.compressor.Compressor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -43,7 +44,8 @@ class AdvFragment : Fragment() {
 
         override fun instantiateItem(collection: ViewGroup, position: Int): Any {
             val imageLayout = inflater.inflate(R.layout.slider_home, collection, false) as ViewGroup
-            (imageLayout.findViewById<View>(R.id.imageView) as ImageView).setImageResource(imageList[position].resId)
+            Picasso.get().load(imageList[position].resId).into((imageLayout.findViewById<View>(R.id.imageView) as ImageView))
+
 //            compressImage(imageLayout)
             collection.addView(imageLayout)
             return imageLayout
@@ -68,11 +70,11 @@ class AdvFragment : Fragment() {
         fun compressImage(view: View) {
 
             // Compress image in main thread
-            //compressedImage = new Compressor(this).compressToFile(actualImage);
+            //compressedImage = news1 Compressor(this).compressToFile(actualImage);
             //setCompressedImage();
 
             // Compress image to bitmap in main thread
-            //compressedImageView.setImageBitmap(new Compressor(this).compressToBitmap(actualImage));
+            //compressedImageView.setImageBitmap(news1 Compressor(this).compressToBitmap(actualImage));
             // Compress image using RxJava in background thread
             Compressor(mContext)
                     .compressToFileAsFlowable(FileUtil.from(mContext, Uri.parse("android.resource://com.android.shop.shopapp/drawable/adv0")))
@@ -107,11 +109,9 @@ class AdvFragment : Fragment() {
 
     fun getImageList(): List<ImageSlider> {
         val imageList = arrayListOf<ImageSlider>()
-        imageList.add(ImageSlider("adv1", R.drawable.adv01))
-        imageList.add(ImageSlider("adv2", R.drawable.adv02))
-        imageList.add(ImageSlider("adv3", R.drawable.adv03))
-        imageList.add(ImageSlider("adv4", R.drawable.adv04))
-        imageList.add(ImageSlider("adv5", R.drawable.adv05))
+        imageList.add(ImageSlider("adv1", R.drawable.banner3))
+        imageList.add(ImageSlider("adv2", R.drawable.banner2))
+        imageList.add(ImageSlider("adv3", R.drawable.banner1))
         return imageList
     }
 }

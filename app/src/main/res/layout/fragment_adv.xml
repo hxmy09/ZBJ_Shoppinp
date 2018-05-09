@@ -18,7 +18,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:gravity="bottom"
-        android:padding="10dip"
+        android:paddingBottom="25dip"
         app:centered="true"
         app:fillColor="#df0623"
         app:pageColor="#fff"

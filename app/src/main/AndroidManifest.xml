@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.shop.shopapp">
+<manifest package="com.android.shop.shopapp"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name="com.android.shop.shopapp.ShopApplication"
@@ -21,13 +22,14 @@
             android:name=".activity.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            ></activity>
 
         <activity
-            android:name=".activity.GroupActivity"
+            android:name=".activity.ProductShowActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
             android:name=".activity.LaunchActivity"
@@ -35,15 +37,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".activity.UploadActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/upload_title"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activity.UploadHintActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/upload_hint"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.OrdersListActivity"
@@ -52,24 +60,10 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".activity.OrderDetailActivity"
+            android:name=".activity.OrderDetailsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_orders"
             android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".activity.SearchActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_orders"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-        </activity>
         <activity
             android:name=".activity.ProductDetailActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -81,7 +75,15 @@
             android:name=".activity.ManageProductsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/product_management"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".activity.ManageUsersActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/users_management"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.ManagerNewUserActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -104,10 +106,21 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/forgetpwd_title"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
 
-        <meta-data
-            android:name="android.app.default_searchable"
-            android:value="com.android.shop.shopapp.activity.SearchActivity" />
+        <activity
+            android:name=".pay.PayActivity"
+            android:label="@string/title_pay" />
+
+        <receiver
+            android:name=".pay.AppRegister">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

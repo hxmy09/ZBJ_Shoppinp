@@ -5,10 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import com.android.shop.shopapp.R
 
-/**
- * @author a488606
- * @since 3/22/18
- */
 
 class LaunchActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

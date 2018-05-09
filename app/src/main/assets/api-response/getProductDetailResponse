@@ -1,0 +1,45 @@
+{
+  "code":"100",
+  "data":
+    {
+      "product_id":172,
+      "group_name":"男装",
+      "desc":"超能全效洗衣液",
+      "price":100.00,
+      "uploaded_date":"",
+      "key_words":"nihao,",
+      "user_name":"admin",
+      "details":[
+        {
+          "img":"http://118.24.76.50:8080/mall/mmexport1523079214813.jpg",
+          "color":"红色",
+          "store":[
+            {
+              "size": "XXXXXX",
+              "amount":10
+            },
+            {
+              "size": "DDDDDDD",
+              "amount":1
+            }
+          ]
+        },
+        {
+          "img":"http://118.24.76.50:8080/mall/1523077978500.jpg",
+          "color":"绿色",
+          "store":[
+            {
+              "size": "LLLLLL",
+              "amount":10
+            },
+            {
+              "size": "CCCCC",
+              "amount":1
+            }
+          ]
+        }
+      ]
+    }
+
+
+}

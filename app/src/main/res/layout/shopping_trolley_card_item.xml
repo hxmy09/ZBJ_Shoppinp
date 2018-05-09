@@ -28,18 +28,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
 
-                <android.support.v7.widget.AppCompatImageView
-                    android:id="@+id/img"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/login" />
-            </LinearLayout>
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/img"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/login" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -52,77 +47,124 @@
                     android:id="@+id/desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:ellipsize="end"
-                    android:maxLines="4"
-                    android:text="这里是全球最大的商品展示中心" />
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="none"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textSize="12sp" />
+
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="颜色:"-->
+                <!--android:textSize="12sp" />-->
+
+                <TextView
+                    android:id="@+id/color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/desc"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="1"
+                    android:maxWidth="50dp"
+                    android:text=""
+                    android:textSize="12sp" />
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:text="尺寸:"-->
+                <!--android:textSize="12sp" />-->
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/desc"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="1"
+                    android:text=""
+                    android:layout_toEndOf="@id/color"
+                    android:textSize="12sp" />
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="￥"-->
+                <!--android:textColor="@android:color/holo_red_light"-->
+                <!--android:textSize="12sp" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/price"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="100"-->
+                <!--android:textColor="@android:color/holo_red_light"-->
+                <!--android:textSize="12sp" />-->
+                <!--</LinearLayout>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/color"
+                    android:layout_marginTop="8dp"
+                    android:text="￥"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp"
+                    android:id="@+id/sign"/>
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/color"
+                    android:layout_marginTop="8dp"
+                    android:text=""
+                    android:layout_toEndOf="@id/sign"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="vertical">
+                    android:layout_gravity="center_vertical|end"
+                    android:gravity="center_vertical|end"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/color"
+                    android:layout_toEndOf="@id/price">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageButton
+                        android:id="@+id/reduce"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/ic_remove" />
+
+                    <EditText
+                        android:id="@+id/buyAmount"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="￥"
-                            android:textColor="@android:color/holo_red_light" />
-
-                        <TextView
-                            android:id="@+id/price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="100"
-                            android:textColor="@android:color/holo_red_light" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|end"
-                        android:layout_gravity="center_vertical|end">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:text="数量"
-                            android:textColor="@android:color/black" />
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="2222"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
 
 
-                        <ImageButton
-                            android:id="@+id/reduce"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="10dp"
-                            android:background="@drawable/ic_remove" />
-
-                        <TextView
-                            android:id="@+id/buyAmount"
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:text="1"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp" />
-
-
-                        <ImageButton
-                            android:id="@+id/add"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginEnd="10dp"
-                            android:background="@drawable/ic_add" />
-
-                    </LinearLayout>
-
+                    <ImageButton
+                        android:id="@+id/add"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/ic_add" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

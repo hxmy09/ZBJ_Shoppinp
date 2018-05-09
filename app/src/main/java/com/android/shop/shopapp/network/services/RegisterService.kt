@@ -9,11 +9,6 @@ import retrofit2.http.POST
 import com.android.shop.shopapp.network.JsonAndXmlConverters
 
 
-/**
- * @author a488606
- * @since 3/14/18
- */
-
 interface RegisterService {
     @POST("mall/api/user/reg")
     @Headers(*arrayOf("Content-Type: application/json", "session_id:78c6d5bc30cc3c664c6c53dbcdff792b"))

@@ -12,10 +12,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
 
-/**
- * @author a488606
- * @since 3/22/18
- */
 class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +56,7 @@ class LoginActivity : BaseActivity() {
                                 (application as ShopApplication).sharedPreferences?.edit()?.putString("address", t.data?.address)?.apply()
                                 (application as ShopApplication).sharedPreferences?.edit()?.putString("phone", t.data?.phone)?.apply()
                                 (application as ShopApplication).sharedPreferences?.edit()?.putString("userName", t.data?.userName)?.apply()
-                                (application as ShopApplication).sharedPreferences?.edit()?.putInt("userState", t.data?.userState!!)?.apply() //1管理员，0 普通客户
+                                (application as ShopApplication).sharedPreferences?.edit()?.putInt("userState", t.data?.userState!!)?.apply()     //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
                                 var intent = Intent(this@LoginActivity, MainActivity::class.java);
                                 startActivity(intent)
                                 finish()

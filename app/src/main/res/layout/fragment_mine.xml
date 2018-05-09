@@ -1,314 +1,380 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/topContainer"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:paddingTop="10dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
+        <FrameLayout
+            android:id="@+id/topContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/cardMarginVertical"
-            android:layout_marginLeft="@dimen/cardMarginHorizontal"
-            android:layout_marginRight="@dimen/cardMarginHorizontal"
-            android:layout_marginTop="@dimen/cardMarginVertical"
-            app:cardCornerRadius="2dp"
-            app:cardElevation="2dp"
-            app:cardPreventCornerOverlap="false"
-            app:contentPaddingBottom="8dp"
-            app:contentPaddingLeft="0dp"
-            app:contentPaddingTop="8dp">
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
-
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_marginBottom="@dimen/cardMarginVertical"
+                android:layout_marginLeft="@dimen/cardMarginHorizontal"
+                android:layout_marginRight="@dimen/cardMarginHorizontal"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="10dp">
+                    android:layout_height="match_parent"
+                    android:background="#fff"
+                    android:orientation="vertical">
 
-                    <!--<android.support.v7.widget.AppCompatImageView-->
-                    <!--android:layout_width="60dp"-->
-                    <!--android:layout_height="60dp"-->
-                    <!--android:src="@drawable/adv05"-->
-                    <!--android:background="#ddd"/>-->
-
-                    <TextView
-                        android:id="@+id/userName"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_gravity="center_vertical"
-                        android:ellipsize="end"
                         android:gravity="center_vertical"
-                        android:maxLines="1"
-                        android:paddingEnd="10dp"
-                        android:paddingTop="10dp"
-                        android:text="义乌市轩融电子商务有限公司"
-                        android:textColor="@android:color/holo_orange_dark"
-                        android:textSize="21sp" />
+                        android:orientation="horizontal"
+                        android:paddingStart="10dp">
 
-                    <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentTop="true"-->
-                    <!--android:ellipsize="end"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:maxLines="1"-->
-                    <!--android:paddingStart="10dp"-->
-                    <!--android:text="登陆"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:textColor="@android:color/darker_gray"-->
-                    <!--android:textSize="14sp" />-->
+
+                        <TextView
+                            android:id="@+id/userName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_vertical"
+                            android:drawableLeft="@drawable/logo_mine"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="2"
+                            android:paddingEnd="10dp"
+                            android:text="义乌市轩融电子商务有限公司"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="21sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:paddingStart="10dp"
+                            android:text="电话号码："
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="2"
+                            android:text="0579-85876692"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:paddingStart="10dp"
+                            android:text="公司地址："
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:maxLines="4"
+                            android:text="义乌市下骆宅振兴西路70号"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
 
-                <LinearLayout
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/cardMarginVertical"
+                android:layout_marginLeft="@dimen/cardMarginHorizontal"
+                android:layout_marginRight="@dimen/cardMarginHorizontal"
+
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:contentPaddingLeft="0dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:background="#fff"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/daiFukuan"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_daifukuan"
                         android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:maxLines="1"
-                        android:paddingStart="10dp"
-                        android:text="电话号码："
+                        android:gravity="center"
+                        android:paddingBottom="8dp"
+                        android:text="待付款"
                         android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/phone"
-                        android:layout_width="match_parent"
+                        android:id="@+id/daiFahuo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_daifahuo"
                         android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:maxLines="2"
-                        android:text="0579-85876692"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:maxLines="1"
-                        android:paddingStart="10dp"
-                        android:text="公司地址："
+                        android:paddingBottom="8dp"
+                        android:text="待发货"
                         android:textColor="@android:color/darker_gray"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/address"
-                        android:layout_width="match_parent"
+                        android:id="@+id/daiShouHuo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_daishouhuo"
                         android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:maxLines="4"
-                        android:text="义乌市下骆宅振兴西路70号"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp" />
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="8dp"
+                        android:text="待收货"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp" />
+
+
+                    <TextView
+                        android:id="@+id/tuihuoshouhou"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_shouhou"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="8dp"
+                        android:text="退货售后"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp" />
                 </LinearLayout>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </FrameLayout>
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.CardView
+        <FrameLayout
+            android:id="@+id/muLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/cardMarginVertical"
-            android:layout_marginLeft="@dimen/cardMarginHorizontal"
-            android:layout_marginRight="@dimen/cardMarginHorizontal"
-            android:layout_marginTop="@dimen/cardMarginVertical"
+            android:layout_height="wrap_content">
 
-            app:cardCornerRadius="2dp"
-            app:cardElevation="2dp"
-            app:cardPreventCornerOverlap="false"
-            app:contentPaddingLeft="0dp">
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical">
+                android:layout_marginBottom="@dimen/cardMarginVertical"
+                android:layout_marginLeft="@dimen/cardMarginHorizontal"
+                android:layout_marginRight="@dimen/cardMarginHorizontal"
 
-                <TextView
-                    android:id="@+id/audit"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:contentPaddingLeft="0dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center_vertical"
-                    android:background="?attr/selectableItemBackground"
-                    android:drawableLeft="@drawable/ic_fiber_new"
-                    android:drawablePadding="10dp"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:paddingBottom="8dp"
-                    android:paddingStart="10dp"
-                    android:paddingTop="8dp"
-                    android:text="审核新用户"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </FrameLayout>
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/cardMarginVertical"
-            android:layout_marginLeft="@dimen/cardMarginHorizontal"
-            android:layout_marginRight="@dimen/cardMarginHorizontal"
-            android:layout_marginTop="@dimen/cardMarginVertical"
-            app:cardCornerRadius="2dp"
-            app:cardElevation="2dp"
-            app:cardPreventCornerOverlap="false"
-            app:contentPaddingLeft="0dp">
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#FFF"
-                android:gravity="center_vertical">
-
-
-                <TextView
-                    android:id="@+id/upload"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center_vertical"
-                    android:background="?attr/selectableItemBackground"
-                    android:drawableLeft="@drawable/ic_file_upload"
-                    android:drawablePadding="10dp"
-                    android:ellipsize="end"
+                    android:layout_height="match_parent"
+                    android:background="#fff"
+                    android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:maxLines="4"
-                    android:paddingBottom="8dp"
-                    android:paddingStart="10dp"
-                    android:paddingTop="8dp"
-                    android:text="上传商品"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </FrameLayout>
+                    android:gravity="center_vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/audit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_audit"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="8dp"
+                        android:text="审核新用户"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp" />
 
-        <android.support.v7.widget.CardView
+                    <TextView
+                        android:id="@+id/manageUser"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_yonghuguanli"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="8dp"
+                        android:text="管理用户"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/mProLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/cardMarginVertical"
-            android:layout_marginLeft="@dimen/cardMarginHorizontal"
-            android:layout_marginRight="@dimen/cardMarginHorizontal"
-            android:layout_marginTop="@dimen/cardMarginVertical"
+            android:layout_height="wrap_content">
 
-            app:cardCornerRadius="2dp"
-            app:cardElevation="2dp"
-            app:cardPreventCornerOverlap="false"
-            app:contentPaddingLeft="0dp">
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical">
+                android:layout_marginBottom="@dimen/cardMarginVertical"
+                android:layout_marginLeft="@dimen/cardMarginHorizontal"
+                android:layout_marginRight="@dimen/cardMarginHorizontal"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:contentPaddingLeft="0dp">
 
-                <TextView
-                    android:id="@+id/manageProduct"
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center_vertical"
-                    android:background="?attr/selectableItemBackground"
-                    android:drawableLeft="@drawable/ic_create"
-                    android:drawablePadding="10dp"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:paddingBottom="8dp"
-                    android:paddingStart="10dp"
-                    android:paddingTop="8dp"
-                    android:text="管理上传的商品"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </FrameLayout>
+                    android:layout_height="match_parent"
+                    android:background="#FFF"
+                    android:gravity="center_vertical">
 
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="?attr/selectableItemBackground">-->
+                    <TextView
+                        android:id="@+id/upload"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_upload"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="8dp"
+                        android:text="上传商品"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp" />
 
-        <!--<android.support.v7.widget.CardView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginBottom="@dimen/cardMarginVertical"-->
-            <!--android:layout_marginLeft="@dimen/cardMarginHorizontal"-->
-            <!--android:layout_marginRight="@dimen/cardMarginHorizontal"-->
-            <!--android:layout_marginTop="@dimen/cardMarginVertical"-->
-            <!--app:cardCornerRadius="2dp"-->
-            <!--app:cardElevation="2dp"-->
-            <!--app:cardPreventCornerOverlap="false"-->
-            <!--app:contentPaddingLeft="0dp">-->
+                    <TextView
+                        android:id="@+id/manageProduct"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_manageproduct"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="8dp"
+                        android:text="管理商品"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
 
-            <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:background="#FFF"-->
-                <!--android:gravity="center_vertical">-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/update"-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:paddingTop="20dp">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/cardMarginVertical"
+                android:layout_marginLeft="@dimen/cardMarginHorizontal"
+                android:layout_marginRight="@dimen/cardMarginHorizontal"
+                android:layout_marginTop="@dimen/cardMarginVertical"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:contentPaddingLeft="0dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFF"
+                    android:gravity="center_vertical">
+
+
+                    <Button
+                        android:id="@+id/exit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="退出登录"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="16sp" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/exit"-->
                     <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_alignParentTop="true"-->
                     <!--android:layout_gravity="center_vertical"-->
                     <!--android:background="?attr/selectableItemBackground"-->
-                    <!--android:drawableLeft="@drawable/ic_create"-->
+                    <!--android:drawableLeft="@drawable/ic_exit_to_app"-->
                     <!--android:drawablePadding="10dp"-->
                     <!--android:ellipsize="end"-->
                     <!--android:gravity="center_vertical"-->
@@ -316,101 +382,11 @@
                     <!--android:paddingBottom="8dp"-->
                     <!--android:paddingStart="10dp"-->
                     <!--android:paddingTop="8dp"-->
-                    <!--android:text="修改个人信息"-->
+                    <!--android:text="退出登录"-->
                     <!--android:textColor="@android:color/darker_gray"-->
                     <!--android:textSize="18sp" />-->
-            <!--</LinearLayout>-->
-        <!--</android.support.v7.widget.CardView>-->
-    <!--</FrameLayout>-->
-    <!--<FrameLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="?attr/selectableItemBackground">-->
-
-        <!--<android.support.v7.widget.CardView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginBottom="@dimen/cardMarginVertical"-->
-            <!--android:layout_marginLeft="@dimen/cardMarginHorizontal"-->
-            <!--android:layout_marginRight="@dimen/cardMarginHorizontal"-->
-            <!--android:layout_marginTop="@dimen/cardMarginVertical"-->
-            <!--app:cardCornerRadius="2dp"-->
-            <!--app:cardElevation="2dp"-->
-            <!--app:cardPreventCornerOverlap="false"-->
-            <!--app:contentPaddingLeft="0dp">-->
-
-            <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-                          <!--android:layout_width="match_parent"-->
-                          <!--android:layout_height="match_parent"-->
-                          <!--android:background="#FFF"-->
-                          <!--android:gravity="center_vertical">-->
-
-
-                <!--<TextView-->
-                    <!--android:id="@+id/orderList"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentTop="true"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:background="?attr/selectableItemBackground"-->
-                    <!--android:drawableLeft="@drawable/ic_list"-->
-                    <!--android:drawablePadding="10dp"-->
-                    <!--android:ellipsize="end"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:maxLines="1"-->
-                    <!--android:paddingBottom="8dp"-->
-                    <!--android:paddingStart="10dp"-->
-                    <!--android:paddingTop="8dp"-->
-                    <!--android:text="订单详细"-->
-                    <!--android:textColor="@android:color/darker_gray"-->
-                    <!--android:textSize="18sp"/>-->
-            <!--</LinearLayout>-->
-        <!--</android.support.v7.widget.CardView>-->
-    <!--</FrameLayout>-->
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/cardMarginVertical"
-            android:layout_marginLeft="@dimen/cardMarginHorizontal"
-            android:layout_marginRight="@dimen/cardMarginHorizontal"
-            android:layout_marginTop="@dimen/cardMarginVertical"
-            app:cardCornerRadius="2dp"
-            app:cardElevation="2dp"
-            app:cardPreventCornerOverlap="false"
-            app:contentPaddingLeft="0dp">
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#FFF"
-                android:gravity="center_vertical">
-
-
-                <TextView
-                    android:id="@+id/exit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center_vertical"
-                    android:background="?attr/selectableItemBackground"
-                    android:drawableLeft="@drawable/ic_exit_to_app"
-                    android:drawablePadding="10dp"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:paddingBottom="8dp"
-                    android:paddingStart="10dp"
-                    android:paddingTop="8dp"
-                    android:text="退出登录"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </FrameLayout>
-</LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

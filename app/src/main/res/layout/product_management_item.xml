@@ -8,9 +8,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="2dp"
+        android:layout_height="88dp"
         app:cardPreventCornerOverlap="false"
         app:contentPaddingLeft="0dp">
 
@@ -18,26 +16,25 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#FFF"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
 
-            <CheckBox
+            <android.support.v7.widget.AppCompatCheckBox
                 android:id="@+id/ck"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <LinearLayout
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/img"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:scaleType="fitXY"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/login" />
             </LinearLayout>
 
@@ -54,8 +51,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:ellipsize="end"
-                    android:maxLines="4"
-                    android:text="这里是全球最大的商品展示中心" />
+                    android:maxLines="2"
+                    android:text="这里是全球最大的商品展示中心"
+                    android:textSize="12sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -72,14 +70,32 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="￥"
-                            android:textColor="@android:color/holo_red_light" />
+                            android:textColor="@android:color/holo_red_light"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="100"
-                            android:textColor="@android:color/holo_red_light" />
+                            android:textColor="@android:color/holo_red_light"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="厂家："
+                            android:layout_marginStart="15dp"
+                            android:textColor="@color/primaryDarkColor"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="厂家："
+                            android:textColor="@color/primaryColor"
+                            android:textSize="12sp"
+                            android:id="@+id/userName"/>
                     </LinearLayout>
 
 

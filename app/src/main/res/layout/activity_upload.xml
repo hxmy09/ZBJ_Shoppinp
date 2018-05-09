@@ -1,131 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#ffffff">
 
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_view"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="2dp"
-            app:cardElevation="2dp"
-            app:cardPreventCornerOverlap="false"
-            app:contentPadding="0dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp">
 
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:contentPadding="0dp">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:layout_height="match_parent">
 
-                    <com.jaredrummler.materialspinner.MaterialSpinner
-                        android:id="@+id/spinner"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:nestedScrollingEnabled="true"
-                        app:met_textColorHint="@android:color/holo_orange_dark"
-                        app:met_underlineColor="@android:color/holo_orange_dark"
-                        app:ms_background_color="#dddddd"
-                        app:ms_dropdown_height="200dp"
-                        app:ms_text_color="@android:color/black" />
+                        android:layout_gravity="center"
+                        android:background="#fff"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="15dp">
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_price"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:hint="请输入商品价格"
-                        android:inputType="numberDecimal"
-                        app:met_baseColor="@android:color/black"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelAlwaysShown="true"
-                        app:met_primaryColor="?colorAccent"
-                        app:met_singleLineEllipsis="true"
-                        app:met_underlineColor="@android:color/holo_orange_dark" />
+                        <com.jaredrummler.materialspinner.MaterialSpinner
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:nestedScrollingEnabled="true"
+                            app:met_textColorHint="@android:color/holo_orange_dark"
+                            app:met_underlineColor="@android:color/holo_orange_dark"
+                            app:ms_background_color="#dddddd"
+                            app:ms_dropdown_height="200dp"
+                            app:ms_text_color="@android:color/black" />
 
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/edit_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="请输入商品描述"
-                        app:met_baseColor="@android:color/black"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelAlwaysShown="true"
-                        app:met_primaryColor="?colorAccent"
-                        app:met_underlineColor="@android:color/holo_orange_dark" />
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:hint="请输入商品价格"
+                            android:inputType="numberDecimal"
+                            app:met_baseColor="@android:color/black"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAlwaysShown="true"
+                            app:met_primaryColor="?colorAccent"
+                            app:met_singleLineEllipsis="true"
+                            app:met_underlineColor="@android:color/holo_orange_dark" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="请输入商品描述"
+                            app:met_baseColor="@android:color/black"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAlwaysShown="true"
+                            app:met_primaryColor="?colorAccent"
+                            app:met_underlineColor="@android:color/holo_orange_dark" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/keyword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="请输入商品查询关键字"
+                            app:met_baseColor="@android:color/black"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAlwaysShown="true"
+                            app:met_primaryColor="?colorAccent"
+                            app:met_underlineColor="@android:color/holo_orange_dark" />
+
+                        <!--<Button-->
+                        <!--android:id="@+id/btnUpload"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:layout_centerInParent="true"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_marginEnd="20dp"-->
+                        <!--android:layout_marginStart="20dp"-->
+                        <!--android:layout_marginTop="40dp"-->
+                        <!--android:background="@android:color/holo_orange_dark"-->
+                        <!--android:text="上传"-->
+                        <!--android:textColor="@android:color/white"></Button>-->
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:contentPadding="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#fff"
+                    android:padding="15dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
                         android:orientation="vertical">
 
                         <Button
                             android:id="@+id/btnUploadImage"
                             android:layout_width="100dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerInParent="true"
                             android:layout_marginTop="10dp"
-                            android:background="@android:color/holo_orange_dark"
                             android:text="选择图片"
                             android:textColor="@android:color/white"></Button>
 
-                        <FrameLayout
-                            android:id="@+id/imgsLayout"
+                        <ImageView
+                            android:id="@+id/imgView"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:scaleType="centerCrop" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/colorView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"></FrameLayout>
+                            android:hint="请手动录入商品颜色"
+                            app:met_baseColor="@android:color/black"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAlwaysShown="true"
+                            app:met_primaryColor="?colorAccent"
+                            app:met_underlineColor="@android:color/holo_orange_dark" />
 
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/sizeView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="示例：'尺寸/库存,尺寸/库存'。例如：大号/100000,小号/1000000,中号/999999"
+                            app:met_baseColor="@android:color/black"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAlwaysShown="true"
+                            app:met_primaryColor="?colorAccent"
+                            app:met_underlineColor="@android:color/holo_orange_dark" />
+
+                        <Button
+                            android:id="@+id/add"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:background="@android:color/holo_orange_dark"
+                            android:text="添加"
+                            android:textColor="@android:color/white"></Button>
+
+                        <TextView
+                            android:id="@+id/uploadHint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="上传说明"
+                            android:textColor="@color/primaryColor" />
 
                     </LinearLayout>
 
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
-                    <Button
-                        android:id="@+id/btnUpload"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="40dp"
-                        android:background="@android:color/holo_orange_dark"
-                        android:text="上传"
-                        android:textColor="@android:color/white"></Button>
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_view1"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:paddingBottom="100dp"
+                android:paddingTop="10dp">
 
-                <com.wang.avi.AVLoadingIndicatorView
-                    android:id="@+id/avi"
-                    style="@style/AVLoadingIndicatorView"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:visibility="visible"
-                    app:indicatorColor="@android:color/holo_orange_dark"
-                    app:indicatorName="BallSpinFadeLoaderIndicator" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+                    android:text="上传如下：" />
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    </RelativeLayout>
-</ScrollView>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ddd" />
+
+        <Button
+            android:id="@+id/btnUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/holo_orange_dark"
+            android:text="上传"
+            android:textColor="@android:color/white"></Button>
+    </FrameLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi"
+        style="@style/AVLoadingIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        app:indicatorColor="@android:color/holo_orange_dark"
+        app:indicatorName="BallSpinFadeLoaderIndicator" />
+</RelativeLayout>

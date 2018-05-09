@@ -1,0 +1,46 @@
+{
+  "code":"100",
+  "data":[
+    {
+      "product_id":"",
+      "group_name":"",
+      "desc":"",
+      "price":"",
+      "uploaded_date":"",
+      "key_words":"",
+      "details":[
+        {
+          "img":"",
+          "color":"",
+          "store":[
+            {
+              "size": "x",
+              "amount":10
+            },
+            {
+              "size": "xx",
+              "amount":1
+            }
+          ]
+        },
+        {
+          "img":"",
+          "color":"",
+          "store":[
+            {
+              "size": "x",
+              "amount":10
+            },
+            {
+              "size": "xx",
+              "amount":1
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
+
+
+}

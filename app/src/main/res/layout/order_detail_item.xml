@@ -32,7 +32,7 @@
                     android:id="@+id/img"
                     android:layout_width="150dp"
                     android:layout_height="100dp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/login" />
             </LinearLayout>
 
@@ -52,10 +52,41 @@
                     android:maxLines="4"
                     android:text="这里是全球最大的商品展示中心" />
 
+                <TextView
+                    android:id="@+id/color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/desc"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="1"
+                    android:maxWidth="50dp"
+                    android:text="2222"
+                    android:textSize="12sp" />
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:text="尺寸:"-->
+                <!--android:textSize="12sp" />-->
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/desc"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/color"
+                    android:maxLines="1"
+                    android:text="222233"
+                    android:textSize="12sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/size"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -79,15 +110,16 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="数量"
-                            android:textColor="@android:color/holo_red_light"
-                            android:layout_marginStart="20dp"/>
+                            android:layout_marginStart="20dp"
+                            android:text="购买数量:"
+                            android:textColor="@color/ef_grey" />
 
                         <TextView
                             android:id="@+id/count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            android:layout_marginStart="8dp"
                             android:textColor="@android:color/holo_red_light" />
                     </LinearLayout>
 

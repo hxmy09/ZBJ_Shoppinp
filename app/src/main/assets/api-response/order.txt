@@ -1,0 +1,129 @@
+
+-----------点击购物车购买按钮----------------这个后续需要加入支付功能。现在滤过支付功能。直接到代发货页面。
+{
+	"order_number": "",
+	"data": [{
+		"buyer": "admin",
+		"color": "蓝色",
+		"desc": "洗衣液",
+		"img_url": "http://118.24.76.50:8080/mall/石家庄米奇日化有限公司mmexport1524113482924.jpg",
+		"is_search_seller": true,
+		"isSelected": true,
+		"order_amount": 7,
+		"order_number": "",
+		"order_time": "2018-04-21 00:04:06.0",
+		"price": 4.0,
+		"product_id": "541510c2-b32b-4399-a726-d8156e1b01a9",
+		"product_state": 0,
+		"seller": "石家庄米奇日化有限公司",
+		"shopping_id": "石家庄米奇日化有限公司541510c2-b32b-4399-a726-d8156e1b01a9admin蓝色1kg",
+		"size": "1kg"
+	}, {
+		"buyer": "admin",
+		"color": "黑色",
+		"desc": "兜川男士一字拖韩版男女拖鞋防滑情侣沙滩鞋越南凉鞋个性潮这",
+		"img_url": "http://118.24.76.50:8080/mall/王龙龙1523969069909.jpg",
+		"is_search_seller": true,
+		"isSelected": true,
+		"order_amount": 1,
+		"order_number": "",
+		"order_time": "2018-04-19 00:00:03.0",
+		"price": 23.0,
+		"product_id": "34dc59e2-5230-4e94-9296-249b2dcf9f41",
+		"product_state": 0,
+		"seller": "王龙龙",
+		"shopping_id": "王龙龙34dc59e2-5230-4e94-9296-249b2dcf9f41admin黑色43",
+		"size": "43"
+	}],
+	"total": 51.0
+}
+======================下面是代发货、待收货/售后 请求参数
+{
+ "end": 8,
+ "is_search_seller": true,
+ "product_state": 2,
+ "start": 0,
+ "user_state": 1
+}
+用户状态分为1.2.3.   如果是1- 超级管理员  那么根据is_search_seller 来区分查询出卖家。还是买家的所有订单信息。如果是2 - 普通管理员 也就是卖家。。。 这里查看的是他自己卖出的订单信息。 3 买家。  查看自己的订单
+
+
+
+{
+"code":"100",
+"orders":[
+
+{
+    "order_number": "",
+    	"data": [{
+    		"buyer": "admin",
+    		"color": "白色",
+    		"desc": "远东2018年爆款男鞋夏季休闲鞋时尚潮流运动鞋透气帆布流行小白鞋 ",
+    		"img_url": "http://118.24.76.50:8080/mall/王龙龙1523969982970.jpg",
+    		"isSelected": true,
+    		"order_amount": 1,
+    		"order_number": "",
+    		"order_time": "2018-04-18 17:48:50.0",
+    		"price": 16.5,
+    		"product_id": "67301e57-eb9d-4e17-acc9-aaa4c168e21b",
+    		"product_state": 0,
+    		"seller": "王龙龙",
+    		"shopping_id": "王龙龙67301e57-eb9d-4e17-acc9-aaa4c168e21badmin白色41",
+    		"size": "41"
+    	}, {
+    		"buyer": "admin",
+    		"color": "白色",
+    		"desc": "500克少女内衣洗衣液",
+    		"img_url": "http://118.24.76.50:8080/mall/石家庄米奇日化有限公司mmexport1515501725562.jpg",
+    		"isSelected": true,
+    		"order_amount": 9,
+    		"order_number": "",
+    		"order_time": "2018-04-18 17:48:22.0",
+    		"price": 30.0,
+    		"product_id": "cf11704e-5cbd-4346-92d0-072497f623f9",
+    		"product_state": 0,
+    		"seller": "石家庄米奇日化有限公司",
+    		"shopping_id": "石家庄米奇日化有限公司cf11704e-5cbd-4346-92d0-072497f623f9admin白色默认",
+    		"size": "默认"
+    	}],
+    	"total": 286.5
+}
+,
+{
+
+"order_number": "",
+	"data": [{
+		"buyer": "admin",
+		"color": "白色",
+		"desc": "远东2018年爆款男鞋夏季休闲鞋时尚潮流运动鞋透气帆布流行小白鞋 ",
+		"img_url": "http://118.24.76.50:8080/mall/王龙龙1523969982970.jpg",
+		"isSelected": true,
+		"order_amount": 1,
+		"order_number": "",
+		"order_time": "2018-04-18 17:48:50.0",
+		"price": 16.5,
+		"product_id": "67301e57-eb9d-4e17-acc9-aaa4c168e21b",
+		"product_state": 0,
+		"seller": "王龙龙",
+		"shopping_id": "王龙龙67301e57-eb9d-4e17-acc9-aaa4c168e21badmin白色41",
+		"size": "41"
+	}, {
+		"buyer": "admin",
+		"color": "白色",
+		"desc": "500克少女内衣洗衣液",
+		"img_url": "http://118.24.76.50:8080/mall/石家庄米奇日化有限公司mmexport1515501725562.jpg",
+		"isSelected": true,
+		"order_amount": 9,
+		"order_number": "",
+		"order_time": "2018-04-18 17:48:22.0",
+		"price": 30.0,
+		"product_id": "cf11704e-5cbd-4346-92d0-072497f623f9",
+		"product_state": 0,
+		"seller": "石家庄米奇日化有限公司",
+		"shopping_id": "石家庄米奇日化有限公司cf11704e-5cbd-4346-92d0-072497f623f9admin白色默认",
+		"size": "默认"
+	}],
+	"total": 286.5}
+]
+
+}
