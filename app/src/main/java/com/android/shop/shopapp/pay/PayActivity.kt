@@ -61,7 +61,7 @@ class PayActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    fun isSupportPay(): Boolean {
+    private fun isSupportPay(): Boolean {
         return api!!.wxAppSupportAPI >= Build.PAY_SUPPORTED_SDK_INT
     }
 }

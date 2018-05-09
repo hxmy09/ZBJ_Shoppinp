@@ -14,7 +14,7 @@ android {
         config {
             keyAlias 'shopping'
             keyPassword '123456'
-            storeFile file('/Users/myron/Dev/Apps/Shopping/shopping.keystore')
+            storeFile file('/Users/myron/GitHub/ZBJ/Shopping/shopping.keystore')
             storePassword '123456'
         }
     }
@@ -54,7 +54,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':imagepicker')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$_kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$_kotlin_version"
 
     //    implementation "org.jetbrains.kotlin:kotlin-stdlib::$_kotlin_version"
     implementation "com.android.support:appcompat-v7:$_supportLibraryVersion"
