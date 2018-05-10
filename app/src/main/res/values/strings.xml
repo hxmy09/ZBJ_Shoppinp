@@ -22,6 +22,7 @@
     <string name="adult">审核</string>
     <string name="login_title">登录</string>
     <string name="forgetpwd_title">修改信息</string>
+    <string name="pay">支付信息</string>
     <string name="register_title">注册</string>
     <string name="search_hint_custom">查询</string>
     <string name="upload_hint">上传说明</string>

@@ -12,7 +12,7 @@ import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
-import com.android.shop.shopapp.activity.PayActivity
+import com.android.shop.shopapp.activity.PayOrderInfoActivity
 import com.android.shop.shopapp.data.ShoppingAdapter
 import com.android.shop.shopapp.model.ShoppingModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
@@ -196,42 +196,34 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
                 return@setOnClickListener
             }
-            //            shoppingModel.total = total.text.toString().toDouble()
-            var orderList = mAdapter.contents.filter { it.isSelected }
-//            val orderService = RetrofitHelper().getOrdersService()
-//            var order = ProductOrder(orderList, "", total.text.toString().toDouble())
-//            mCompositeDisposable.add(orderService.buyProducts(order)//.flatMap { fetchData() }
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe({ t ->
-//                        if (t.code == "100") {
-//                            Toast.makeText(activity, "购买成功", Toast.LENGTH_LONG).show()
-//                            fetchData(MSG_CODE_REFRESH)
-//
-//                        } else {
-//                            Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
-//                        }
-//                        stopAnim()
-//
-//                    }, { e ->
-//                        Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
-//                        stopAnim()
-//                    }))
+            val orderList = mAdapter.contents.filter { it.isSelected }
+            val orderService = RetrofitHelper().getOrdersService()
+            val totalAmount = total.text.toString().toDouble()
+            var order = ProductOrder(orderList, "", totalAmount)
+            mCompositeDisposable.add(orderService.buyProducts(order)//.flatMap { fetchData() }
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ t ->
+                        if (t.code == "100") {
+                            val intent = Intent(activity, PayOrderInfoActivity::class.java).apply {
+                                putExtra("order_number", t.data?.order_number)
+                                putExtra("payAmount", totalAmount.toString())
+                            }
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
+                        }
+                        stopAnim()
 
-            pay(total.text.toString().toDouble())
-//            MaterialDialog.Builder(activity)
-//                    .content("很抱歉，支付功能暂未实现。如需支付，请人工支付。所购商品合计￥${total.text.toString()}")
-//                    .show()
-
+                    }, { e ->
+                        Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
+                        stopAnim()
+                    }))
         }
 
         delete.setOnClickListener {
-            //            list = DBUtil(activity).mAppDatabase.shoppingDao()?.findAll()
-//            list.map { it.isSelected }
             var filterList = mAdapter.contents.filter { it.isSelected }
 
-            //  list = DBUtil(activity).mAppDatabase.shoppingDao().findAll()
-//            fetchData()
             if (filterList.size <= 0) {
                 Toast.makeText(activity, "请选择至少一条数据", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -249,27 +241,6 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         setHasOptionsMenu(true)
     }
 
-
-    fun pay(total: Double) {
-        val intent = Intent(activity, PayActivity::class.java).apply {
-            putExtra("money", total)
-        }
-        startActivityForResult(intent, 0x11)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 0x11) {
-            MaterialDialog.Builder(activity)
-                    .content("支付成功")
-                    .positiveText("确定")
-                    .show()
-            fetchData(MSG_CODE_REFRESH)
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
-
-        }
-
-    }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 

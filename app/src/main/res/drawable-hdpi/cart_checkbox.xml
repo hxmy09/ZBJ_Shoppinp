@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:Android="http://schemas.android.com/apk/res/android">
+
+    <item Android:drawable="@drawable/cart_checkbox1" Android:state_pressed="true"/>
+    <item Android:drawable="@drawable/cart_checkbox1" Android:state_checked="true"/>
+    <item Android:drawable="@drawable/cart_checkbox1" Android:state_selected="true"/>
+    <item Android:drawable="@drawable/cart_checkbox1" Android:state_focused="true"/>
+ <!-- focused -->
+    <item Android:drawable="@drawable/cart_checkbox"/>
+ <!-- default -->
+
+</selector>

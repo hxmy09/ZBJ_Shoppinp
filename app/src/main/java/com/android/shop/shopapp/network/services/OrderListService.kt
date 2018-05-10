@@ -31,7 +31,7 @@ interface OrderListService {
     @POST("mall/order/add")
     @Headers(*arrayOf("Content-Type: application/json", "session_id:5b4465220bf25dbf556ab46d875c98bc"))
     @JsonAndXmlConverters.Json
-    fun buyProducts(@JsonAndXmlConverters.Json @Body request: ProductOrder): Observable<CommonResponse>
+    fun buyProducts(@JsonAndXmlConverters.Json @Body request: ProductOrder): Observable<PayResponse>
 
 
     //更新order 流程//0购物车100未付款200代发货300已发货400售后
@@ -39,4 +39,16 @@ interface OrderListService {
     @Headers(*arrayOf("Content-Type: application/json"))
     @JsonAndXmlConverters.Json
     fun updateOrderStatus(@JsonAndXmlConverters.Json @Body request: ShoppingModel): Observable<CommonResponse>
+}
+
+
+class PayResponse() {
+    var code: String? = null
+    var msg: String? = null
+    var data: payDetail? = null
+
+}
+
+class payDetail() {
+    var order_number: String? = null
 }

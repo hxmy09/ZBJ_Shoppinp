@@ -95,7 +95,7 @@ class RetrofitHelper() {
 
     private fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://118.24.76.50:8080/")//http://118.24.76.50:8080///47.104.169.240
+                .baseUrl("http://8f3kqq.natappfree.cc/")//http://118.24.76.50:8080///47.104.169.240
                 .addConverterFactory(JsonAndXmlConverters.QualifiedTypeConverterFactory(
                         GsonConverterFactory.create(),
                         SimpleXmlConverterFactory.create()))

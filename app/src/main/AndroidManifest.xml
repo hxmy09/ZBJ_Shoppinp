@@ -107,6 +107,11 @@
             android:label="@string/forgetpwd_title"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".activity.PayOrderInfoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/pay"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>

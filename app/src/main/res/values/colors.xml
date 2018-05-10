@@ -11,5 +11,6 @@
     <color name="secondaryTextColor">#ddd</color>
     <color name="bgColor">#fafafa</color>
     <color name="transparent">#55ff</color>
-
+    <color name="listcolor">#fffff4de</color>
+    <color name="listview_bg">#fff3f3f3</color>
 </resources>
