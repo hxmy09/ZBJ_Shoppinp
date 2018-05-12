@@ -1,6 +1,7 @@
 package com.android.shop.shopapp.activity
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,6 +15,7 @@ import com.android.shop.shopapp.data.OrderDetailAdapter
 import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.ShoppingModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
+import com.android.shop.shopapp.pay.PayActivity
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -54,7 +56,7 @@ class OrderDetailsActivity : BaseActivity() {
     }
 
     var list = arrayListOf<ProductModel>()
-
+    lateinit var shoppingModel: ShoppingModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orderdetail)
@@ -72,7 +74,7 @@ class OrderDetailsActivity : BaseActivity() {
         } else {
             superManager.visibility = View.GONE
         }
-        var shoppingModel = products?.get(0)
+        shoppingModel = products?.get(0)!!
 
         sellerPhone.text = shoppingModel?.sellerPhone
         sellerAddress.text = shoppingModel?.sellerAddress
@@ -138,6 +140,34 @@ class OrderDetailsActivity : BaseActivity() {
                         .content(message)
                         .positiveText("确定")
                         .show()
+            } else if (action.text == "付款") {
+
+                val intent = Intent(this@OrderDetailsActivity, PayActivity::class.java).apply {
+                    putExtra("order_number", shoppingModel.orderNumber)
+                    putExtra("payAmount", intent.getDoubleExtra("total", 0.00).toString())
+                }
+                startActivityForResult(intent, 0x11)
+//                            val orderService = RetrofitHelper().getOrdersService()
+//                            var request = ShoppingModel()
+//                            request.orderNumber = intent.getStringExtra("OrderNum")
+//                            request.orderState = orderState//0购物车100未付款200代发货300已发货400售后
+//                            mCompositeDisposable.add(orderService.updateOrderStatus(request)
+//                                    .subscribeOn(Schedulers.io())
+//                                    .observeOn(AndroidSchedulers.mainThread())
+//                                    .subscribe({ t ->
+//                                        if (t.code == "100") {
+//                                            Toast.makeText(this@OrderDetailsActivity, "操作成功", Toast.LENGTH_LONG).show()
+//                                            action.visibility = View.GONE
+//                                            setResult(Activity.RESULT_OK)
+//                                            finish()
+//                                        } else {
+//                                            Toast.makeText(this@OrderDetailsActivity, "操作失败", Toast.LENGTH_LONG).show()
+//                                        }
+//
+//                                    }, { e ->
+//                                        Toast.makeText(this@OrderDetailsActivity, "操作失败", Toast.LENGTH_LONG).show()
+//                                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+//                                    }))
             } else {
                 MaterialDialog.Builder(this)
                         .content(message)
@@ -171,6 +201,34 @@ class OrderDetailsActivity : BaseActivity() {
 
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 0x11 && resultCode == Activity.RESULT_OK) {
+            val orderService = RetrofitHelper().getOrdersService()
+            var request = ShoppingModel()
+            request.orderNumber = intent.getStringExtra("OrderNum")
+            request.orderState = DAI_FA_HUO//0购物车100未付款200代发货300已发货400售后
+            mCompositeDisposable.add(orderService.updateOrderStatus(request)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ t ->
+                        if (t.code == "100") {
+                            Toast.makeText(this@OrderDetailsActivity, "操作成功", Toast.LENGTH_LONG).show()
+                            action.visibility = View.GONE
+                            setResult(Activity.RESULT_OK)
+                            finish()
+                        } else {
+                            Toast.makeText(this@OrderDetailsActivity, "操作失败", Toast.LENGTH_LONG).show()
+                        }
+
+                    }, { e ->
+                        Toast.makeText(this@OrderDetailsActivity, "操作失败", Toast.LENGTH_LONG).show()
+                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                    }))
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
 
     var start = 0;
     var end = DEFAULT_ITEM_SIZE

@@ -67,3 +67,4 @@ const val USER_STATE_ADMIN = 1
 const val USER_STATE_MANAGER = 2
 const val USER_STATE_USER = 3
 const val USER_STATE_REGISTER = 0
+

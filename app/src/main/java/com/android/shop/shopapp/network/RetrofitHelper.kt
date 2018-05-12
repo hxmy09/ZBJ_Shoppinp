@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitHelper() {
 
-
     fun getLoginService(): LoginService {
         val retrofit = createRetrofit()
         return retrofit.create(LoginService::class.java);
@@ -95,7 +94,7 @@ class RetrofitHelper() {
 
     private fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://8f3kqq.natappfree.cc/")//http://118.24.76.50:8080///47.104.169.240
+                .baseUrl("http://118.24.76.50:8080/")//http://118.24.76.50:8080///47.104.169.240 - http://8f3kqq.natappfree.cc/
                 .addConverterFactory(JsonAndXmlConverters.QualifiedTypeConverterFactory(
                         GsonConverterFactory.create(),
                         SimpleXmlConverterFactory.create()))

@@ -1,5 +1,6 @@
 package com.android.shop.shopapp.fragment
 
+import android.app.Activity
 import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
@@ -12,12 +13,12 @@ import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
-import com.android.shop.shopapp.activity.PayOrderInfoActivity
 import com.android.shop.shopapp.data.ShoppingAdapter
 import com.android.shop.shopapp.model.ShoppingModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.model.response.ProductOrder
 import com.android.shop.shopapp.network.services.ProductParameterRequest
+import com.android.shop.shopapp.pay.PayActivity
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -185,7 +186,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
         })
         result.setOnClickListener {
-
+            startAnim()
             var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0) //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
 
             if (userState != 3) {
@@ -193,7 +194,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
                         .content("对不起，你的客户端不支持购买商品，请注册其他账户，有任何问题，请你拨打电话0579-85876692")
                         .positiveText("确定")
                         .show()
-
+                stopAnim()
                 return@setOnClickListener
             }
             val orderList = mAdapter.contents.filter { it.isSelected }
@@ -205,11 +206,11 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ t ->
                         if (t.code == "100") {
-                            val intent = Intent(activity, PayOrderInfoActivity::class.java).apply {
+                            val intent = Intent(activity, PayActivity::class.java).apply {
                                 putExtra("order_number", t.data?.order_number)
                                 putExtra("payAmount", totalAmount.toString())
                             }
-                            startActivity(intent)
+                            startActivityForResult(intent, 0x11)
                         } else {
                             Toast.makeText(activity, "请求数据失败", Toast.LENGTH_LONG).show()
                         }
@@ -254,8 +255,16 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 0x11) {
+            fetchData(MSG_CODE_REFRESH)
+            return
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 
 }
+
 
 interface CountTotalCallBack {
     fun countTotal(am: Int, model: ShoppingModel)

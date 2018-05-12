@@ -41,33 +41,15 @@ class WXPayEntryActivity : Activity(), IWXAPIEventHandler {
         if (resp.type == ConstantsAPI.COMMAND_PAY_BY_WX) {
             if (resp.errCode == 0) {
                 //付款成功
-                Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show()
-                if (PayActivity.ordertype != null && PayActivity.ordertype == "1") {
-                    // 从结算界面过来的主订单
-                    PayActivity.isMainPay = 0
-                    finish()
-                } else {
-                    //从订单界面过来的
-                    PayActivity.isMainPay = 1
-//                    OrderStateFragment.isPay = true
-                    finish()
-                }
+//                Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show()
+                PayActivity.isMainPay = PayActivity.successed
+                finish()
             } else {
                 //付款失败
-                Toast.makeText(this, "支付失败", Toast.LENGTH_SHORT).show()
-                if (PayActivity.ordertype != null && PayActivity.ordertype == "1") {
-                    // 从结算界面过来的主订单
-                    PayActivity.isMainPay = 3
-                } else {
-                    PayActivity.isMainPay = 2
-                }
+//                Toast.makeText(this, "支付失败" + resp.errCode, Toast.LENGTH_SHORT).show()
+                PayActivity.isMainPay = PayActivity.failed
                 finish()
             }
         }
-    }
-
-    companion object {
-
-        private val TAG = "MicroMsg.SDKSample.WXPayEntryActivity"
     }
 }

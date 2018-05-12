@@ -19,6 +19,72 @@
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="actionMenuTextColor">@color/primaryTextColor</item>
         <item name="android:textColorSecondary">@color/secondaryTextColor</item>
+
+        <item name="md_background_color">@color/ef_white</item>
+        <!--
+    By default, the title text color is derived from the
+    ?android:textColorPrimary system attribute.
+-->
+        <item name="md_title_color">@color/ef_black_alpha_50</item>
+
+
+        <!--
+            By default, the content text color is derived from the
+            ?android:textColorSecondary system attribute.
+        -->
+        <item name="md_content_color">@color/ef_black_alpha_50</item>
+
+        <!--
+            By default, the link color is derived from the colorAccent attribute
+            of AppCompat or android:colorAccent attribute of the Material theme.
+        -->
+        <item name="md_link_color">#673AB7</item>
+
+        <!--
+            By default, the positive action text color is derived
+            from the colorAccent attribute of AppCompat or android:colorAccent
+            attribute of the Material theme.
+        -->
+        <item name="md_positive_color">@color/primaryColor</item>
+
+        <!--
+            By default, the neutral action text color is derived
+            from the colorAccent attribute of AppCompat or android:colorAccent
+            attribute of the Material theme.
+        -->
+        <item name="md_neutral_color">@color/primaryColor</item>
+
+        <!--
+            By default, the negative action text color is derived
+            from the colorAccent attribute of AppCompat or android:colorAccent
+            attribute of the Material theme.
+        -->
+        <item name="md_negative_color">@color/primaryColor</item>
+
+        <!--
+            By default, a progress dialog's progress bar, check boxes, and radio buttons
+            have a color that is derived from the colorAccent attribute of AppCompat or
+            android:colorAccent attribute of the Material theme.
+        -->
+        <item name="md_widget_color">#673AB7</item>
+
+        <!--
+            By default, the list item text color is black for the light
+            theme and white for the dark theme.
+        -->
+        <item name="md_item_color">#9C27B0</item>
+
+        <!--
+            This overrides the color used for the top and bottom dividers used when
+            content is scrollable
+        -->
+        <item name="md_divider_color">#E91E63</item>
+
+        <!--
+            This overrides the color used for the ripple displayed on action buttons (Lollipop and above).
+            Defaults to the colorControlHighlight attribute from AppCompat OR the Material theme.
+        -->
+        <item name="md_btn_ripple_color">#E91E63</item>
     </style>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">

@@ -33,6 +33,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+            debuggable true
         }
     }
     lintOptions {
@@ -148,10 +149,13 @@ dependencies {
 
     //searchview
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
-//popup window for 购物车
+
+    //popup window for 购物车
     implementation 'cn.weidongjian.android:popupWindowHelper:0.5'
-//刷新
+
+    //刷新
     implementation 'com.wuxiaolong.pullloadmorerecyclerview:library:1.1.2'
-//微信支付
+
+    //微信支付
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.4'
 }
