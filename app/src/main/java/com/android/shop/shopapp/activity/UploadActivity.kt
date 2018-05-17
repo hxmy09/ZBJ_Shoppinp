@@ -89,7 +89,7 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
         val isSingleMode = true
         val useCustomImageLoader = false
         val folderMode = true
-        val includeVideo = true
+        val includeVideo = false
         val isExclude = true
 
         val imagePicker = ImagePicker.create(this)
@@ -215,6 +215,17 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
                 } else {
                     colorView.text.toString()
                 }
+
+                var count = 0;
+                (recyclerView.adapter as UploadAdapter).contents.map {
+                    if (it.color!!.contains(detail.color!!)) {
+                        count++
+                    }
+                }
+                if (count > 0) {
+                    detail.color = detail.color + (count + 1)
+                }
+
                 detail.img = imgView.tag as String?
 
                 val sizeList = arrayListOf<Size>()
@@ -229,17 +240,19 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
                     val sizeArr = formatText.split(",")
                     sizeArr.forEach {
 
-                        if (!TextUtils.isEmpty(it)) {
-                            val arr = it.split("/")
-                            val size = Size()
-                            size.amount = if (arr.size == 2) {
-                                arr[1].toInt()
-                            } else {
-                                0
-                            }
-                            size.size = arr[0]
-                            sizeList.add(size)
-                        }
+                        //                        if (!TextUtils.isEmpty(it)) {
+//                            val arr = it.split("/")
+//
+//                            size.amount = if (arr.size == 2) {
+//                                arr[1].toInt()
+//                            } else {
+//                                0
+//                            }
+//
+//                        }
+                        val size = Size()
+                        size.size = it
+                        sizeList.add(size)
 
                     }
                 }

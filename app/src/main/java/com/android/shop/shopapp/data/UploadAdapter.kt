@@ -65,9 +65,9 @@ class UploadAdapter(var context: Context?, list: ArrayList<Detail>) : RecyclerVi
             model?.store?.forEach {
 
                 sb.append(it.size)
-                sb.append("/")
-                sb.append(it.amount)
-                sb.append(",")
+//                sb.append("/")
+//                sb.append(it.amount)
+//                sb.append(",")
             }
             store?.text = sb.toString()
             delete?.setOnClickListener {
