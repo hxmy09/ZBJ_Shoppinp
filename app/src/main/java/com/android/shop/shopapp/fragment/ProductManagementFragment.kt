@@ -201,7 +201,7 @@ open class ProductManagementFragment : Fragment() {
 
                         } else {
                             mAdapter.contents.addAll(t.products!!)
-                            list.addAll(t.products!!)
+                            list = mAdapter.contents
                             mAdapter.notifyDataSetChanged()
 
                         }
