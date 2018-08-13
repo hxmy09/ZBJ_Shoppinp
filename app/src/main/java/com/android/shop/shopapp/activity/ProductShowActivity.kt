@@ -133,9 +133,10 @@ class ProductShowActivity : BaseActivity() {
                         pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
 
                     } else {
+                        val cusPos = mAdapter.contents.size - 1
                         mAdapter.contents.addAll(t.products!!)
                         list = mAdapter.contents
-                        mAdapter.notifyDataSetChanged()
+                        mAdapter.notifyItemRangeChanged(cusPos, t.products!!.size)
                         pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                     }
                 }, { e ->

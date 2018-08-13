@@ -89,8 +89,9 @@ class ManagerNewUserActivity : BaseActivity(), UserAuditCall {
                             pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
 
                         } else {
+                            val cusPos = mAdapter.contents.size - 1
                             mAdapter.contents.addAll(t.data!!)
-                            mAdapter.notifyDataSetChanged()
+                            mAdapter.notifyItemRangeChanged(cusPos, t.data!!.size)
                             pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                         }
 

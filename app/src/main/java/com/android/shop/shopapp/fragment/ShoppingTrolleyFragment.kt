@@ -117,8 +117,9 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
                             pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
 
                         } else {
+                            val startPos = mAdapter.contents.size - 1
                             mAdapter.contents.addAll(t.products!!)
-                            mAdapter.notifyDataSetChanged()
+                            mAdapter.notifyItemRangeChanged(startPos, t.products!!.size)
                             pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                         }
 
@@ -175,7 +176,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         findViews()
         fetchData(MSG_CODE_REFRESH)
 
-        selectAll.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
+        selectAll.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
 
             mAdapter.contents.forEach {
                 it.isSelected = b
@@ -184,7 +185,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
             cal()
 
-        })
+        }
         result.setOnClickListener {
             startAnim()
             var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0) //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员

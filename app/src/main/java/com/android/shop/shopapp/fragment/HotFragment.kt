@@ -92,8 +92,9 @@ class HotFragment : Fragment() {
                         pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
 
                     } else {
+                        val cusPos = mAdapter.contents.size - 1
                         mAdapter.contents.addAll(t.products!!)
-                        mAdapter.notifyDataSetChanged()
+                        mAdapter.notifyItemRangeChanged(cusPos, t.products!!.size)
                         pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                     }
                 }, { _ ->

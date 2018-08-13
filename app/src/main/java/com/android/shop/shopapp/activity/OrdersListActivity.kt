@@ -119,9 +119,10 @@ class OrdersListActivity : BaseActivity() {
                         pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
 
                     } else {
+                        val cusPos = mAdapter.contents.size - 1
                         mAdapter.contents.addAll(t.orders!!)
-                        list.addAll(t.orders!!)
-                        mAdapter.notifyDataSetChanged()
+                        list = mAdapter.contents
+                        mAdapter.notifyItemRangeChanged(cusPos, t.orders!!.size)
                         pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                     }
                 }, { e ->
