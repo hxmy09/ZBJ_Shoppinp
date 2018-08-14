@@ -13,7 +13,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/transparent">
+        android:backgroundTint="@color/ef_white">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -69,7 +69,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/pullLoadMoreRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/ef_white"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
