@@ -20,13 +20,14 @@ const val G_NVZHUANG = "女装"
 const val G_NANZHUANG = "男装"
 const val G_XIDI = "洗涤"
 const val G_XIANGBAO = "箱包"
-const val G_MEIZHUANG = "美妆"
+const val G_MEIZHUANG = "饰品"
 const val G_NEIYI = "内衣"
 const val G_WANJU = "玩具"
 const val G_WENJU = "文具"
 const val G_WUJIN = "童装"
 const val G_XIEZI = "鞋子"
 const val G_FANGZHIPIN = "纺织品"
+const val G_TEJIA = "特价"
 
 const val PAGE_NUMBER = 20
 

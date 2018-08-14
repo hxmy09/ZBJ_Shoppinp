@@ -36,11 +36,11 @@ class HomeAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot:
                         .inflate(R.layout.group_card_item, parent, false)
                 return ViewHolder(v!!)
             }
-            3 -> {
-                v = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.avd_item, parent, false)
-                return ViewHolderAV(v!!)
-            }
+//            3 -> {
+//                v = LayoutInflater.from(parent.context)
+//                        .inflate(R.layout.avd_item, parent, false)
+//                return ViewHolderAV(v!!)
+//            }
             else -> {
                 v = LayoutInflater.from(parent.context)
                         .inflate(R.layout.group_card_item, parent, false)
@@ -58,25 +58,23 @@ class HomeAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot:
                 (holder as ViewHolderNavigation).bind()
             }
             2 -> {
-                (holder as ViewHolder).bind(contents.get(position - 2))
+                (holder as ViewHolder).bind(contents.get(position - 1))
             }
-            3 -> {
-                (holder as ViewHolderAV).bind()
-            }
+//            3 -> {
+//                (holder as ViewHolderAV).bind()
+//            }
             else -> {
-                (holder as ViewHolder).bind(contents.get(position - 2))
+                (holder as ViewHolder).bind(contents.get(position - 1))
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return contents.size + 2
+        return contents.size + 1
     }
 
     override fun getItemViewType(position: Int): Int {
         if (position == 0) {
-            return 3
-        } else if (position == 1) {
             return 1
         } else {
             return 2
