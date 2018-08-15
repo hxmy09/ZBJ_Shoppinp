@@ -1,11 +1,8 @@
 package com.android.shop.shopapp.activity
 
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.android.shop.shopapp.R
-import com.android.shop.shopapp.data.GroupAdapter
 import com.android.shop.shopapp.data.UsersAdapter
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.model.request.RegisterRequest

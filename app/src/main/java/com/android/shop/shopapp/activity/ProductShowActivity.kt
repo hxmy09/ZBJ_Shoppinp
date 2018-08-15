@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.SearchView
 import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.data.GroupAdapter
 import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.network.services.ProductParameterRequest
-import com.miguelcatalan.materialsearchview.MaterialSearchView
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -33,8 +31,8 @@ class ProductShowActivity : BaseActivity() {
 
     private fun findViews() {
 
-        pullLoadMoreRecyclerView.setLinearLayout()
-//        pullLoadMoreRecyclerView.setGridLayout(2);//参数为列数
+//        pullLoadMoreRecyclerView.setLinearLayout()
+        pullLoadMoreRecyclerView.setGridLayout(2);//参数为列数
 //        pullLoadMoreRecyclerView.setStaggeredGridLayout(2);//参数为列数
 
         mAdapter = GroupAdapter(this@ProductShowActivity, list, true)
@@ -87,7 +85,7 @@ class ProductShowActivity : BaseActivity() {
 //            }
 //        })
 
-        search_view.setOnClickListener {
+        searchBtn.setOnClickListener {
             val intent = Intent(this, SearchableActivity::class.java)
             intent.putExtra("GROUP", mGroup)
             startActivity(intent)
@@ -102,6 +100,11 @@ class ProductShowActivity : BaseActivity() {
 //                //Do some magic
 //            }
 //        })
+        backImg.setOnClickListener {
+            super.onBackPressed()
+        }
+
+
     }
 
 

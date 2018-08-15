@@ -35,7 +35,7 @@ const val PAGE_NUMBER = 20
 
 const val GROUP = "group"
 
-const val DEFAULT_ITEM_SIZE = 8
+const val DEFAULT_ITEM_SIZE = 12
 
 const val MSG_CODE_REFRESH = 0
 const val MSG_CODE_LOADMORE = 1

@@ -24,7 +24,7 @@ class GroupAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot
         var v: View? = null
 //        if (viewType == 1) {
         v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.group_card_item, parent, false)
+                .inflate(R.layout.grid_item, parent, false)
         return ViewHolder(v!!)
 //        } else {
 //            v = LayoutInflater.from(parent.context)

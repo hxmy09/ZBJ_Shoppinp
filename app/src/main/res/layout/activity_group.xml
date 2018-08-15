@@ -7,21 +7,24 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/ef_white">
+        android:backgroundTint="@color/primaryColor">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/ef_white"
-            app:contentScrim="@color/ef_white"
-            app:expandedTitleMarginStart="50dp"
+            android:backgroundTint="@color/primaryColor"
+            app:contentScrim="@color/primaryColor"
+            app:expandedTitleMarginStart="10dp"
             app:layout_scrollFlags="exitUntilCollapsed|scroll">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/tejia" />
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/ef_white"
-                android:backgroundTint="@color/transparent"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:popupTheme="@style/AppTheme">
@@ -30,18 +33,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/backImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/ic_arrow_back" />
+
                     <android.support.v7.widget.SearchView
                         android:id="@+id/search_view"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="40dp"
-                        android:layout_marginStart="40dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="8dp"
+                        android:layout_weight="1"
                         android:background="@color/ef_white"
                         app:iconifiedByDefault="false"
-                        app:queryHint="特价" />
+                        app:queryHint="特价"
+                        app:searchIcon="@null" />
+
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/searchBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/ic_search" />
                 </LinearLayout>
 
             </android.support.v7.widget.Toolbar>
@@ -51,58 +73,24 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <!--<android.support.v4.widget.NestedScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:fillViewport="true"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="vertical">-->
-
-    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
-        android:id="@+id/pullLoadMoreRecyclerView"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <!--</LinearLayout>-->
-    <!--</android.support.v4.widget.NestedScrollView>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+                android:id="@+id/pullLoadMoreRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
 
-
-<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--android:id="@+id/container"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent">-->
-
-
-<!--<com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView-->
-    <!--android:id="@+id/pullLoadMoreRecyclerView"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:paddingTop="?attr/actionBarSize"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
-
-
-<!--<FrameLayout-->
-    <!--android:id="@+id/toolbar_container"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
-
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:background="@color/primaryColor" />-->
-
-    <!--<com.miguelcatalan.materialsearchview.MaterialSearchView-->
-        <!--android:id="@+id/search_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
-<!--</FrameLayout>-->
-<!--</FrameLayout>-->
