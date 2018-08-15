@@ -3,11 +3,10 @@ package com.android.shop.shopapp.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.support.design.widget.CollapsingToolbarLayout
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.Toast
-import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
@@ -60,6 +59,14 @@ class OrderDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orderdetail)
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(findViewById(R.id.toolbar))
+        val collapsingToolbarTayout = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbarLayout)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        toolbar.title = "订单详细//
+        //如果有collapsingToolbarLayout ，如果需要设置toolbar title , 需要设置如下
+        collapsingToolbarTayout.title = "订单详细"
         //显示哪个组的信息
         products = intent.getParcelableArrayListExtra("orders")
         findViews()
@@ -233,26 +240,36 @@ class OrderDetailsActivity : BaseActivity() {
     var start = 0;
     var end = DEFAULT_ITEM_SIZE
     private fun getOrderDetails(loadingType: Int) {
-        if (loadingType == MSG_CODE_LOADMORE) {
-            start = mAdapter.contents.size
-            end = mAdapter.contents.size + DEFAULT_ITEM_SIZE
-        } else {
-            start = 0
-            end = DEFAULT_ITEM_SIZE
-        }
-
-        if (end >= products?.size!!) {
-            end = products?.size!!
-        }
+//        if (loadingType == MSG_CODE_LOADMORE) {
+//            start = mAdapter.contents.size
+//            end = mAdapter.contents.size + DEFAULT_ITEM_SIZE
+//        } else {
+//            start = 0
+//            end = DEFAULT_ITEM_SIZE
+//        }
+//
+//        if (end >= products?.size!!) {
+//            end = products?.size!!
+//        }
+//        currentData?.clear()
+//        for (index in start until end) {
+//            currentData?.add(products?.get(index)!!)
+//        }
+//        if (currentData?.size!! > 0) {
+//            mAdapter.contents = currentData!!
+//
+//        }
         currentData?.clear()
-        for (index in start until end) {
-            currentData?.add(products?.get(index)!!)
-        }
-        if (currentData?.size!! > 0) {
-            mAdapter.contents = currentData!!
+        products?.map {
+            currentData?.add(it)
+        }.run {
             mAdapter.notifyDataSetChanged()
+            pullLoadMoreRecyclerView.setPullLoadMoreCompleted()
         }
-        pullLoadMoreRecyclerView.setPullLoadMoreCompleted()
+//        currentData?.addAll(products)
+
+
+
 
     }
 }

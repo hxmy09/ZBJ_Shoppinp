@@ -3,6 +3,8 @@ package com.android.shop.shopapp.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.CollapsingToolbarLayout
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.Toast
 import com.android.shop.shopapp.R
@@ -51,43 +53,71 @@ class OrdersListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = intent?.getStringExtra("Title")
+        val collapsingToolbarTayout = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbarLayout)
+        //如果有collapsingToolbarLayout ，如果需要设置toolbar title , 需要设置如下
+        collapsingToolbarTayout.title = intent?.getStringExtra("Title")
+
+//        supportActionBar?.title = intent?.getStringExtra("Title")
         //productState = intent.getIntExtra("ProductState", 0)
         findViews()
         getOrders(MSG_CODE_REFRESH)
 
 
+        //default 显示买家数据， 卖家按钮高亮
+        floatingBuyer.isEnabled = false
+        floatingSeller.isEnabled = true
         if (userState == USER_STATE_ADMIN) {
-            floatings.visibility = View.VISIBLE
+            floatingBuyer.visibility = View.VISIBLE
+            floatingSeller.visibility = View.VISIBLE
             floatingBuyer.setOnClickListener {
                 isSearchSellerOrders = false
+
+                //default 显示买家数据， 卖家按钮高亮
+                floatingBuyer.isEnabled = false
+                floatingSeller.isEnabled = true
+
                 Toast.makeText(this@OrdersListActivity, "查询买家订单信息", Toast.LENGTH_SHORT).show()
                 getOrders(MSG_CODE_REFRESH)
             }
 
             floatingSeller.setOnClickListener {
-
                 isSearchSellerOrders = true
+                //default 显示买家数据， 卖家按钮高亮
+                floatingBuyer.isEnabled = true
+                floatingSeller.isEnabled = false
                 Toast.makeText(this@OrdersListActivity, "查询厂家订单信息", Toast.LENGTH_SHORT).show()
                 getOrders(MSG_CODE_REFRESH)
             }
         } else {
-            floatings.visibility = View.GONE
+            floatingBuyer.visibility = View.GONE
+            floatingSeller.visibility = View.GONE
         }
     }
 
     private fun getOrders(loadingType: Int) {
         val orderService = RetrofitHelper().getOrdersService()
-        var userName = (application as ShopApplication).sharedPreferences?.getString("userName", "")
+        val userName = (application as ShopApplication).sharedPreferences?.getString("userName", "")
         //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
-        var request = ShoppingModel()
-        if (userState == USER_STATE_MANAGER) {
-            request.seller = userName
-        } else if (userState == USER_STATE_USER) {
-            request.buyer = userName
-        } else if (userState == USER_STATE_ADMIN) {
+        val request = ShoppingModel()
+        when (userState) {
+            USER_STATE_MANAGER -> request.seller = userName
+            USER_STATE_USER -> request.buyer = userName
+            USER_STATE_ADMIN -> {
 
+            }
+        //如果等于1 查询出所有商家订单
+
+        /**
+         * 用户状态分为1.2.3.
+         * 如果是1- 超级管理员  那么根据is_search_seller 来区分查询出卖家。还是买家的所有订单信息。
+         * 如果是2 - 普通管理员 也就是卖家。。。 这里查看的是他自己卖出的订单信息。
+         * 3 买家。  查看自己的订单
+         */
+        //根据查询条件卖家还是买家查询
+        //0购物车1未付款2代发货3已发货4售后
         }
         request.userState = userState //如果等于1 查询出所有商家订单
 

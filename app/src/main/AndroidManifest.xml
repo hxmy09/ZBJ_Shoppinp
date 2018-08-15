@@ -55,12 +55,14 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.OrdersListActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_orders"
             android:screenOrientation="portrait"></activity>
 
         <activity
             android:name=".activity.OrderDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_orders"
             android:screenOrientation="portrait"></activity>

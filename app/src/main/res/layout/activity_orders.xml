@@ -1,38 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/pullLoadMoreRecyclerView"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryColor">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryColor"
+            app:contentScrim="@color/primaryColor"
+            app:expandedTitleMarginStart="10dp"
+            android:id="@+id/collapsingToolbarLayout"
+            app:layout_scrollFlags="enterAlwaysCollapsed|scroll">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:popupTheme="@style/AppTheme"
+                android:id="@+id/toolbar">
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
+
+                    <!--<android.support.v7.widget.AppCompatImageButton-->
+                        <!--android:id="@+id/backImg"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:background="@drawable/ic_arrow_back" />-->
+                    <!---->
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textSize="20sp"-->
+                        <!--android:text=""/>-->
+
+                <!--</LinearLayout>-->
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
 
 
-    <LinearLayout
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/pullLoadMoreRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingBuyer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_buyer"
+        app:fabSize="normal"
         android:layout_marginBottom="20dp"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical"
-        android:id="@+id/floatings">
+        android:layout_marginEnd="20dp"
+        android:visibility="gone"/>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingBuyer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_buyer" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingSeller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_seller"
+        android:layout_marginBottom="90dp"
+        android:layout_marginEnd="20dp"
+        app:fabSize="normal"
+        android:visibility="gone"
+      />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingSeller"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_seller" />
-    </LinearLayout>
-</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

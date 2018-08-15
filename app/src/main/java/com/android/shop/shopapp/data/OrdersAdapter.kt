@@ -68,7 +68,7 @@ class OrdersAdapter(var context: Context?, list: MutableList<ProductOrder>, var 
             total?.text = model?.total?.toString()
 //            orderAmount?.text = model?.products?.get(0)
             btnSubmit?.setOnClickListener {
-                var intent = Intent(context, OrderDetailsActivity::class.java).apply {
+                val intent = Intent(context, OrderDetailsActivity::class.java).apply {
                     putExtra("OrderNum", model?.orderNumber)
                     putExtra("total", model?.total)
                     putExtra("orders", model?.products as ArrayList)
