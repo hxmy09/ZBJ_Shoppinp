@@ -1,6 +1,5 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Activity
 import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +12,7 @@ import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
+import com.android.shop.shopapp.activity.MainActivity
 import com.android.shop.shopapp.data.ShoppingAdapter
 import com.android.shop.shopapp.model.ShoppingModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
@@ -173,6 +173,8 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        (activity as MainActivity).setSupportActionBar(this.view.findViewById(R.id.toolbar))
+//        (activity as MainActivity).title ="购物车"
         findViews()
         fetchData(MSG_CODE_REFRESH)
 
