@@ -5,7 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.fragment.ProductManagementFragment
-import kotlinx.android.synthetic.main.activity_group.*
+import kotlinx.android.synthetic.main.activity_manager.*
 
 class ManageProductsActivity : BaseActivity() {
 
