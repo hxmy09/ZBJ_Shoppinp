@@ -1,8 +1,10 @@
 package com.android.shop.shopapp.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
 import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.data.GroupAdapter
@@ -71,29 +73,35 @@ class ProductShowActivity : BaseActivity() {
         //设置searchview . 点击suggestion 直接查询
 //        search_view.setSubmitOnClick(true)
 //        search_view.showSearch(false)
-        search_view.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                queryText = query
-                getProductsByGroup(mGroup!!, MSG_CODE_REFRESH, queryText)
-                return false
-            }
+//        search_view.setOnQueryTextListener(object : android.support.v7.widget.SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String): Boolean {
+//                queryText = query
+//                getProductsByGroup(mGroup!!, MSG_CODE_REFRESH, queryText)
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                queryText = newText
+//                getProductsByGroup(mGroup!!, MSG_CODE_REFRESH, queryText)
+//                return false
+//            }
+//        })
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                queryText = newText
-                getProductsByGroup(mGroup!!, MSG_CODE_REFRESH, queryText)
-                return false
-            }
-        })
+        search_view.setOnClickListener {
+            val intent = Intent(this, SearchableActivity::class.java)
+            intent.putExtra("GROUP", mGroup)
+            startActivity(intent)
+        }
 
-        search_view.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
-            override fun onSearchViewShown() {
-                //Do some magic
-            }
-
-            override fun onSearchViewClosed() {
-                //Do some magic
-            }
-        })
+//        search_view.setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
+//            override fun onSearchViewShown() {
+//                //Do some magic
+//            }
+//
+//            override fun onSearchViewClosed() {
+//                //Do some magic
+//            }
+//        })
     }
 
 
@@ -146,9 +154,9 @@ class ProductShowActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.search, menu)
-        val item = menu?.findItem(R.id.action_search)
-        search_view.setMenuItem(item)
+//        menuInflater.inflate(R.menu.search, menu)
+//        val item = menu?.findItem(R.id.action_search)
+//        search_view.setMenuItem(item)
         return true
 
     }
@@ -160,12 +168,12 @@ class ProductShowActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onBackPressed() {
-        if (search_view!!.isSearchOpen) {
-            search_view!!.closeSearch()
-        } else {
-            super.onBackPressed()
-        }
-    }
+//    override fun onBackPressed() {
+//        if (search_view!!.isSearchOpen) {
+//            search_view!!.closeSearch()
+//        } else {
+//            super.onBackPressed()
+//        }
+//    }
 
 }

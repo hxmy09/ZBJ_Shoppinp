@@ -13,7 +13,7 @@ class LaunchActivity : BaseActivity() {
         supportActionBar?.hide()
 
         Handler().postDelayed({
-            var intent = Intent(this@LaunchActivity, LoginActivity::class.java)
+            var intent = Intent(this@LaunchActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         }, 4000)

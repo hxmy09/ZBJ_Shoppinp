@@ -28,11 +28,6 @@ class HomeFragment : Fragment() {
         return inflater?.inflate(R.layout.fragment_home, container, false)
     }
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        setHasOptionsMenu(false)
-//    }
-
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         menu?.findItem(R.id.action_settings)?.isVisible = false
         super.onCreateOptionsMenu(menu, inflater)
@@ -47,7 +42,6 @@ class HomeFragment : Fragment() {
         findViews()
         getNewsProducts(1)
         pullLoadMoreRecyclerView.setRefreshing(true);
-
     }
 
     lateinit var mAdapter: HomeAdapter
@@ -75,9 +69,9 @@ class HomeFragment : Fragment() {
 
     private fun getNewsProducts(loadingType: Int) {
         val productService = RetrofitHelper().getProductsService()
-        var request = ProductParameterRequest()
-        var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0)
-        var userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
+        val request = ProductParameterRequest()
+//        var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0)
+        val userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
         request.userState = 1//超级管理员，查询所有数据
         request.userName = userName
 

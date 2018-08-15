@@ -142,6 +142,7 @@ class HomeAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot:
                 R.id.wujinLayout -> G_WUJIN
                 R.id.xieziLayout -> G_XIEZI
                 R.id.fangzhipinLayout -> G_FANGZHIPIN
+                R.id.imgTejia -> G_TEJIA
                 else -> {
                     ""
                 }
@@ -165,6 +166,7 @@ class HomeAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot:
         var wujinLayout: LinearLayout? = null
         var xieziLayout: LinearLayout? = null
         var fangzhipinLayout: LinearLayout? = null
+        var tejia: AppCompatImageView? = null
 
         init {
             baihuoLayout = itemView.findViewById<LinearLayout>(R.id.baihuoLayout)
@@ -179,6 +181,7 @@ class HomeAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot:
             wujinLayout = itemView.findViewById<LinearLayout>(R.id.wujinLayout)
             xieziLayout = itemView.findViewById<LinearLayout>(R.id.xieziLayout)
             fangzhipinLayout = itemView.findViewById<LinearLayout>(R.id.fangzhipinLayout)
+            tejia = itemView.findViewById<AppCompatImageView>(R.id.imgTejia)
 
         }
 
@@ -195,6 +198,7 @@ class HomeAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot:
             wujinLayout?.setOnClickListener(this)
             xieziLayout?.setOnClickListener(this)
             fangzhipinLayout?.setOnClickListener(this)
+            tejia?.setOnClickListener(this)
         }
     }
 
