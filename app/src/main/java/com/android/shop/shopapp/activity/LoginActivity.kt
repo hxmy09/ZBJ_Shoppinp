@@ -18,10 +18,10 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        var loggedIn = (application as ShopApplication).sharedPreferences?.getBoolean("loggedin", false) as Boolean
+        val loggedIn = (application as ShopApplication).isLoggedIn
         if (loggedIn) {
 
-            var intent = Intent(this@LoginActivity, MainActivity::class.java);
+            val intent = Intent(this@LoginActivity, MainActivity::class.java);
             startActivity(intent)
             finish()
             return;
@@ -33,7 +33,7 @@ class LoginActivity : BaseActivity() {
             Toast.makeText(this@LoginActivity, "请联系管理员", Toast.LENGTH_LONG).show()
         }
         register.setOnClickListener {
-            var intent = Intent(this@LoginActivity, RegisterActivity::class.java);
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java);
             startActivity(intent)
         }
         btnLogin.setOnClickListener {
@@ -41,7 +41,7 @@ class LoginActivity : BaseActivity() {
             startAnim()
             if (edit_userName.text.isNotEmpty() && edit_pwd.text.isNotEmpty()) {
                 val loginService = RetrofitHelper().getLoginService()
-                var request = LoginRequest()
+                val request = LoginRequest()
                 request.userName = edit_userName.text.toString()
                 request.password = edit_pwd.text.toString()
                 mCompositeDisposable.add(loginService.login(request)
@@ -57,7 +57,7 @@ class LoginActivity : BaseActivity() {
                                 (application as ShopApplication).sharedPreferences?.edit()?.putString("phone", t.data?.phone)?.apply()
                                 (application as ShopApplication).sharedPreferences?.edit()?.putString("userName", t.data?.userName)?.apply()
                                 (application as ShopApplication).sharedPreferences?.edit()?.putInt("userState", t.data?.userState!!)?.apply()     //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
-                                var intent = Intent(this@LoginActivity, MainActivity::class.java);
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java);
                                 startActivity(intent)
                                 finish()
                             } else {
@@ -69,7 +69,7 @@ class LoginActivity : BaseActivity() {
                             //TODO  need to remove
 //                            var intent = Intent(this@LoginActivity, MainActivity::class.java);
 //                            startActivity(intent)
-                            (application as ShopApplication).sharedPreferences?.edit()?.clear() //1管理员，0 普通客户
+                            (application as ShopApplication).sharedPreferences?.edit()?.clear()?.apply() //1管理员，0 普通客户
 //                            finish()
                             Toast.makeText(this@LoginActivity, "用户名，密码输入错误", Toast.LENGTH_LONG).show()
                             stopAnim()

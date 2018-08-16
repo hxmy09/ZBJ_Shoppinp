@@ -45,7 +45,7 @@ class MineFragment : Fragment(), View.OnClickListener {
 //        var userNameStr = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
 //        var addressStr = (activity.application as ShopApplication).sharedPreferences?.getString("address", "")
 //        var phoneStr = (activity.application as ShopApplication).sharedPreferences?.getString("phone", "")
-        var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0)
+        val userState = (activity.application as ShopApplication).userState
 //        address.text = addressStr
 //        phone.text = phoneStr
 //        userName.text = userNameStr
@@ -63,6 +63,10 @@ class MineFragment : Fragment(), View.OnClickListener {
                 mProLayout.visibility = View.VISIBLE
             }
             USER_STATE_USER -> {
+                muLayout.visibility = View.GONE
+                mProLayout.visibility = View.GONE
+            }
+            USER_STATE_AGENT -> {
                 muLayout.visibility = View.GONE
                 mProLayout.visibility = View.GONE
             }

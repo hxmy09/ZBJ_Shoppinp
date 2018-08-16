@@ -174,8 +174,8 @@ open class ProductManagementFragment : Fragment() {
 
     private fun fetchProducts(loadingType: Int, keyWord: String?) {
         val productsService = RetrofitHelper().getProductsService()
-        var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0)
-        var userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
+        var userState = (activity.application as ShopApplication).userState
+        var userName = (activity.application as ShopApplication).userName
 
         var request = ProductParameterRequest()
         request.userName = userName

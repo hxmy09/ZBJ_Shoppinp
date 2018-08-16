@@ -31,7 +31,7 @@ class OrdersListActivity : BaseActivity() {
         pullLoadMoreRecyclerView.setLinearLayout()
 //        pullLoadMoreRecyclerView.setGridLayout(2);//参数为列数
 //        pullLoadMoreRecyclerView.setStaggeredGridLayout(2);//参数为列数
-        userState = (application as ShopApplication).sharedPreferences?.getInt("userState", 0)!!
+        userState = (application as ShopApplication).userState
         var productState = intent.getIntExtra("ProductState", WEI_FU_KUAN)
         mAdapter = OrdersAdapter(this@OrdersListActivity, list, userState!!, productState)
         pullLoadMoreRecyclerView.setAdapter(mAdapter)
@@ -105,6 +105,7 @@ class OrdersListActivity : BaseActivity() {
         when (userState) {
             USER_STATE_MANAGER -> request.seller = userName
             USER_STATE_USER -> request.buyer = userName
+            USER_STATE_AGENT -> request.buyer = userName
             USER_STATE_ADMIN -> {
 
             }

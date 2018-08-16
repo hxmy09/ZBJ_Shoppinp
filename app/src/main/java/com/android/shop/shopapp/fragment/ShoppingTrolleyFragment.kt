@@ -19,14 +19,13 @@ import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.model.response.ProductOrder
 import com.android.shop.shopapp.network.services.ProductParameterRequest
 import com.android.shop.shopapp.pay.PayActivity
+import com.android.shop.shopapp.util.DoubleUtil
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_shopping_trolley.*
-import shopping.hxmy.com.shopping.util.DEFAULT_ITEM_SIZE
-import shopping.hxmy.com.shopping.util.MSG_CODE_LOADMORE
-import shopping.hxmy.com.shopping.util.MSG_CODE_REFRESH
+import shopping.hxmy.com.shopping.util.*
 import java.text.DecimalFormat
 
 /**
@@ -78,11 +77,13 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
     private fun cal() {
         var amount: Double = 0.00
         mAdapter.contents.forEach {
-            if (it.isSelected)
-                amount += it.price!! * it.orderAmount!!
+            if (it.isSelected) {
+                val mul = DoubleUtil.mul(it.price, it.orderAmount?.toDouble())
+                amount = DoubleUtil.add(mul, amount)
+            }
         }
         var format = DecimalFormat("#.00")
-        total.text = format.format(amount.toString().toDouble())
+        total.text = format.format(amount)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -191,9 +192,9 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         }
         result.setOnClickListener {
             startAnim()
-            var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0) //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+            var userState = (activity.application as ShopApplication).userState//用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
 
-            if (userState != 3) {
+            if (userState != USER_STATE_USER || userState != USER_STATE_AGENT) {
                 MaterialDialog.Builder(activity)
                         .content("对不起，你的客户端不支持购买商品，请注册其他账户，有任何问题，请你拨打电话0579-85876692")
                         .positiveText("确定")

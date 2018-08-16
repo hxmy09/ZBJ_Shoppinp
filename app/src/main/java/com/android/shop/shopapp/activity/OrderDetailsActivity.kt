@@ -75,7 +75,7 @@ class OrderDetailsActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         getOrderDetails(MSG_CODE_REFRESH)
 
-        var userState = (application as ShopApplication).sharedPreferences?.getInt("userState", 0) //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+        val userState = (application as ShopApplication).userState //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
         if (userState == USER_STATE_ADMIN || userState == USER_STATE_MANAGER) {
             superManager.visibility = View.VISIBLE
         } else {
@@ -83,18 +83,18 @@ class OrderDetailsActivity : BaseActivity() {
         }
         shoppingModel = products?.get(0)!!
 
-        sellerPhone.text = shoppingModel?.sellerPhone
-        sellerAddress.text = shoppingModel?.sellerAddress
-        sellerUserName.text = shoppingModel?.seller
-        buyerPhone.text = shoppingModel?.buyerPhone
-        buyerAddress.text = shoppingModel?.buyerAddress
-        buyerUserName.text = shoppingModel?.buyer
-        orderTime.text = shoppingModel?.orderTime
+        sellerPhone.text = shoppingModel.sellerPhone
+        sellerAddress.text = shoppingModel.sellerAddress
+        sellerUserName.text = shoppingModel.seller
+        buyerPhone.text = shoppingModel.buyerPhone
+        buyerAddress.text = shoppingModel.buyerAddress
+        buyerUserName.text = shoppingModel.buyer
+        orderTime.text = shoppingModel.orderTime
         total.text = intent.getDoubleExtra("total", 0.00).toString()
 //        request.productState = intent.getIntExtra("ProductState", 1)
-        var productState = intent.getIntExtra("ProductState", 0)//0购物车1未付款2代发货3已发货4售后
+        val productState = intent.getIntExtra("ProductState", 0)//0购物车1未付款2代发货3已发货4售后
 
-        if (userState == USER_STATE_USER) {
+        if (userState == USER_STATE_USER || userState == USER_STATE_AGENT) {
             if (productState == WEI_FU_KUAN) {
                 action.text = "付款"
                 action.visibility = View.VISIBLE

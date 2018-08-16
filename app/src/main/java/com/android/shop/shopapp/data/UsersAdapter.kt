@@ -16,7 +16,7 @@ import com.jaredrummler.materialspinner.MaterialSpinner
 class UsersAdapter(var context: Context?, list: MutableList<RegisterRequest>) : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     var contents: MutableList<RegisterRequest> = list
-    private val usersList = arrayListOf<String>("普通会员", "普通管理员", "超级管理员") //    //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+    private val usersList = arrayListOf<String>("普通会员", "普通管理员", "超级管理员","代理商") //    //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
     override
     fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = LayoutInflater.from(parent.context)
@@ -60,6 +60,7 @@ class UsersAdapter(var context: Context?, list: MutableList<RegisterRequest>) : 
                     "普通会员" -> 3
                     "普通管理员" -> 2
                     "超级管理员" -> 1
+                    "代理商" -> 4
                     else -> {
                         0
                     }

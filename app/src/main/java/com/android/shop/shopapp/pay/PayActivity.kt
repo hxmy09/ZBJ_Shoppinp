@@ -43,9 +43,9 @@ class PayActivity : AppCompatActivity() {
         setContentView(R.layout.pay_order_info)
         api = WXAPIFactory.createWXAPI(this, Constants.APP_ID)
 
-        useraddress.text = (application as ShopApplication).sharedPreferences?.getString("address", "")
-        username.text = (application as ShopApplication).sharedPreferences?.getString("phone", "")
-        userphone.text = (application as ShopApplication).sharedPreferences?.getString("userName", "")
+        useraddress.text = (application as ShopApplication).address
+        username.text = (application as ShopApplication).userName
+        userphone.text = (application as ShopApplication).phone
         payAmount = intent.getStringExtra("payAmount")
         orderNumber = intent.getStringExtra("order_number")
 

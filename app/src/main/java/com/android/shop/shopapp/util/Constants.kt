@@ -64,8 +64,17 @@ const val DAI_SHOU_HUO = 300
 const val SHOU_HOU = 400
 
 
-const val USER_STATE_ADMIN = 1
-const val USER_STATE_MANAGER = 2
-const val USER_STATE_USER = 3
-const val USER_STATE_REGISTER = 0
+const val USER_STATE_ADMIN = 1//总部人员，最好权限
+const val USER_STATE_MANAGER = 2//厂家（卖家，上货的）
+const val USER_STATE_USER = 3//零售商（普通会员买货的）
+const val USER_STATE_REGISTER = 0//没有审核的用户
+const val USER_STATE_AGENT = 4//代理商
 
+//enum class UserType(type: Int) {
+//    UN_KNOWN(0),//没有审核的用户
+//    SUPER_ADMIN(1),//总部人员，最好权限
+//    ADMIN(2),//厂家（卖家，上货的）
+//    NORMAL(3),//零售商（普通会员买货的）
+//    AGENT(4) //代理商
+//
+//}
