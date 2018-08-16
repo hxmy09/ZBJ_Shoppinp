@@ -27,14 +27,14 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
 
     override
     fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        var view = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.shopping_trolley_card_item, parent, false)
         return ViewHolder(view!!)
 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ShoppingAdapter.ViewHolder).bind(contents.get(position), fragment)
+        (holder as ShoppingAdapter.ViewHolder).bind(contents[holder.adapterPosition], fragment)
 
     }
 
@@ -42,6 +42,13 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
         return contents.size
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -56,31 +63,33 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
         var colorView: TextView? = null
 
         init {
-            price = itemView.findViewById<TextView>(R.id.price)
-            desc = itemView.findViewById<TextView>(R.id.desc)
-            imageView = itemView.findViewById<AppCompatImageView>(R.id.img)
-            checkBox = itemView.findViewById<CheckBox>(R.id.ck)
-            add = itemView.findViewById<ImageButton>(R.id.add)
-            reduce = itemView.findViewById<ImageButton>(R.id.reduce)
-            buyAmount = itemView.findViewById<EditText>(R.id.buyAmount)
-            sizeView = itemView.findViewById<TextView>(R.id.size)
-            colorView = itemView.findViewById<TextView>(R.id.color)
+            price = itemView.findViewById(R.id.price)
+            desc = itemView.findViewById(R.id.desc)
+            imageView = itemView.findViewById(R.id.img)
+            checkBox = itemView.findViewById(R.id.ck)
+            add = itemView.findViewById(R.id.add)
+            reduce = itemView.findViewById(R.id.reduce)
+            buyAmount = itemView.findViewById(R.id.buyAmount)
+            sizeView = itemView.findViewById(R.id.size)
+            colorView = itemView.findViewById(R.id.color)
 
 
         }
 
-        fun bind(model: ShoppingModel?, fragment: ShoppingTrolleyFragment) {
-            price?.text = model?.price.toString()
-            desc?.text = model?.desc
-            buyAmount?.setText(model?.orderAmount.toString())
-            Picasso.get().load(model?.imageUrl).into(imageView)
-            sizeView?.text = model?.size
-            colorView?.text = model?.color
-            checkBox?.isChecked = model?.isSelected!!
-            checkBox?.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
+        fun bind(model: ShoppingModel, fragment: ShoppingTrolleyFragment) {
+
+            price?.text = model.price.toString()
+            desc?.text = model.desc
+            buyAmount?.setText(model.orderAmount.toString())
+            Picasso.get().load(model.imageUrl).into(imageView)
+            sizeView?.text = model.size
+            colorView?.text = model.color
+            checkBox?.tag.takeIf { it == this.adapterPosition }.let { checkBox?.isChecked = model.isSelected }
+            checkBox?.tag = adapterPosition
+            checkBox?.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
                 model.isSelected = b
                 fragment.countTotal(buyAmount?.text.toString().toInt(), model)
-            })
+            }
 
             add?.setOnClickListener {
                 var amout = buyAmount?.text.toString().toInt()
@@ -106,12 +115,6 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
                 fragment.countTotal(amout, model)
                 // total.text = (amout * model!!.price!!).toString()
             }
-
-//            buyAmount.setOnEditorActionListener(object: TextView.OnEditorActionListener {
-//                override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-//                }
-//
-//            })
             buyAmount?.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
                     if (s?.length != 0) {

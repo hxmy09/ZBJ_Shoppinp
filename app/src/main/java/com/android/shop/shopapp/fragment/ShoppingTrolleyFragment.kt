@@ -51,6 +51,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 //        pullLoadMoreRecyclerView.setStaggeredGridLayout(2);//参数为列数
 
         mAdapter = ShoppingAdapter(activity, this, list)
+        mAdapter.setHasStableIds(true)
         pullLoadMoreRecyclerView.setAdapter(mAdapter)
         pullLoadMoreRecyclerView.setFooterViewText("加载。。。");
         pullLoadMoreRecyclerView.setFooterViewTextColor(R.color.primaryColor)
