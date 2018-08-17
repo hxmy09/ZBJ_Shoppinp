@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,64 +20,78 @@
             android:paddingEnd="10dp"
             android:paddingStart="10dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="10dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/login"
-                    android:visibility="invisible" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/closePopup"
+                    android:background="@drawable/ic_close" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical"
-                    android:paddingTop="20dp">
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/login"
+                        android:visibility="invisible" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:orientation="horizontal">
+                        android:layout_gravity="start"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical"
+                        android:paddingTop="20dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="￥"
-                            android:textColor="@android:color/holo_red_light" />
+                            android:layout_alignParentBottom="true"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="￥"
+                                android:textColor="@android:color/holo_red_light" />
+
+                            <TextView
+                                android:id="@+id/price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textColor="@android:color/holo_red_light" />
+
+                        </LinearLayout>
 
                         <TextView
-                            android:id="@+id/price"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/desc"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="100"
-                            android:textColor="@android:color/holo_red_light" />
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="10dp"
+                            android:text="zheli" />
+
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="10dp"
-                        android:text="zheli" />
-
-
                 </LinearLayout>
+            </RelativeLayout>
 
-            </LinearLayout>
-
-            <ScrollView
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="80dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,8 +108,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
                             android:layout_gravity="start|center_vertical"
+                            android:layout_marginStart="10dp"
                             android:text="购买数量"
                             android:textColor="@android:color/black" />
 
@@ -174,7 +189,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
-            </ScrollView>
+            </android.support.v4.widget.NestedScrollView>
         </LinearLayout>
 
         <android.support.v7.widget.AppCompatImageView
@@ -201,7 +216,7 @@
         <LinearLayout
             android:id="@+id/resultLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:gravity="center_vertical|end">
 
             <Button

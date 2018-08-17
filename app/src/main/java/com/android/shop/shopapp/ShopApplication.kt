@@ -3,12 +3,15 @@ package com.android.shop.shopapp
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.arch.persistence.room.Room
+
 
 /**
  * Created by myron on 3/25/18.
  */
 class ShopApplication : Application() {
     var sharedPreferences: SharedPreferences? = null
+    var db: AppDatabase? = null
     override fun onCreate() {
         super.onCreate()
         sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE)
@@ -28,6 +31,10 @@ class ShopApplication : Application() {
         get() = sharedPreferences?.getString("userName", "") ?: ""
     val userState: Int
         get() = sharedPreferences?.getInt("userState", 0) ?: 0
+
+
+     db = Room.databaseBuilder(applicationContext,
+            AppDatabase::class.java, "database-name").build()
 
 }
 

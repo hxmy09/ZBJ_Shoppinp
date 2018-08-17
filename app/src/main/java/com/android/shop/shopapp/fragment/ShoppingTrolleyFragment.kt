@@ -194,7 +194,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
             startAnim()
             var userState = (activity.application as ShopApplication).userState//用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
 
-            if (userState != USER_STATE_USER || userState != USER_STATE_AGENT) {
+            if (userState == USER_STATE_ADMIN || userState == USER_STATE_MANAGER) {
                 MaterialDialog.Builder(activity)
                         .content("对不起，你的客户端不支持购买商品，请注册其他账户，有任何问题，请你拨打电话0579-85876692")
                         .positiveText("确定")

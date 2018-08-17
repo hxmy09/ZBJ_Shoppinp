@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +26,7 @@ import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.product_detal.*
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by myron on 3/31/18.
@@ -103,7 +101,7 @@ class ProductDetailActivity : BaseActivity(), AttributeEvent {
         var reduce = popView.findViewById<ImageButton>(R.id.reduce)
         var ok = popView.findViewById<Button>(R.id.ok)
 
-
+        popView.findViewById<View>(R.id.closePopup).setOnClickListener { popupWindowHelper.dismiss() }
         //设置基本属性
         var imgView = popView.findViewById<AppCompatImageView>(R.id.img)
         var priceView = popView.findViewById<TextView>(R.id.price)
@@ -196,7 +194,7 @@ class ProductDetailActivity : BaseActivity(), AttributeEvent {
                 imageUrl = model.imageUrls!![selectedColor]
             }
 
-            var orderModel = OrderModel(seller, buyer, productId, productState, color, size, orderAmount, orderTime, orderNumber, imageUrl,model.desc,model.price)
+            var orderModel = OrderModel(seller, buyer, productId, productState, color, size, orderAmount, orderTime, orderNumber, imageUrl, model.desc, model.price)
 
             val detailService = RetrofitHelper().getProductDetailService()
             mCompositeDisposable.add(detailService.addShoppingTrolley(orderModel)
