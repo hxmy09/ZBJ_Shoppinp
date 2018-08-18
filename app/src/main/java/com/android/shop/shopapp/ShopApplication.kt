@@ -1,9 +1,12 @@
 package com.android.shop.shopapp
 
 import android.app.Application
+import android.arch.persistence.db.SupportSQLiteDatabase
+import android.arch.persistence.room.Room
+import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import android.content.SharedPreferences
-import android.arch.persistence.room.Room
+import android.support.annotation.NonNull
 
 
 /**
@@ -11,10 +14,27 @@ import android.arch.persistence.room.Room
  */
 class ShopApplication : Application() {
     var sharedPreferences: SharedPreferences? = null
-    var db: AppDatabase? = null
+    lateinit var db: AppDatabase
     override fun onCreate() {
         super.onCreate()
         sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE)
+
+        db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "shopping")
+//                .addCallback(object : RoomDatabase.Callback() {
+//                    //第一次创建数据库时调用，但是在创建所有表之后调用的
+//                    override fun onCreate(@NonNull db: SupportSQLiteDatabase) {
+//                        super.onCreate(db)
+//                    }
+//
+//                    //当数据库被打开时调用
+//                    override fun onOpen(@NonNull db: SupportSQLiteDatabase) {
+//                        super.onOpen(db)
+//                    }
+//                })
+                .allowMainThreadQueries()//允许在主线程查询数据
+//                .addMigrations()//迁移数据库使用，下面会单独拿出来讲
+//                .fallbackToDestructiveMigration()//迁移数据库如果发生错误，将会重新创建数据库，而不是发生崩溃
+                .build()
     }
 
     fun getSharePReference(): SharedPreferences? {
@@ -31,10 +51,6 @@ class ShopApplication : Application() {
         get() = sharedPreferences?.getString("userName", "") ?: ""
     val userState: Int
         get() = sharedPreferences?.getInt("userState", 0) ?: 0
-
-
-     db = Room.databaseBuilder(applicationContext,
-            AppDatabase::class.java, "database-name").build()
 
 }
 

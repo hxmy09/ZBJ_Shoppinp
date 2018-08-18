@@ -87,7 +87,7 @@ class ProductShowActivity : BaseActivity() {
 
         searchBtn.setOnClickListener {
             val intent = Intent(this, SearchableActivity::class.java)
-            intent.putExtra("GROUP", mGroup)
+            intent.putExtra(GROUP, mGroup)
             startActivity(intent)
         }
 

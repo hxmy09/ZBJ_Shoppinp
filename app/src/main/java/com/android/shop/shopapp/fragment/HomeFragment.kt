@@ -42,6 +42,7 @@ class HomeFragment : Fragment() {
         findViews()
         getNewsProducts(1)
         pullLoadMoreRecyclerView.setRefreshing(true);
+        searchBtn
     }
 
     lateinit var mAdapter: HomeAdapter

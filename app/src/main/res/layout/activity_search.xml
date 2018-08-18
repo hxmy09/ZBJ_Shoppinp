@@ -12,81 +12,219 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/transparent"
-            app:contentScrim="@color/ef_white"
+            app:contentScrim="@color/primaryColor"
             app:expandedTitleMarginStart="10dp"
             app:layout_scrollFlags="exitUntilCollapsed|scroll">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/avd_item" />
+
+            </LinearLayout>
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:popupTheme="@style/AppTheme"
-                android:background="@color/primaryColor">
+                app:popupTheme="@style/AppTheme">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+
                     <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/backImg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:id="@+id/backImg"
-                        android:background="@drawable/ic_arrow_back"/>
+                        android:background="@drawable/ic_arrow_back" />
 
                     <android.support.v7.widget.SearchView
                         android:id="@+id/search_view"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginTop="8dp"
-                        app:iconifiedByDefault="false"
-                        android:background="@color/ef_white"
-                        app:queryHint="特价"
-                        app:searchIcon="@null"
+                        android:layout_marginEnd="30dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginEnd="10dp"/>
-
-                    <android.support.v7.widget.AppCompatImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
                         android:layout_marginTop="8dp"
-                        android:id="@+id/searchBtn"
-                        android:background="@drawable/ic_search"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="20dp" />
+                        android:layout_weight="1"
+                        android:background="@color/ef_white"
+                        app:iconifiedByDefault="false"
+                        app:queryHint="特价"
+                        app:commitIcon="@null"
+                        app:searchHintIcon="@null"
+                        app:voiceIcon="@null"
+                        app:goIcon="@null"/>
+
+                    <!--<android.support.v7.widget.AppCompatImageButton-->
+                        <!--android:id="@+id/searchBtn"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_marginBottom="8dp"-->
+                        <!--android:layout_marginEnd="20dp"-->
+                        <!--android:layout_marginTop="8dp"-->
+                        <!--android:background="@drawable/ic_search" />-->
                 </LinearLayout>
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
-
-
     </android.support.design.widget.AppBarLayout>
 
-
-    <!--<android.support.v4.widget.NestedScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:fillViewport="true"-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="vertical">-->
-
-    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
-        android:id="@+id/pullLoadMoreRecyclerView"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <!--</LinearLayout>-->
-    <!--</android.support.v4.widget.NestedScrollView>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/tejia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/primaryColor"
+                        android:textColor="@color/ef_white"
+                        android:text="特价" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/baihuo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/ef_white"
+                        android:background="@color/ef_grey"
+                        android:text="百货" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/nanzhuang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:textColor="@color/ef_white"
+                        android:text="男装" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/nvzhuang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/ef_white"
+                        android:background="@color/ef_grey"
+                        android:text="女装" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/xiangbao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/ef_white"
+                        android:background="@color/ef_grey"
+                        android:text="箱包" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/shipin"
+                        android:textColor="@color/ef_white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:text="饰品" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/neiyi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/ef_white"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:text="内衣" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/wanju"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/ef_white"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:text="玩具" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/wenju"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/ef_white"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:text="文具" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/xidi"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/ef_white"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:text="洗涤" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/tongzhuang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/ef_white"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:text="童装" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/xiezi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/ef_white"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:text="鞋子" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/fangzhipin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/ef_white"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey"
+                        android:text="纺织品" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+                android:id="@+id/pullLoadMoreRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
 

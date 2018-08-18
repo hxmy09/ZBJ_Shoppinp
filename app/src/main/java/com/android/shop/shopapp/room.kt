@@ -7,25 +7,34 @@ import android.database.Cursor
 @Dao
 interface DbProductDao {
     @Query("SELECT * FROM DbProductModel")
-    fun getDealsCursor(dealText: String): Cursor
+    fun getAll(): Cursor
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg model: DbProductModel)
+    fun insertModel(vararg model: DbProductModel)
+
+    @Query("DELETE FROM DbProductModel")
+    fun deleteAll()
 }
 
 @Entity(tableName = "DbProductModel")
 class DbProductModel(
+
+        @ColumnInfo
+        @PrimaryKey(autoGenerate = true)
+        var _id: Int? = null,
         @ColumnInfo(name = "imgUrl")
-        private val imgUrl: String? = null,
+        var imgUrl: String? = null,
 
         @ColumnInfo(name = "desc")
-        private val desc: String? = null,
+        var desc: String? = null,
 
         @ColumnInfo(name = "price")
-        private val price: String? = null
+        var price: String? = null,
+        @ColumnInfo(name = "productId")
+        var productId: String
 )
 
-@Database(entities = [(DbProductModel::class)], version = 1)
+@Database(entities = [(DbProductModel::class)], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun dbProductDao(): DbProductDao
 }
