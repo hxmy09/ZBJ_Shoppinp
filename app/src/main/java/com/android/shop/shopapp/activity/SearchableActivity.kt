@@ -90,7 +90,7 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
 
     fun initSearchView() {
         search_view.isSubmitButtonEnabled = true
-
+        search_view.queryHint = mGroup ?: "搜索你喜欢的主题"
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 queryText = query

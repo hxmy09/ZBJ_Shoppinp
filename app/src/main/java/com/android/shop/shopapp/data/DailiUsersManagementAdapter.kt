@@ -9,11 +9,11 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.TextView
 import com.android.shop.shopapp.R
-import com.android.shop.shopapp.fragment.UserManagementFragment
+import com.android.shop.shopapp.fragment.DailiUserManagementFragment
 import com.android.shop.shopapp.model.UserModel
 
 
-class UsersManagementAdapter(var context: Context?, var fragment: UserManagementFragment, list: List<UserModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DailiUsersManagementAdapter(var context: Context?, var fragment: DailiUserManagementFragment, list: List<UserModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var contents: List<UserModel> = list
 
@@ -27,7 +27,7 @@ class UsersManagementAdapter(var context: Context?, var fragment: UserManagement
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        (holder as UsersManagementAdapter.ViewHolder).bind(contents.get(position))
+        (holder as DailiUsersManagementAdapter.ViewHolder).bind(contents.get(position))
     }
 
     override fun getItemCount(): Int {
@@ -74,9 +74,9 @@ class UsersManagementAdapter(var context: Context?, var fragment: UserManagement
             }
 
             checkBox?.isChecked = model?.isSelected!!
-            checkBox?.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
+            checkBox?.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
                 model.isSelected = b
-            })
+            }
 
         }
     }

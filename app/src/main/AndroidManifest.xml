@@ -91,6 +91,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+            android:name=".activity.DailiUsersActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/users_management"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".activity.ManagerNewUserActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/adult"

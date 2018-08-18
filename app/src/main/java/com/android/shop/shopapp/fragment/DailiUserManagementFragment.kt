@@ -11,6 +11,7 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
+import com.android.shop.shopapp.data.DailiUsersManagementAdapter
 import com.android.shop.shopapp.data.UsersManagementAdapter
 import com.android.shop.shopapp.model.UserModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
@@ -25,15 +26,14 @@ import kotlinx.android.synthetic.main.fragment_users_management.*
 /**
  * Created by myron on 3/31/18.
  */
-open class UserManagementFragment : Fragment() {
+open class DailiUserManagementFragment : Fragment() {
 
     var list: List<UserModel> = arrayListOf()
-    private val usersList = arrayListOf<String>("普通会员", "普通管理员", "超级管理员","代理商")
     lateinit var search_view: MaterialSearchView
     private val mCompositeDisposable = CompositeDisposable()
-    var adapter: UsersManagementAdapter? = null
+    var adapter: DailiUsersManagementAdapter? = null
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_users_management, container, false)
+        return inflater?.inflate(R.layout.fragment_daili_users_management, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,29 +41,24 @@ open class UserManagementFragment : Fragment() {
         search_view = activity.findViewById(R.id.search_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
-        adapter = UsersManagementAdapter(activity, this@UserManagementFragment, list)
+        adapter = DailiUsersManagementAdapter(activity, this@DailiUserManagementFragment, list)
         //Use this now
         recyclerView.addItemDecoration(MaterialViewPagerHeaderDecorator())
         recyclerView.adapter = adapter
 
-        usersSelector.setItems(usersList)
         swipeRefreshLayout.setOnRefreshListener {
             fetchProducts()
         }
         swipeRefreshLayout.isRefreshing = true
 
-        selectAll.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
+        selectAll.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
 
             list.map { it.isSelected = b }
             adapter!!.contents = list
             adapter!!.notifyDataSetChanged()
 
-        })
-
-        search.setOnClickListener {
-            fetchProducts()
-            swipeRefreshLayout.isRefreshing = true
         }
+
         delete.setOnClickListener {
             var ids = arrayListOf<String>()
             list.filter { it.isSelected!! }.forEach {
@@ -160,22 +155,10 @@ open class UserManagementFragment : Fragment() {
     }
 
 
-    private fun getUserState(): Int {
-        return when (usersSelector?.text) {
-            "代理商" -> 4
-            "普通会员" -> 3
-            "普通管理员" -> 2
-            "超级管理员" -> 1
-            else -> {
-                -1
-            }
-        }
-    }
-
     private fun fetchProducts() {
         val usersServices = RetrofitHelper().getUsersService()
         var request = UserReqeust()
-        request.userState = getUserState()
+        request.userState = 4 //代理商
         request.start = 0
         request.end = 0
         mCompositeDisposable.add(usersServices.getAllUsers(request)

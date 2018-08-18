@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <FrameLayout
-            android:id="@+id/topContainer"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
+                android:id="@+id/topContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/cardMarginVertical"
-                android:layout_marginLeft="@dimen/cardMarginHorizontal"
-                android:layout_marginRight="@dimen/cardMarginHorizontal"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="2dp"
-                app:cardPreventCornerOverlap="false">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="冀汇聚--企业平台基本信息"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
 
 
                 <LinearLayout
@@ -92,8 +100,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:orientation="horizontal"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -118,24 +126,29 @@
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </FrameLayout>
+            </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/cardMarginVertical"
-                android:layout_marginLeft="@dimen/cardMarginHorizontal"
-                android:layout_marginRight="@dimen/cardMarginHorizontal"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                app:cardCornerRadius="2dp"
-                app:cardElevation="2dp"
-                app:cardPreventCornerOverlap="false"
-                app:contentPaddingLeft="0dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/primaryColor" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="我的订单"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
@@ -209,25 +222,32 @@
                         android:textColor="@android:color/darker_gray"
                         android:textSize="12sp" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/muLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            </LinearLayout>
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
+                android:id="@+id/muLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/cardMarginVertical"
-                android:layout_marginLeft="@dimen/cardMarginHorizontal"
-                android:layout_marginRight="@dimen/cardMarginHorizontal"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                app:cardCornerRadius="2dp"
-                app:cardElevation="2dp"
-                app:cardPreventCornerOverlap="false"
-                app:contentPaddingLeft="0dp">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/primaryColor" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="用户管理"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
@@ -269,24 +289,31 @@
                         android:textColor="@android:color/darker_gray"
                         android:textSize="12sp" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </FrameLayout>
+            </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/mProLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.CardView
+            <LinearLayout
+                android:id="@+id/mProLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/cardMarginVertical"
-                android:layout_marginLeft="@dimen/cardMarginHorizontal"
-                android:layout_marginRight="@dimen/cardMarginHorizontal"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="2dp"
-                app:cardPreventCornerOverlap="false"
-                app:contentPaddingLeft="0dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/primaryColor" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="商品管理"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
@@ -326,31 +353,90 @@
                         android:textColor="@android:color/darker_gray"
                         android:textSize="12sp" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </FrameLayout>
+            </LinearLayout>
 
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:paddingTop="20dp">
-
-            <android.support.v7.widget.CardView
+            <LinearLayout
+                android:id="@+id/dailiLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/cardMarginVertical"
-                android:layout_marginLeft="@dimen/cardMarginHorizontal"
-                android:layout_marginRight="@dimen/cardMarginHorizontal"
-                android:layout_marginTop="@dimen/cardMarginVertical"
-                app:cardCornerRadius="2dp"
-                app:cardElevation="2dp"
-                app:cardPreventCornerOverlap="false"
-                app:contentPaddingLeft="0dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/primaryColor" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="代理商"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp" />
+
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="#FFF"
+                    android:gravity="center_vertical">
+
+                    <!--<TextView-->
+                    <!--android:id="@+id/upload"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentTop="true"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="?attr/selectableItemBackground"-->
+                    <!--android:drawableTop="@drawable/ic_upload"-->
+                    <!--android:ellipsize="end"-->
+                    <!--android:gravity="center"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:paddingBottom="8dp"-->
+                    <!--android:text="上传商品"-->
+                    <!--android:textColor="@android:color/darker_gray"-->
+                    <!--android:textSize="12sp" />-->
+                    <TextView
+                        android:id="@+id/dailimanageUser"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:drawableTop="@drawable/ic_yonghuguanli"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="8dp"
+                        android:text="管理用户"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/primaryColor" />
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
                     android:background="#FFF"
                     android:gravity="center_vertical">
 
@@ -386,7 +472,7 @@
                     <!--android:textColor="@android:color/darker_gray"-->
                     <!--android:textSize="18sp" />-->
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </FrameLayout>
-    </LinearLayout>
-</ScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

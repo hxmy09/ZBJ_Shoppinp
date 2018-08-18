@@ -29,6 +29,11 @@ class MineFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        if (!(activity.application as ShopApplication).isLoggedIn) {
+            startActivity(Intent(activity, LoginActivity::class.java))
+            activity.finish()
+        }
         audit.setOnClickListener(this)
         upload.setOnClickListener(this)
         exit.setOnClickListener(this)
@@ -38,6 +43,7 @@ class MineFragment : Fragment(), View.OnClickListener {
         daiShouHuo.setOnClickListener(this)
         tuihuoshouhou.setOnClickListener(this)
         manageUser.setOnClickListener(this)
+        dailimanageUser.setOnClickListener(this)
         setHasOptionsMenu(false)
 //        orderList.setOnClickListener(this)
 
@@ -50,29 +56,34 @@ class MineFragment : Fragment(), View.OnClickListener {
 //        phone.text = phoneStr
 //        userName.text = userNameStr
 
-        //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+        //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员 4 代理商
         when (userState) {
             USER_STATE_REGISTER -> Toast.makeText(activity, "未审核用户", Toast.LENGTH_SHORT).show()
             USER_STATE_ADMIN -> {
                 muLayout.visibility = View.VISIBLE
                 mProLayout.visibility = View.VISIBLE
+                dailiLayout.visibility = View.GONE
             }
             USER_STATE_MANAGER -> {
                 //没有审核的权限
                 muLayout.visibility = View.GONE
                 mProLayout.visibility = View.VISIBLE
+                dailiLayout.visibility = View.GONE
             }
             USER_STATE_USER -> {
                 muLayout.visibility = View.GONE
                 mProLayout.visibility = View.GONE
+                dailiLayout.visibility = View.GONE
             }
             USER_STATE_AGENT -> {
                 muLayout.visibility = View.GONE
                 mProLayout.visibility = View.GONE
+                dailiLayout.visibility = View.VISIBLE
             }
             else -> {
                 mProLayout.visibility = View.GONE
                 muLayout.visibility = View.GONE
+                dailiLayout.visibility = View.GONE
             }
         }
 
@@ -128,6 +139,11 @@ class MineFragment : Fragment(), View.OnClickListener {
             }
             R.id.manageUser -> {
                 var intent = Intent(activity, ManageUsersActivity::class.java)
+                startActivity(intent)
+
+            }
+            R.id.dailimanageUser -> {
+                var intent = Intent(activity, DailiUsersActivity::class.java)
                 startActivity(intent)
 
             }

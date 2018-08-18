@@ -94,4 +94,11 @@ class LoginActivity : BaseActivity() {
         // or avi.smoothToHide();
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this@LoginActivity, MainActivity::class.java);
+        startActivity(intent)
+        finish()
+    }
+
 }

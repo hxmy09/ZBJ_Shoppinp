@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
+import com.android.shop.shopapp.activity.LoginActivity
 import com.android.shop.shopapp.activity.MainActivity
 import com.android.shop.shopapp.data.ShoppingAdapter
 import com.android.shop.shopapp.model.ShoppingModel
@@ -175,6 +176,12 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        if (!(activity.application as ShopApplication).isLoggedIn) {
+            startActivity(Intent(activity, LoginActivity::class.java))
+            activity.finish()
+        }
+
         (activity as MainActivity).setSupportActionBar(this.view.findViewById(R.id.toolbar))
 //        (activity as MainActivity).title ="购物车"
         findViews()
