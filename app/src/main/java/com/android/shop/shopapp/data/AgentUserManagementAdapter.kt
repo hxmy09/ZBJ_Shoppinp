@@ -1,6 +1,7 @@
 package com.android.shop.shopapp.data
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.TextView
 import com.android.shop.shopapp.R
+import com.android.shop.shopapp.activity.OrdersListActivity
 import com.android.shop.shopapp.fragment.AgentManagementFragment
 import com.android.shop.shopapp.model.UserModel
 
@@ -69,7 +71,7 @@ class AgentUserManagementAdapter(var context: Context?, var fragment: AgentManag
                 level?.text = "普通管理员"
             } else if (model?.userState == 3) {
                 level?.text = "普通会员"
-            }else if (model?.userState == 4) {
+            } else if (model?.userState == 4) {
                 level?.text = "代理商"
             } else {
                 level?.text = "未知用户"
@@ -78,6 +80,12 @@ class AgentUserManagementAdapter(var context: Context?, var fragment: AgentManag
             checkBox?.isChecked = model?.isSelected!!
             checkBox?.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
                 model.isSelected = b
+            }
+
+            itemView.setOnClickListener {
+                val intent = Intent(it.context, OrdersListActivity::class.java)
+                intent.putExtra("userName",model.userName)
+                it.context.startActivity(intent)
             }
 
         }

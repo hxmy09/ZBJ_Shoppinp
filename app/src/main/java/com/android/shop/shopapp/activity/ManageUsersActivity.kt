@@ -15,9 +15,9 @@ class ManageUsersActivity : BaseActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         fragmentManager.beginTransaction().add(R.id.fra_management, UserManagementFragment(), "MANAGE").commit()
-        backImg.setOnClickListener{
-            onBackPressed()
-        }
+//        backImg.setOnClickListener{
+//            onBackPressed()
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -16,9 +16,9 @@ class ManageProductsActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         fragmentManager.beginTransaction().add(R.id.fra_management, ProductManagementFragment(), "MANAGE").commit()
-        backImg.setOnClickListener{
-            onBackPressed()
-        }
+//        backImg.setOnClickListener{
+//            onBackPressed()
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

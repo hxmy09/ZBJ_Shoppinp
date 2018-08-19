@@ -50,11 +50,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="请输入密码"
+                    android:inputType="textPassword"
                     app:met_baseColor="@android:color/black"
                     app:met_floatingLabel="highlight"
                     app:met_primaryColor="?colorAccent"
                     app:met_singleLineEllipsis="true"
-                    android:inputType="textPassword"
                     app:met_underlineColor="@android:color/holo_orange_dark" />
 
                 <com.rengwuxian.materialedittext.MaterialEditText
@@ -90,16 +90,50 @@
                     app:met_primaryColor="?colorAccent"
                     app:met_underlineColor="@android:color/holo_orange_dark" />
 
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="@color/ef_grey"
+                    app:cardCornerRadius="4dp"
+                    app:contentPadding="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="推荐码(可选)"
+                            android:textColor="@color/primaryColor" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_superior"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="请输入代理商推荐码"
+                            android:textColor="@color/primaryColor"
+                            app:met_baseColor="@android:color/black"
+                            app:met_floatingLabel="highlight"
+                            app:met_primaryColor="?colorAccent"
+                            app:met_underlineColor="@android:color/holo_orange_dark" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
                 <!--<com.rengwuxian.materialedittext.MaterialEditText-->
-                    <!--android:id="@+id/code"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="请输入邀请码"-->
-                    <!--app:met_baseColor="@android:color/black"-->
-                    <!--app:met_floatingLabel="highlight"-->
-                    <!--app:met_primaryColor="?colorAccent"-->
-                    <!--app:met_singleLineEllipsis="true"-->
-                    <!--app:met_underlineColor="@android:color/holo_orange_dark" />-->
+                <!--android:id="@+id/code"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="请输入邀请码"-->
+                <!--app:met_baseColor="@android:color/black"-->
+                <!--app:met_floatingLabel="highlight"-->
+                <!--app:met_primaryColor="?colorAccent"-->
+                <!--app:met_singleLineEllipsis="true"-->
+                <!--app:met_underlineColor="@android:color/holo_orange_dark" />-->
 
 
                 <Button
@@ -110,9 +144,9 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="40dp"
-                    android:textColor="@android:color/white"
                     android:background="@android:color/holo_orange_dark"
-                    android:text="注册" />
+                    android:text="注册"
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
 

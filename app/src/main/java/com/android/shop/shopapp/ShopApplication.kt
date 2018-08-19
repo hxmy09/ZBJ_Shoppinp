@@ -51,6 +51,10 @@ class ShopApplication : Application() {
         get() = sharedPreferences?.getString("userName", "") ?: ""
     val userState: Int
         get() = sharedPreferences?.getInt("userState", 0) ?: 0
+    val userId: Int
+        get() = sharedPreferences?.getInt("userId", 0) ?: 0
+    val superior: String //代理商推荐码
+        get() = sharedPreferences?.getString("superior", "") ?: ""
 
 }
 

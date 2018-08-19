@@ -31,6 +31,7 @@ open class RegisterActivity : BaseActivity() {
 //                request.code = code.text.toString()
                 request.address = edit_address.text.toString()
                 request.phone = edit_phone.text.toString()
+                request.superior = edit_superior.text.toString()
 //                request.repwd = edit_repwd.text.toString()
 
                 submit(request)

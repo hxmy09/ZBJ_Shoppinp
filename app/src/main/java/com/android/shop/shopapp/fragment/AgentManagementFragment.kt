@@ -11,10 +11,12 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
+import com.android.shop.shopapp.ShopApplication
 import com.android.shop.shopapp.data.AgentUserManagementAdapter
 import com.android.shop.shopapp.model.UserModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator
+import com.hxmy.sm.network.services.AgentUserReqeust
 import com.hxmy.sm.network.services.UserReqeust
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -155,11 +157,9 @@ open class AgentManagementFragment : Fragment() {
 
 
     private fun fetchUsers() {
-        val usersServices = RetrofitHelper().getUsersService()
-        var request = UserReqeust()
-        request.userState = 3 //代理商
-        request.start = 0
-        request.end = 0
+        val usersServices = RetrofitHelper().getAgentUsersService()
+        var request = AgentUserReqeust()
+        request.superior = (activity.application as ShopApplication).superior //代理商
         mCompositeDisposable.add(usersServices.getAllUsers(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

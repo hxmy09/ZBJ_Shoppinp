@@ -17,17 +17,17 @@
             android:backgroundTint="@color/primaryColor"
             app:contentScrim="@color/primaryColor"
             app:expandedTitleMarginStart="10dp"
-            app:layout_scrollFlags="enterAlwaysCollapsed|scroll">
+            app:layout_scrollFlags="exitUntilCollapsed|scroll">
 
             <LinearLayout
                 android:id="@+id/topContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="?android:attr/actionBarSize"
+                android:background="@color/ef_white"
                 android:orientation="vertical"
                 android:paddingBottom="10dp"
-                android:background="@color/ef_white"
-                android:paddingTop="10dp"
-                android:layout_marginTop="?android:attr/actionBarSize">
+                android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -136,6 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                app:layout_scrollFlags="exitUntilCollapsed|scroll"
                 app:popupTheme="@style/AppTheme">
 
                 <LinearLayout

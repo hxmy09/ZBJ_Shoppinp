@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_orders.*
 import shopping.hxmy.com.shopping.util.*
 
-class OrdersListActivity : BaseActivity() {
+class AgentUserOrdersListActivity : BaseActivity() {
 
     var list = mutableListOf<ProductOrder>()
     // var productState: Int? = null
@@ -33,7 +33,7 @@ class OrdersListActivity : BaseActivity() {
 //        pullLoadMoreRecyclerView.setStaggeredGridLayout(2);//参数为列数
         userState = (application as ShopApplication).userState
         var productState = intent.getIntExtra("ProductState", WEI_FU_KUAN)
-        mAdapter = OrdersAdapter(this@OrdersListActivity, list, userState!!, productState)
+        mAdapter = OrdersAdapter(this@AgentUserOrdersListActivity, list, userState!!, productState)
         pullLoadMoreRecyclerView.setAdapter(mAdapter)
         pullLoadMoreRecyclerView.setFooterViewText("加载。。。");
         pullLoadMoreRecyclerView.setFooterViewTextColor(R.color.primaryColor)
@@ -79,7 +79,7 @@ class OrdersListActivity : BaseActivity() {
                 floatingBuyer.isEnabled = false
                 floatingSeller.isEnabled = true
 
-                Toast.makeText(this@OrdersListActivity, "查询买家订单信息", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AgentUserOrdersListActivity, "查询买家订单信息", Toast.LENGTH_SHORT).show()
                 getOrders(MSG_CODE_REFRESH)
             }
 
@@ -88,7 +88,7 @@ class OrdersListActivity : BaseActivity() {
                 //default 显示买家数据， 卖家按钮高亮
                 floatingBuyer.isEnabled = true
                 floatingSeller.isEnabled = false
-                Toast.makeText(this@OrdersListActivity, "查询厂家订单信息", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AgentUserOrdersListActivity, "查询厂家订单信息", Toast.LENGTH_SHORT).show()
                 getOrders(MSG_CODE_REFRESH)
             }
         } else {
@@ -99,9 +99,7 @@ class OrdersListActivity : BaseActivity() {
 
     private fun getOrders(loadingType: Int) {
         val orderService = RetrofitHelper().getOrdersService()
-        val savedName: String? = (application as ShopApplication).sharedPreferences?.getString("userName", "")
-        val userName = intent?.getStringExtra("userName") ?: savedName
-
+        val userName = (application as ShopApplication).sharedPreferences?.getString("userName", "")
         //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
         val request = ShoppingModel()
         when (userState) {
@@ -159,7 +157,7 @@ class OrdersListActivity : BaseActivity() {
                         pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                     }
                 }, { e ->
-                    Toast.makeText(this@OrdersListActivity, "请求数据失败", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AgentUserOrdersListActivity, "请求数据失败", Toast.LENGTH_LONG).show()
                     pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                 }))
     }

@@ -60,6 +60,10 @@ class RetrofitHelper() {
         val retrofit = createRetrofit()
         return retrofit.create(UsersServices::class.java);
     }
+    fun getAgentUsersService(): AgentUsersServices {
+        val retrofit = createRetrofit()
+        return retrofit.create(AgentUsersServices::class.java);
+    }
 
     fun getAppPay(): AppPayService {
         val retrofit = createRetrofit()
@@ -94,7 +98,7 @@ class RetrofitHelper() {
 
     private fun createRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://118.24.76.50:8080/")//http://118.24.76.50:8080///47.104.169.240 - http://8f3kqq.natappfree.cc/
+                .baseUrl("http://44wkuw.natappfree.cc/")//http://118.24.76.50:8080///47.104.169.240 - http://8f3kqq.natappfree.cc/
                 .addConverterFactory(JsonAndXmlConverters.QualifiedTypeConverterFactory(
                         GsonConverterFactory.create(),
                         SimpleXmlConverterFactory.create()))

@@ -15,9 +15,9 @@ class AgentUsersActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setSupportActionBar(findViewById(R.id.toolbar))
         fragmentManager.beginTransaction().add(R.id.fra_management, AgentManagementFragment(), "MANAGE").commit()
-        backImg.setOnClickListener{
-            onBackPressed()
-        }
+//        backImg.setOnClickListener{
+//            onBackPressed()
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

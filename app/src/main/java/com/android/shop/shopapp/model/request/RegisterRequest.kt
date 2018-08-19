@@ -13,8 +13,11 @@ class RegisterRequest {
     var phone: String? = null
     //地址
     var address: String? = null
-    //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+    //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员 4 代理商
     @SerializedName("user_state")
     var userState: Int = 0
+    //代理商推荐码
+    @SerializedName("superior")
+    var superior:String? = null
 
 }

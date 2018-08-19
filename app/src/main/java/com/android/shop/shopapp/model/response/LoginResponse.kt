@@ -19,4 +19,8 @@ class Data {
     var phone: String? = null
     //地址
     var address: String? = null
+    //推荐码
+    var superior:String? = null
+    @SerializedName("id")
+    var userId:String? = null
 }
