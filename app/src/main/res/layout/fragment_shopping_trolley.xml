@@ -16,13 +16,12 @@
             android:backgroundTint="@color/primaryColor"
             app:contentScrim="@color/primaryColor"
             app:expandedTitleMarginStart="10dp"
-            app:layout_scrollFlags="enterAlwaysCollapsed|scroll">
+            app:layout_scrollFlags="exitUntilCollapsed|scroll">
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
                 app:popupTheme="@style/AppTheme"
                 android:id="@+id/toolbar">
 

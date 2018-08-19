@@ -69,6 +69,8 @@ class UsersManagementAdapter(var context: Context?, var fragment: UserManagement
                 level?.text = "普通管理员"
             } else if (model?.userState == 3) {
                 level?.text = "普通会员"
+            } else if (model?.userState == 4) {
+                level?.text = "代理商"
             } else {
                 level?.text = "未知用户"
             }

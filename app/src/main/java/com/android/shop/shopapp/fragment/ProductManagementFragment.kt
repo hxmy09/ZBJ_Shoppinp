@@ -66,33 +66,14 @@ open class ProductManagementFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         search_view = activity.findViewById(R.id.search_view)
         findViews()
-////        list = DBUtil(activity).mAppDatabase.productDao()?.findAll()
-//        recyclerView.layoutManager = LinearLayoutManager(activity)
-//        recyclerView.setHasFixedSize(true)
-//        adapter = ProductManagementAdapter(activity, this@ProductManagementFragment, list)
-//        //Use this now
-//        recyclerView.addItemDecoration(MaterialViewPagerHeaderDecorator())
-//        recyclerView.adapter = adapter
-//
-//        swipeRefreshLayout.setOnRefreshListener {
-//            start -= PAGE_NUMBER
-//            end = start + PAGE_NUMBER
-//
-//            if (start <= 0) {
-//                start = 0
-//                end = PAGE_NUMBER
-//            }
-//            fetchProducts()
-//        }
-//        swipeRefreshLayout.isRefreshing = true
 
-        selectAll.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
+        selectAll.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
 
             mAdapter.contents.map { it.isSelected = b }
             mAdapter!!.contents = list
             mAdapter!!.notifyDataSetChanged()
 
-        })
+        }
 
         delete.setOnClickListener {
             var productIds = arrayListOf<String>()

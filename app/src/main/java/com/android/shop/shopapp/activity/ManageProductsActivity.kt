@@ -12,9 +12,13 @@ class ManageProductsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manager)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         fragmentManager.beginTransaction().add(R.id.fra_management, ProductManagementFragment(), "MANAGE").commit()
+        backImg.setOnClickListener{
+            onBackPressed()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

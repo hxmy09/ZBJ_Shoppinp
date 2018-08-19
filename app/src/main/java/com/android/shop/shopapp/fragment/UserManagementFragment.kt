@@ -52,13 +52,13 @@ open class UserManagementFragment : Fragment() {
         }
         swipeRefreshLayout.isRefreshing = true
 
-        selectAll.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
+        selectAll.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
 
             list.map { it.isSelected = b }
             adapter!!.contents = list
             adapter!!.notifyDataSetChanged()
 
-        })
+        }
 
         search.setOnClickListener {
             fetchProducts()

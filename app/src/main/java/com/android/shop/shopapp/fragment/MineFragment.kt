@@ -143,7 +143,7 @@ class MineFragment : Fragment(), View.OnClickListener {
 
             }
             R.id.dailimanageUser -> {
-                var intent = Intent(activity, DailiUsersActivity::class.java)
+                var intent = Intent(activity, AgentUsersActivity::class.java)
                 startActivity(intent)
 
             }

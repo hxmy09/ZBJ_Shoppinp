@@ -11,8 +11,7 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.android.shop.shopapp.R
-import com.android.shop.shopapp.data.DailiUsersManagementAdapter
-import com.android.shop.shopapp.data.UsersManagementAdapter
+import com.android.shop.shopapp.data.AgentUserManagementAdapter
 import com.android.shop.shopapp.model.UserModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator
@@ -21,17 +20,17 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_users_management.*
+import kotlinx.android.synthetic.main.fragment_daili_users_management.*
 
 /**
  * Created by myron on 3/31/18.
  */
-open class DailiUserManagementFragment : Fragment() {
+open class AgentManagementFragment : Fragment() {
 
     var list: List<UserModel> = arrayListOf()
     lateinit var search_view: MaterialSearchView
     private val mCompositeDisposable = CompositeDisposable()
-    var adapter: DailiUsersManagementAdapter? = null
+    var adapter: AgentUserManagementAdapter? = null
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_daili_users_management, container, false)
     }
@@ -41,13 +40,13 @@ open class DailiUserManagementFragment : Fragment() {
         search_view = activity.findViewById(R.id.search_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
-        adapter = DailiUsersManagementAdapter(activity, this@DailiUserManagementFragment, list)
+        adapter = AgentUserManagementAdapter(activity, this@AgentManagementFragment, list)
         //Use this now
         recyclerView.addItemDecoration(MaterialViewPagerHeaderDecorator())
         recyclerView.adapter = adapter
 
         swipeRefreshLayout.setOnRefreshListener {
-            fetchProducts()
+            fetchUsers()
         }
         swipeRefreshLayout.isRefreshing = true
 
@@ -90,7 +89,7 @@ open class DailiUserManagementFragment : Fragment() {
         }
 
         setHasOptionsMenu(true)
-        fetchProducts()
+        fetchUsers()
 
         search_view.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -143,7 +142,7 @@ open class DailiUserManagementFragment : Fragment() {
                     if (t.code == "100") {
                         swipeRefreshLayout.isRefreshing = true
                         //TODO
-                        fetchProducts()
+                        fetchUsers()
                         Toast.makeText(activity, "删除成功", Toast.LENGTH_LONG).show()
                     } else {
                         Toast.makeText(activity, "删除失败", Toast.LENGTH_LONG).show()
@@ -155,10 +154,10 @@ open class DailiUserManagementFragment : Fragment() {
     }
 
 
-    private fun fetchProducts() {
+    private fun fetchUsers() {
         val usersServices = RetrofitHelper().getUsersService()
         var request = UserReqeust()
-        request.userState = 4 //代理商
+        request.userState = 3 //代理商
         request.start = 0
         request.end = 0
         mCompositeDisposable.add(usersServices.getAllUsers(request)
@@ -167,7 +166,7 @@ open class DailiUserManagementFragment : Fragment() {
                 .subscribe({ t ->
                     if (t.code == "100") {
                         list = t.data!!
-                        (recyclerView.adapter as UsersManagementAdapter).contents = list
+                        (recyclerView.adapter as AgentUserManagementAdapter).contents = list
                         recyclerView.adapter?.notifyDataSetChanged()
                     }
                     swipeRefreshLayout.isRefreshing = false

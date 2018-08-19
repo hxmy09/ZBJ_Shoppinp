@@ -39,6 +39,13 @@ class ProductManagementAdapter(var context: Context?, var fragment: ProductManag
         return contents.size
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -76,9 +83,9 @@ class ProductManagementAdapter(var context: Context?, var fragment: ProductManag
             }
 
             checkBox?.isChecked = model?.isSelected!!
-            checkBox?.setOnCheckedChangeListener({ _: CompoundButton, b: Boolean ->
+            checkBox?.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
                 model.isSelected = b
-            })
+            }
 
         }
     }

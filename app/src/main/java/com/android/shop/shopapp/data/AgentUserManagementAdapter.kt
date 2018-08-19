@@ -9,11 +9,11 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.TextView
 import com.android.shop.shopapp.R
-import com.android.shop.shopapp.fragment.DailiUserManagementFragment
+import com.android.shop.shopapp.fragment.AgentManagementFragment
 import com.android.shop.shopapp.model.UserModel
 
 
-class DailiUsersManagementAdapter(var context: Context?, var fragment: DailiUserManagementFragment, list: List<UserModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AgentUserManagementAdapter(var context: Context?, var fragment: AgentManagementFragment, list: List<UserModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var contents: List<UserModel> = list
 
@@ -27,7 +27,7 @@ class DailiUsersManagementAdapter(var context: Context?, var fragment: DailiUser
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        (holder as DailiUsersManagementAdapter.ViewHolder).bind(contents.get(position))
+        (holder as AgentUserManagementAdapter.ViewHolder).bind(contents.get(position))
     }
 
     override fun getItemCount(): Int {
@@ -69,6 +69,8 @@ class DailiUsersManagementAdapter(var context: Context?, var fragment: DailiUser
                 level?.text = "普通管理员"
             } else if (model?.userState == 3) {
                 level?.text = "普通会员"
+            }else if (model?.userState == 4) {
+                level?.text = "代理商"
             } else {
                 level?.text = "未知用户"
             }
