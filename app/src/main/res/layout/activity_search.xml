@@ -55,22 +55,21 @@
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:background="@drawable/ic_search_icon_bitmap"
+                        app:goIcon="@null"
                         app:iconifiedByDefault="false"
                         app:queryHint="特价"
-                        app:commitIcon="@null"
                         app:searchHintIcon="@null"
-                        app:voiceIcon="@null"
-                        app:goIcon="@null"/>
+                        app:voiceIcon="@null" />
 
                     <!--<android.support.v7.widget.AppCompatImageButton-->
-                        <!--android:id="@+id/searchBtn"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_gravity="center_vertical"-->
-                        <!--android:layout_marginBottom="8dp"-->
-                        <!--android:layout_marginEnd="20dp"-->
-                        <!--android:layout_marginTop="8dp"-->
-                        <!--android:background="@drawable/ic_search" />-->
+                    <!--android:id="@+id/searchBtn"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginBottom="8dp"-->
+                    <!--android:layout_marginEnd="20dp"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:background="@drawable/ic_search" />-->
                 </LinearLayout>
 
             </android.support.v7.widget.Toolbar>
@@ -100,121 +99,200 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/tejia"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/primaryColor"
-                        android:textColor="@color/ef_white"
-                        android:text="特价" />
+                        android:background="@color/primaryColor">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/baihuo"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/tejia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="特价"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:textColor="@color/ef_white"
-                        android:background="@color/ef_grey"
-                        android:text="百货" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/nanzhuang"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/baihuo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="百货"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:textColor="@color/ef_white"
-                        android:text="男装" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/nvzhuang"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/nanzhuang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="男装"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:textColor="@color/ef_white"
-                        android:background="@color/ef_grey"
-                        android:text="女装" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/xiangbao"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/nvzhuang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="女装"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:textColor="@color/ef_white"
-                        android:background="@color/ef_grey"
-                        android:text="箱包" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/shipin"
-                        android:textColor="@color/ef_white"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/xiangbao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="箱包"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:text="饰品" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/neiyi"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/shipin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="饰品"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/ef_white"
                         android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:text="内衣" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/wanju"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/neiyi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="内衣"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/ef_white"
                         android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:text="玩具" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/wenju"
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/ef_white"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:text="文具" />
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/wanju"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="玩具"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/xidi"
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/ef_white"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:text="洗涤" />
-
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/tongzhuang"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/ef_white"
                         android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:text="童装" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/xiezi"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/wenju"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="文具"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/ef_white"
                         android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:text="鞋子" />
+                        android:background="@color/ef_grey">
 
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/fangzhipin"
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/xidi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="洗涤"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/ef_white"
                         android:layout_marginStart="8dp"
-                        android:background="@color/ef_grey"
-                        android:text="纺织品" />
+                        android:background="@color/ef_grey">
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/tongzhuang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="童装"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey">
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/xiezi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="鞋子"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/ef_grey">
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/fangzhipin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:text="纺织品"
+                            android:textColor="@color/ef_white" />
+                    </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
 

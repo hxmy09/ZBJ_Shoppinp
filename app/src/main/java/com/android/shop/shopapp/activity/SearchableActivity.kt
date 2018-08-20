@@ -35,12 +35,12 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
         initSearchView()
         findViews()
         bindEvents()
-        getProductsByGroup(mGroup!!, MSG_CODE_REFRESH, queryText)
     }
 
     fun initSearchView() {
         search_view.isSubmitButtonEnabled = true
         search_view.queryHint = mGroup ?: "搜索你喜欢的主题"
+        search_view.setQuery(queryText ?: mGroup ?: "", true)
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 queryText = query
@@ -55,6 +55,8 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
             }
 
         })
+
+         getProductsByGroup(mGroup!!, MSG_CODE_REFRESH, queryText)
     }
 
     lateinit var mAdapter: GroupAdapter
@@ -134,14 +136,25 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
 
     private fun getProductsByGroup(group: String, loadingType: Int, keyword: String?) {
         val productService = RetrofitHelper().getProductsService()
+
+        if(keyword?.isEmpty() == true)
+        {
+            mAdapter.contents = ArrayList()
+            mAdapter.notifyDataSetChanged()
+            list = ArrayList()
+            pullLoadMoreRecyclerView.setPullLoadMoreCompleted()
+            return
+        }
+
         var request = ProductParameterRequest()
-        if (group.isEmpty()) {
+//        if (group.isEmpty()) {
 
             request.userState = 1
+            request.userName = "admin"//这个是系统默认的用户名，不能删除。否则无法查询数据。这里是为了方便不再写新接口，临时使用管理员权限查询展示商品
 //            request.userName
-        } else {
-            request.groupName = group
-        }
+//        } else {
+//            request.groupName = group
+//        }
 
 
         if (loadingType == MSG_CODE_LOADMORE) {
@@ -152,7 +165,7 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
             request.end = DEFAULT_ITEM_SIZE
         }
         request.keyWord = keyword
-        mCompositeDisposable.add(productService.getAllProductGroup(request)
+        mCompositeDisposable.add(productService.getAllProductByUser(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ t ->

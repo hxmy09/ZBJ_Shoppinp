@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
         pullLoadMoreRecyclerView.setRefreshing(true)
         searchBtn.setOnClickListener {
             val intent = Intent(activity, SearchableActivity::class.java)
-            intent.putExtra(QUERY_TEXT, search_view.query)
+            intent.putExtra(QUERY_TEXT, search_view.query.toString())
             startActivity(intent)
         }
     }

@@ -16,10 +16,7 @@ import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_group.*
-import shopping.hxmy.com.shopping.util.DEFAULT_ITEM_SIZE
-import shopping.hxmy.com.shopping.util.GROUP
-import shopping.hxmy.com.shopping.util.MSG_CODE_LOADMORE
-import shopping.hxmy.com.shopping.util.MSG_CODE_REFRESH
+import shopping.hxmy.com.shopping.util.*
 
 
 /**
@@ -91,6 +88,7 @@ class ProductShowActivity : BaseActivity() {
         searchBtn.setOnClickListener {
             val intent = Intent(this, SearchableActivity::class.java)
             intent.putExtra(GROUP, mGroup)
+            intent.putExtra(QUERY_TEXT, search_view.query.toString())
             startActivity(intent)
         }
 

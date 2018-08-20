@@ -56,12 +56,14 @@ class OrdersListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+//        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val collapsingToolbarTayout = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbarLayout)
         //如果有collapsingToolbarLayout ，如果需要设置toolbar title , 需要设置如下
         collapsingToolbarTayout.title = intent?.getStringExtra("Title")
+
+        supportActionBar?.title = intent?.getStringExtra("Title")
 
 //        supportActionBar?.title = intent?.getStringExtra("Title")
         //productState = intent.getIntExtra("ProductState", 0)
