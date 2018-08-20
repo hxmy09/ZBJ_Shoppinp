@@ -1,11 +1,13 @@
 package com.android.shop.shopapp.fragment
 
 import android.app.Fragment
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
+import com.android.shop.shopapp.activity.SearchableActivity
 import com.android.shop.shopapp.data.HomeAdapter
 import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
@@ -15,9 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
-import shopping.hxmy.com.shopping.util.DEFAULT_ITEM_SIZE
-import shopping.hxmy.com.shopping.util.MSG_CODE_LOADMORE
-import shopping.hxmy.com.shopping.util.MSG_CODE_REFRESH
+import shopping.hxmy.com.shopping.util.*
 
 /**
  * Created by myron on 3/28/18.
@@ -38,11 +38,15 @@ class HomeFragment : Fragment() {
     //
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        pageIndicator = PageIndicator.HOME_PAGE
         findViews()
         getNewsProducts(1)
-        pullLoadMoreRecyclerView.setRefreshing(true);
-        searchBtn
+        pullLoadMoreRecyclerView.setRefreshing(true)
+        searchBtn.setOnClickListener {
+            val intent = Intent(activity, SearchableActivity::class.java)
+            intent.putExtra(QUERY_TEXT, search_view.query)
+            startActivity(intent)
+        }
     }
 
     lateinit var mAdapter: HomeAdapter

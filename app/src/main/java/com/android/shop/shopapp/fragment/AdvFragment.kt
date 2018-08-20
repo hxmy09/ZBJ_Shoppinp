@@ -3,6 +3,7 @@ package com.android.shop.shopapp.fragment
 import android.app.Fragment
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Bundle
 import android.support.annotation.DrawableRes
@@ -109,10 +110,24 @@ class AdvFragment : Fragment() {
 
     fun getImageList(): List<ImageSlider> {
         val imageList = arrayListOf<ImageSlider>()
-        imageList.add(ImageSlider("adv1", R.drawable.banner3))
-        imageList.add(ImageSlider("adv2", R.drawable.banner2))
-        imageList.add(ImageSlider("adv3", R.drawable.banner1))
+        if(pageIndicator == PageIndicator.HOME_PAGE) {
+            imageList.add(ImageSlider("adv1", R.drawable.banner3))
+            imageList.add(ImageSlider("adv2", R.drawable.banner2))
+            imageList.add(ImageSlider("adv3", R.drawable.banner1))
+        }else if(pageIndicator == PageIndicator.PRODUCT_SHOW_PAGE)
+        {
+            imageList.add(ImageSlider("adv4", R.drawable.banner4))
+            imageList.add(ImageSlider("adv5", R.drawable.banner5))
+            imageList.add(ImageSlider("adv6", R.drawable.banner6))
+        }
         return imageList
     }
 }
+enum class PageIndicator(indicator:Int){
+    HOME_PAGE(1),
+    PRODUCT_SHOW_PAGE(2)
+
+}
+
+var pageIndicator:PageIndicator = PageIndicator.HOME_PAGE
 

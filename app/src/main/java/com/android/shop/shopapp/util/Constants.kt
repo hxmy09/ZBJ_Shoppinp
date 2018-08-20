@@ -34,6 +34,7 @@ const val PAGE_NUMBER = 20
 //EXTRA
 
 const val GROUP = "group"
+const val QUERY_TEXT = "query_text"
 
 const val DEFAULT_ITEM_SIZE = 12
 

@@ -19,55 +19,6 @@ import shopping.hxmy.com.shopping.util.*
 
 
 class SearchableActivity : BaseActivity(), View.OnClickListener {
-    override fun onClick(v: View?) {
-        val group = when (v?.id) {
-            R.id.baihuo -> {
-                G_BAIHUO
-            }
-            R.id.nvzhuang -> {
-                G_NVZHUANG
-            }
-            R.id.xiangbao -> {
-                G_XIANGBAO
-            }
-            R.id.shipin -> {
-                G_MEIZHUANG
-            }
-            R.id.neiyi -> {
-                G_NEIYI
-            }
-            R.id.wanju -> {
-                G_WANJU
-            }
-            R.id.wenju -> {
-                G_WENJU
-            }
-            R.id.xidi -> {
-                G_XIDI
-            }
-            R.id.tongzhuang -> {
-                G_WUJIN
-            }
-            R.id.xiezi -> {
-                G_XIEZI
-            }
-            R.id.fangzhipin -> {
-                G_FANGZHIPIN
-            }
-            R.id.tejia -> {
-                G_TEJIA
-            }
-            else -> {
-                G_TEJIA
-            }
-        }
-
-        val intent = Intent(this, ProductShowActivity::class.java).apply {
-
-            putExtra(GROUP, group)
-        }
-        startActivity(intent)
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,14 +29,11 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
             super.onBackPressed()
         }
         mGroup = intent.getStringExtra(GROUP) ?: ""
+        queryText = intent.getStringExtra(QUERY_TEXT) ?: ""
         initSearchView()
         findViews()
         bindEvents()
-        val intent = intent
-        if (Intent.ACTION_SEARCH == intent.action) {
-            val query = intent.getStringExtra(SearchManager.QUERY)
-            getProductsByGroup(mGroup!!, MSG_CODE_REFRESH, query)
-        }
+        getProductsByGroup(mGroup!!, MSG_CODE_REFRESH, queryText)
     }
 
     fun initSearchView() {
@@ -224,5 +172,56 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
                     pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
                 }))
     }
+
+    override fun onClick(v: View?) {
+        val group = when (v?.id) {
+            R.id.baihuo -> {
+                G_BAIHUO
+            }
+            R.id.nvzhuang -> {
+                G_NVZHUANG
+            }
+            R.id.xiangbao -> {
+                G_XIANGBAO
+            }
+            R.id.shipin -> {
+                G_MEIZHUANG
+            }
+            R.id.neiyi -> {
+                G_NEIYI
+            }
+            R.id.wanju -> {
+                G_WANJU
+            }
+            R.id.wenju -> {
+                G_WENJU
+            }
+            R.id.xidi -> {
+                G_XIDI
+            }
+            R.id.tongzhuang -> {
+                G_WUJIN
+            }
+            R.id.xiezi -> {
+                G_XIEZI
+            }
+            R.id.fangzhipin -> {
+                G_FANGZHIPIN
+            }
+            R.id.tejia -> {
+                G_TEJIA
+            }
+            else -> {
+                G_TEJIA
+            }
+        }
+
+        val intent = Intent(this, ProductShowActivity::class.java).apply {
+
+            putExtra(GROUP, group)
+        }
+        startActivity(intent)
+    }
+
 
 }

@@ -17,49 +17,55 @@
             app:expandedTitleMarginStart="10dp"
             app:layout_scrollFlags="exitUntilCollapsed|scroll">
 
-            <android.support.v7.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/tejia" />
+            <include layout="@layout/avd_item" />
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                android:background="#00000000"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:popupTheme="@style/AppTheme">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    >
 
                     <android.support.v7.widget.AppCompatImageButton
-                        android:id="@+id/backImg"
-                        android:layout_width="wrap_content"
+                    android:id="@+id/backImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/ic_arrow_back" />
+
+                    <android.support.v7.widget.SearchView
+                        android:id="@+id/search_view"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/ic_arrow_back" />
-
-                    <!--<android.support.v7.widget.AppCompatImageView-->
-                    <!--android:id="@+id/searchBtn"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:scaleType="centerCrop"-->
-                    <!--android:src="@drawable/ic_search_bg"-->
-                    <!--android:layout_marginEnd="20dp"/>-->
+                        android:scaleType="centerCrop"
+                        app:iconifiedByDefault="false"
+                        android:padding="8dp"
+                        app:queryHint="特价"
+                        app:searchIcon="@null"
+                        android:focusable="false"
+                        android:background="@drawable/ic_search_icon_bitmap" />
 
                     <android.support.v7.widget.AppCompatImageButton
                         android:id="@+id/searchBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="20dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/ic_search" />
                 </LinearLayout>
-
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
 

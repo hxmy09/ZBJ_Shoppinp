@@ -7,6 +7,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.data.GroupAdapter
+import com.android.shop.shopapp.fragment.PageIndicator
+import com.android.shop.shopapp.fragment.pageIndicator
 import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.network.services.ProductParameterRequest
@@ -57,6 +59,7 @@ class ProductShowActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group)
+        pageIndicator = PageIndicator.PRODUCT_SHOW_PAGE
         //显示哪个组的信息
         mGroup = intent.getStringExtra(GROUP)
         title = mGroup
