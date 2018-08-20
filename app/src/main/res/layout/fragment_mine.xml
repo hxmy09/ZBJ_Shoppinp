@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primaryColor">
 
-
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,7 +135,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="exitUntilCollapsed|scroll"
                 app:popupTheme="@style/AppTheme">
 
                 <LinearLayout
@@ -159,7 +157,6 @@
 
 
     </android.support.design.widget.AppBarLayout>
-
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"

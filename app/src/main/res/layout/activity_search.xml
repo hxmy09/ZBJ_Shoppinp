@@ -54,7 +54,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
-                        android:background="@color/ef_white"
+                        android:background="@drawable/ic_search_icon_bitmap"
                         app:iconifiedByDefault="false"
                         app:queryHint="特价"
                         app:commitIcon="@null"

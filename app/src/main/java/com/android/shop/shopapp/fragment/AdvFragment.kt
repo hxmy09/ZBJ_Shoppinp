@@ -119,13 +119,19 @@ class AdvFragment : Fragment() {
             imageList.add(ImageSlider("adv4", R.drawable.banner4))
             imageList.add(ImageSlider("adv5", R.drawable.banner5))
             imageList.add(ImageSlider("adv6", R.drawable.banner6))
+        }else if(pageIndicator == PageIndicator.SEARCH_PAGE)
+        {
+            imageList.add(ImageSlider("adv4", R.drawable.banner7))
+            imageList.add(ImageSlider("adv5", R.drawable.banner8))
+            imageList.add(ImageSlider("adv6", R.drawable.banner9))
         }
         return imageList
     }
 }
 enum class PageIndicator(indicator:Int){
     HOME_PAGE(1),
-    PRODUCT_SHOW_PAGE(2)
+    PRODUCT_SHOW_PAGE(2),
+    SEARCH_PAGE(3)
 
 }
 
