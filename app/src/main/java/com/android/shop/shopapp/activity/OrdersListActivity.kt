@@ -25,6 +25,7 @@ class OrdersListActivity : BaseActivity() {
     // var productState: Int? = null
 
     var userState = 0
+    var userStateForCurrentBuyer = 0
     lateinit var mAdapter: OrdersAdapter
     private fun findViews() {
 
@@ -32,6 +33,8 @@ class OrdersListActivity : BaseActivity() {
 //        pullLoadMoreRecyclerView.setGridLayout(2);//参数为列数
 //        pullLoadMoreRecyclerView.setStaggeredGridLayout(2);//参数为列数
         userState = (application as ShopApplication).userState
+        userStateForCurrentBuyer = intent.getIntExtra("userState", -1)
+
         var productState = intent.getIntExtra("ProductState", WEI_FU_KUAN)
         mAdapter = OrdersAdapter(this@OrdersListActivity, list, userState!!, productState)
         pullLoadMoreRecyclerView.setAdapter(mAdapter)
@@ -102,7 +105,7 @@ class OrdersListActivity : BaseActivity() {
         val savedName: String? = (application as ShopApplication).sharedPreferences?.getString("userName", "")
         val userName = intent?.getStringExtra("userName") ?: savedName
 
-        //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+        //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员 4 代理商
         val request = ShoppingModel()
         when (userState) {
             USER_STATE_MANAGER -> request.seller = userName
@@ -122,7 +125,10 @@ class OrdersListActivity : BaseActivity() {
         //根据查询条件卖家还是买家查询
         //0购物车1未付款2代发货3已发货4售后
         }
-        request.userState = userState //如果等于1 查询出所有商家订单
+        //TODO  如果是代理商，查询数据的时候需要设置用户状态为代理商下面用户status = 3
+        request.userState = if (userState == USER_STATE_AGENT && userStateForCurrentBuyer != -1) {
+            userStateForCurrentBuyer
+        } else userState//如果等于1 查询出所有商家订单
 
         /**
          * 用户状态分为1.2.3.

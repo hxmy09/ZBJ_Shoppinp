@@ -159,7 +159,7 @@ open class AgentManagementFragment : Fragment() {
     private fun fetchUsers() {
         val usersServices = RetrofitHelper().getAgentUsersService()
         var request = AgentUserReqeust()
-        request.superior = (activity.application as ShopApplication).superior //代理商
+        request.id = (activity.application as ShopApplication).id //代理商
         mCompositeDisposable.add(usersServices.getAllUsers(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

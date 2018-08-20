@@ -20,6 +20,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_orderdetail.*
 import shopping.hxmy.com.shopping.util.*
+import java.util.ArrayList
 
 
 /**
@@ -94,7 +95,8 @@ class OrderDetailsActivity : BaseActivity() {
 //        request.productState = intent.getIntExtra("ProductState", 1)
         val productState = intent.getIntExtra("ProductState", 0)//0购物车1未付款2代发货3已发货4售后
 
-        if (userState == USER_STATE_USER || userState == USER_STATE_AGENT) {
+        if (userState == USER_STATE_USER || (userState == USER_STATE_AGENT && (products as ArrayList<ShoppingModel>)[0].buyer == (application as ShopApplication).userName)) {
+
             if (productState == WEI_FU_KUAN) {
                 action.text = "付款"
                 action.visibility = View.VISIBLE
@@ -121,6 +123,8 @@ class OrderDetailsActivity : BaseActivity() {
                 action.visibility = View.GONE
             }
         } else if (userState == USER_STATE_ADMIN) {
+            action.visibility = View.GONE
+        }else{
             action.visibility = View.GONE
         }
 

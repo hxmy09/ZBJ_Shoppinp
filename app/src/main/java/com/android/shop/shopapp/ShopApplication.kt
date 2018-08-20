@@ -51,10 +51,10 @@ class ShopApplication : Application() {
         get() = sharedPreferences?.getString("userName", "") ?: ""
     val userState: Int
         get() = sharedPreferences?.getInt("userState", 0) ?: 0
-    val userId: Int
-        get() = sharedPreferences?.getInt("userId", 0) ?: 0
-    val superior: String //代理商推荐码
-        get() = sharedPreferences?.getString("superior", "") ?: ""
+//    val userId: Int
+//        get() = sharedPreferences?.getInt("userId", 0) ?: 0
+    val id: String //代理商推荐码
+        get() = sharedPreferences?.getString("userId", "") ?: ""
 
 }
 
@@ -64,6 +64,7 @@ enum class UserType(type: Int) {
     SUPER_ADMIN(1),//总部人员，最好权限
     ADMIN(2),//厂家（卖家，上货的）
     NORMAL(3),//零售商（普通会员买货的）
-    AGENT(4) //代理商
+    AGENT(4), //代理商
+    AGENT_USER(5) //代理商下面的用户
 
 }

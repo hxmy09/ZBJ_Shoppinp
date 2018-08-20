@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName
 
 
 interface AgentUsersServices {
-    @POST("mall/api/users/subs")
+    @POST("mall/api/user/subs")
     @Headers(*arrayOf("Content-Type: application/json", "session_id:4e11f6a621c7fb99e2162e8a6a01038a"))
     @JsonAndXmlConverters.Json
     fun getAllUsers(@JsonAndXmlConverters.Json @Body request: AgentUserReqeust): Observable<UserResponse>
@@ -25,6 +25,6 @@ interface AgentUsersServices {
 }
 
 data class AgentUserReqeust(
-        @SerializedName("superior")
-        var superior: String? = null
+        @SerializedName("id")
+        var id: String? = null
 )

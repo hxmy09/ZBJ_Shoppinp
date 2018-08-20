@@ -85,6 +85,7 @@ class AgentUserManagementAdapter(var context: Context?, var fragment: AgentManag
             itemView.setOnClickListener {
                 val intent = Intent(it.context, OrdersListActivity::class.java)
                 intent.putExtra("userName",model.userName)
+                intent.putExtra("userState",model.userState)
                 it.context.startActivity(intent)
             }
 

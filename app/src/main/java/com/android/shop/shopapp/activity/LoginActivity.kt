@@ -57,9 +57,9 @@ class LoginActivity : BaseActivity() {
                                 (application as ShopApplication).sharedPreferences?.edit()?.putString("phone", t.data?.phone)?.apply()
                                 (application as ShopApplication).sharedPreferences?.edit()?.putString("userName", t.data?.userName)?.apply()
                                 (application as ShopApplication).sharedPreferences?.edit()?.putInt("userState", t.data?.userState!!)?.apply()     //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
-                                (application as ShopApplication).sharedPreferences?.edit()?.putString("superior", t.data?.superior
+                                (application as ShopApplication).sharedPreferences?.edit()?.putString("userId", t.data?.userId
                                         ?: "")?.apply()    //代理商推荐码
-                                (application as ShopApplication).sharedPreferences?.edit()?.putString("userId", t.data?.userId!!)?.apply()   //用户id
+//                                (application as ShopApplication).sharedPreferences?.edit()?.putString("userId", t.data?.userId!!)?.apply()   //用户id
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java);
                                 startActivity(intent)
                                 finish()
