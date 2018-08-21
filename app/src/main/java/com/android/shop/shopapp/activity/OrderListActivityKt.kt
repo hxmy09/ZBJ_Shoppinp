@@ -40,7 +40,7 @@ class OrderListActivityKt : BaseActivity() {
             else -> 0
         }
         viewPager.adapter = SimpleFragmentPageAdapter(supportFragmentManager)
-        viewPager.setCurrentItem(position,true)
+        viewPager.setCurrentItem(position, true)
     }
 
 }
@@ -90,6 +90,7 @@ class PageFragment : Fragment() {
     // var productState: Int? = null
 
     var userState = 0
+    var userStateForCurrentBuyer = 0
     lateinit var mAdapter: OrdersAdapter
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,6 +114,7 @@ class PageFragment : Fragment() {
 //        pullLoadMoreRecyclerView.setGridLayout(2);//参数为列数
 //        pullLoadMoreRecyclerView.setStaggeredGridLayout(2);//参数为列数
         userState = (activity?.application as ShopApplication).userState
+        userStateForCurrentBuyer = activity?.intent?.getIntExtra("userState", -1) ?: 0
         val productState = activity?.intent?.getIntExtra("ProductState", WEI_FU_KUAN) ?: 0
         mAdapter = OrdersAdapter(activity, list, userState, productState)
         pullLoadMoreRecyclerView.setAdapter(mAdapter)
@@ -139,7 +141,9 @@ class PageFragment : Fragment() {
         when (userState) {
             USER_STATE_MANAGER -> request.seller = userName
             USER_STATE_USER -> request.buyer = userName
-            USER_STATE_AGENT -> request.buyer = userName
+            USER_STATE_AGENT -> request.buyer = if (userState == USER_STATE_AGENT && userStateForCurrentBuyer != -1) {
+                activity?.intent?.getStringExtra("userName")
+            } else userName//如果等于1 查询出所有商家订单
             USER_STATE_ADMIN -> {
 
             }
@@ -155,7 +159,11 @@ class PageFragment : Fragment() {
         //根据查询条件卖家还是买家查询
         //0购物车1未付款2代发货3已发货4售后
         }
-        request.userState = userState //如果等于1 查询出所有商家订单
+        //TODO  如果是代理商，查询数据的时候需要设置用户状态为代理商下面用户status = 3
+        request.userState = if (userState == USER_STATE_AGENT && userStateForCurrentBuyer != -1) {
+            userStateForCurrentBuyer
+        } else userState//如果等于1 查询出所有商家订单
+
 
         /**
          * 用户状态分为1.2.3.
