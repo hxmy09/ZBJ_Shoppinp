@@ -20,6 +20,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_orders.*
 import com.android.shop.shopapp.util.*
 
+@Deprecated("OrderListActivity instead")
 class AgentUserOrdersListActivity : BaseActivity() {
 
     var list = mutableListOf<ProductOrder>()

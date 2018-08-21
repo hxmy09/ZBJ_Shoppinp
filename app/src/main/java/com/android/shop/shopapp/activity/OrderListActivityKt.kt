@@ -1,10 +1,15 @@
 package com.android.shop.shopapp.activity
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
@@ -20,25 +25,59 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_order_kt.*
 import kotlinx.android.synthetic.main.fragment_page_order_kt.*
 
-class OrderListActivityKt : AppCompatActivity() {
+class OrderListActivityKt : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_kt)
         tablayout.setupWithViewPager(viewPager)
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val position = when (intent.extras.getInt("ProductState", 0)) {
+            WEI_FU_KUAN -> 0
+            DAI_FA_HUO -> 1
+            DAI_SHOU_HUO -> 2
+            SHOU_HOU -> 3
+            else -> 0
+        }
         viewPager.adapter = SimpleFragmentPageAdapter(supportFragmentManager)
+        viewPager.setCurrentItem(position,true)
     }
+
 }
 
 class SimpleFragmentPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        return PageFragment()
+        val state = when (position) {
+            0 -> WEI_FU_KUAN
+            1 -> DAI_FA_HUO
+            2 -> DAI_SHOU_HUO
+            3 -> SHOU_HOU
+            else -> {
+                WEI_FU_KUAN
+            }
+        }
+        val fragment = PageFragment()
+        val bundle = Bundle()
+        bundle.putInt("ProductState", state)
+        fragment.arguments = bundle
+        return fragment
     }
 
     override fun getCount(): Int {
         return 4
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position) {
+            0 -> "待付款"
+            1 -> "待发货"
+            2 -> "待收货"
+            3 -> "售后"
+            else -> {
+                ""
+            }
+        }
     }
 
 }
@@ -53,13 +92,23 @@ class PageFragment : Fragment() {
     var userState = 0
     lateinit var mAdapter: OrdersAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        findViews()
+//    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater?.inflate(R.layout.fragment_page_order_kt, container, false)
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         findViews()
+        getOrders(MSG_CODE_REFRESH)
     }
 
     private fun findViews() {
-
         pullLoadMoreRecyclerView.setLinearLayout()
 //        pullLoadMoreRecyclerView.setGridLayout(2);//参数为列数
 //        pullLoadMoreRecyclerView.setStaggeredGridLayout(2);//参数为列数
@@ -116,8 +165,7 @@ class PageFragment : Fragment() {
          */
         request.isSearchSellerOrders = false   //根据查询条件卖家还是买家查询
 
-
-        request.orderState = activity?.intent?.getIntExtra("ProductState", WEI_FU_KUAN)//0购物车1未付款2代发货3已发货4售后
+        request.orderState = arguments?.getInt("ProductState", WEI_FU_KUAN)//0购物车1未付款2代发货3已发货4售后
         if (loadingType == MSG_CODE_LOADMORE) {
             request.start = mAdapter.contents.size
             request.end = mAdapter.contents.size + DEFAULT_ITEM_SIZE

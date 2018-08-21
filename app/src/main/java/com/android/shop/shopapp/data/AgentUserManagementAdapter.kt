@@ -10,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.TextView
 import com.android.shop.shopapp.R
+import com.android.shop.shopapp.activity.OrderListActivityKt
 import com.android.shop.shopapp.activity.OrdersListActivity
 import com.android.shop.shopapp.fragment.AgentManagementFragment
 import com.android.shop.shopapp.model.UserModel
@@ -83,9 +84,10 @@ class AgentUserManagementAdapter(var context: Context?, var fragment: AgentManag
             }
 
             itemView.setOnClickListener {
-                val intent = Intent(it.context, OrdersListActivity::class.java)
-                intent.putExtra("userName",model.userName)
-                intent.putExtra("userState",model.userState)
+                val intent = Intent(it.context, OrderListActivityKt::class.java)
+//                intent.putExtra("userName",model.userName)
+                intent.putExtra("ProductState",0)
+//                intent.putExtra("userState",model.userState)
                 it.context.startActivity(intent)
             }
 
