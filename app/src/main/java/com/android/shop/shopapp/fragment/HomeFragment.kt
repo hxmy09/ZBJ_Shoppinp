@@ -12,12 +12,16 @@ import com.android.shop.shopapp.data.HomeAdapter
 import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.network.services.ProductParameterRequest
+import com.android.shop.shopapp.util.DEFAULT_ITEM_SIZE
+import com.android.shop.shopapp.util.MSG_CODE_LOADMORE
+import com.android.shop.shopapp.util.MSG_CODE_REFRESH
+import com.android.shop.shopapp.util.QUERY_TEXT
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
-import shopping.hxmy.com.shopping.util.*
+import com.android.shop.shopapp.util.*
 
 /**
  * Created by myron on 3/28/18.

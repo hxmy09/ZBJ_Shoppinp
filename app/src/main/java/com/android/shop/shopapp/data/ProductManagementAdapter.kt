@@ -12,11 +12,9 @@ import android.widget.CompoundButton
 import android.widget.ImageButton
 import android.widget.TextView
 import com.android.shop.shopapp.R
-import com.android.shop.shopapp.ShopApplication
 import com.android.shop.shopapp.fragment.ProductManagementFragment
 import com.android.shop.shopapp.model.ProductModel
 import com.squareup.picasso.Picasso
-import shopping.hxmy.com.shopping.util.USER_STATE_ADMIN
 
 
 class ProductManagementAdapter(var context: Context?, var fragment: ProductManagementFragment, list: MutableList<ProductModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

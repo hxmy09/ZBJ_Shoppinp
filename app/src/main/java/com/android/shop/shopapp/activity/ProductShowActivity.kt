@@ -12,11 +12,12 @@ import com.android.shop.shopapp.fragment.pageIndicator
 import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.network.services.ProductParameterRequest
+import com.android.shop.shopapp.util.*
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_group.*
-import shopping.hxmy.com.shopping.util.*
+import com.android.shop.shopapp.util.*
 
 
 /**

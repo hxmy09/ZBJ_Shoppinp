@@ -11,9 +11,9 @@ import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_manage_user.*
-import shopping.hxmy.com.shopping.util.DEFAULT_ITEM_SIZE
-import shopping.hxmy.com.shopping.util.MSG_CODE_LOADMORE
-import shopping.hxmy.com.shopping.util.MSG_CODE_REFRESH
+import com.android.shop.shopapp.util.DEFAULT_ITEM_SIZE
+import com.android.shop.shopapp.util.MSG_CODE_LOADMORE
+import com.android.shop.shopapp.util.MSG_CODE_REFRESH
 
 /**
  * Created by myron on 3/29/18.

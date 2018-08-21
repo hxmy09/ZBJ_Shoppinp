@@ -20,13 +20,13 @@ import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.model.response.ProductOrder
 import com.android.shop.shopapp.network.services.ProductParameterRequest
 import com.android.shop.shopapp.pay.PayActivity
-import com.android.shop.shopapp.util.DoubleUtil
+import com.android.shop.shopapp.util.*
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_shopping_trolley.*
-import shopping.hxmy.com.shopping.util.*
+import com.android.shop.shopapp.util.*
 import java.text.DecimalFormat
 
 /**

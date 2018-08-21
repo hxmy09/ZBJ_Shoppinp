@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.CollapsingToolbarLayout
-import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.Toast
 import com.android.shop.shopapp.R
@@ -13,11 +12,12 @@ import com.android.shop.shopapp.data.OrdersAdapter
 import com.android.shop.shopapp.model.ShoppingModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.model.response.ProductOrder
+import com.android.shop.shopapp.util.*
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_orders.*
-import shopping.hxmy.com.shopping.util.*
+import com.android.shop.shopapp.util.*
 
 class OrdersListActivity : BaseActivity() {
 

@@ -1,6 +1,5 @@
 package com.android.shop.shopapp.activity
 
-import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.SearchView
@@ -13,11 +12,12 @@ import com.android.shop.shopapp.fragment.pageIndicator
 import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.network.services.ProductParameterRequest
+import com.android.shop.shopapp.util.*
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_search.*
-import shopping.hxmy.com.shopping.util.*
+import com.android.shop.shopapp.util.*
 
 
 class SearchableActivity : BaseActivity(), View.OnClickListener {

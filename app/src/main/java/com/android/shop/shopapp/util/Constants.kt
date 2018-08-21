@@ -1,4 +1,4 @@
-package shopping.hxmy.com.shopping.util
+package com.android.shop.shopapp.util
 
 import android.content.Context
 import android.graphics.Bitmap

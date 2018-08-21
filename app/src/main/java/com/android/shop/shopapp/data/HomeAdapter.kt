@@ -14,8 +14,9 @@ import com.android.shop.shopapp.R
 import com.android.shop.shopapp.activity.ProductShowActivity
 import com.android.shop.shopapp.activity.ProductDetailActivity
 import com.android.shop.shopapp.model.ProductModel
+import com.android.shop.shopapp.util.*
 import com.squareup.picasso.Picasso
-import shopping.hxmy.com.shopping.util.*
+import com.android.shop.shopapp.util.*
 
 
 class HomeAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot: Boolean = false) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

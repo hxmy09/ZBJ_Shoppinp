@@ -2,7 +2,6 @@ package com.android.shop.shopapp.fragment
 
 import android.app.Fragment
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,9 +21,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_product_management.*
 import kotlinx.android.synthetic.main.item_grid_colors.view.*
-import shopping.hxmy.com.shopping.util.DEFAULT_ITEM_SIZE
-import shopping.hxmy.com.shopping.util.MSG_CODE_LOADMORE
-import shopping.hxmy.com.shopping.util.MSG_CODE_REFRESH
+import com.android.shop.shopapp.util.DEFAULT_ITEM_SIZE
+import com.android.shop.shopapp.util.MSG_CODE_LOADMORE
+import com.android.shop.shopapp.util.MSG_CODE_REFRESH
 
 /**
  * Created by myron on 3/31/18.

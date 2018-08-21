@@ -11,8 +11,9 @@ import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
 import com.android.shop.shopapp.activity.*
 import com.android.shop.shopapp.model.ProductModel
+import com.android.shop.shopapp.util.*
 import kotlinx.android.synthetic.main.fragment_mine.*
-import shopping.hxmy.com.shopping.util.*
+import com.android.shop.shopapp.util.*
 
 /**
  * Created by myron on 3/31/18.
@@ -116,25 +117,25 @@ class MineFragment : Fragment(), View.OnClickListener {
             }
             R.id.daiFukuan -> {
 
-                var intent = Intent(activity, OrdersListActivity::class.java)
+                var intent = Intent(activity, OrderListActivityKt::class.java)
                 intent.putExtra("ProductState", WEI_FU_KUAN)
                 intent.putExtra("Title", "待付款清单")
                 startActivity(intent)
             }
             R.id.daiFahuo -> {
-                var intent = Intent(activity, OrdersListActivity::class.java)
+                var intent = Intent(activity, OrderListActivityKt::class.java)
                 intent.putExtra("ProductState", DAI_FA_HUO)
                 intent.putExtra("Title", "待发货清单")
                 startActivity(intent)
             }
             R.id.daiShouHuo -> {
-                var intent = Intent(activity, OrdersListActivity::class.java)
+                var intent = Intent(activity, OrderListActivityKt::class.java)
                 intent.putExtra("ProductState", DAI_SHOU_HUO)
                 intent.putExtra("Title", "待收货清单")
                 startActivity(intent)
             }
             R.id.tuihuoshouhou -> {
-                var intent = Intent(activity, OrdersListActivity::class.java)
+                var intent = Intent(activity, OrderListActivityKt::class.java)
                 intent.putExtra("ProductState", SHOU_HOU)
                 intent.putExtra("Title", "售后清单")
                 startActivity(intent)

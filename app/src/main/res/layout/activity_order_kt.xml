@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewPager">
+
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ef_white"
+            app:tabGravity="fill"
+            android:id="@+id/tablayout"
+            app:tabIndicatorColor="@color/primaryColor"
+            app:tabIndicatorHeight="5dp"
+            app:tabSelectedTextColor="@color/primaryColor"
+            app:tabTextColor="@color/green">
+
+            <android.support.design.widget.TabItem
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:icon="@drawable/ic_daifukuan"
+                android:text="待付款" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:icon="@drawable/ic_daifahuo"
+                android:text="待发货" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:icon="@drawable/ic_daishouhuo"
+                android:text="待收货" />
+
+            <android.support.design.widget.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:icon="@drawable/ic_shouhou"
+                android:text="售后" />
+
+        </android.support.design.widget.TabLayout>
+    </android.support.v4.view.ViewPager>
+    s
+</LinearLayout>

@@ -15,11 +15,12 @@ import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.ShoppingModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.pay.PayActivity
+import com.android.shop.shopapp.util.*
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_orderdetail.*
-import shopping.hxmy.com.shopping.util.*
+import com.android.shop.shopapp.util.*
 import java.util.ArrayList
 
 
