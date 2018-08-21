@@ -79,6 +79,8 @@ class MineFragment : Fragment(), View.OnClickListener {
                 muLayout.visibility = View.GONE
                 mProLayout.visibility = View.GONE
                 dailiLayout.visibility = View.VISIBLE
+
+                tuijianma.text = (activity.application as ShopApplication).id
             }
             else -> {
                 mProLayout.visibility = View.GONE

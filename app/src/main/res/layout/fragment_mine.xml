@@ -443,6 +443,41 @@
                     <!--android:text="上传商品"-->
                     <!--android:textColor="@android:color/darker_gray"-->
                     <!--android:textSize="12sp" />-->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:paddingBottom="8dp"
+                            android:text="推荐码:"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tuijianma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:paddingBottom="8dp"
+                            android:text="你的推荐码是错的"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
                     <TextView
                         android:id="@+id/dailimanageUser"
                         android:layout_width="0dp"
