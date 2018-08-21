@@ -26,62 +26,21 @@ class HomeAdapter(var context: Context?, list: ArrayList<ProductModel>, var hot:
     fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var v: View? = null
 
-        when (viewType) {
-            1 -> {
-                v = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.naviation_item, parent, false)
-                return ViewHolderNavigation(v!!)
-            }
-            2 -> {
-                v = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.group_card_item, parent, false)
-                return ViewHolder(v!!)
-            }
-//            3 -> {
-//                v = LayoutInflater.from(parent.context)
-//                        .inflate(R.layout.avd_item, parent, false)
-//                return ViewHolderAV(v!!)
-//            }
-            else -> {
-                v = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.group_card_item, parent, false)
-                return ViewHolder(v!!)
-            }
-        }
+        v = LayoutInflater.from(parent.context)
+                .inflate(R.layout.grid_item, parent, false)
+        return ViewHolder(v!!)
 
     }
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        var type = getItemViewType(position)
-        when (type) {
-            1 -> {
-                (holder as ViewHolderNavigation).bind()
-            }
-            2 -> {
-                (holder as ViewHolder).bind(contents.get(position - 1))
-            }
-//            3 -> {
-//                (holder as ViewHolderAV).bind()
-//            }
-            else -> {
-                (holder as ViewHolder).bind(contents.get(position - 1))
-            }
-        }
+        (holder as ViewHolder).bind(contents[position ])
     }
 
     override fun getItemCount(): Int {
-        return contents.size + 1
+        return contents.size //+ 1
     }
 
-    override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
-            return 1
-        } else {
-            return 2
-        }
-
-    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
