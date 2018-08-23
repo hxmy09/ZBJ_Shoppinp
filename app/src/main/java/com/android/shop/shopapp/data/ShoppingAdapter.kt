@@ -61,6 +61,7 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
         var buyAmount: EditText? = null
         var sizeView: TextView? = null
         var colorView: TextView? = null
+        var beginOrderAmountView: TextView? = null
 
         init {
             price = itemView.findViewById(R.id.price)
@@ -72,15 +73,18 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
             buyAmount = itemView.findViewById(R.id.buyAmount)
             sizeView = itemView.findViewById(R.id.size)
             colorView = itemView.findViewById(R.id.color)
+            beginOrderAmountView = itemView.findViewById(R.id.beginOrderAmount)
 
 
         }
 
         fun bind(model: ShoppingModel, fragment: ShoppingTrolleyFragment) {
 
+            beginOrderAmountView?.text = model.beginOrderAmount.toString()
             price?.text = model.price.toString()
             desc?.text = model.desc
-            buyAmount?.setText(model.orderAmount.toString())
+            buyAmount?.setText(if (model.orderAmount!! < model.beginOrderAmount) model.beginOrderAmount.toString() else model.orderAmount!!.toString())
+
             Picasso.get().load(model.imageUrl).into(imageView)
             sizeView?.text = model.size
             colorView?.text = model.color
@@ -102,8 +106,8 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
             reduce?.setOnClickListener {
                 var amout = buyAmount?.text.toString().toInt()
                 amout--
-                if (amout <= 0) {
-                    amout = 0
+                if (amout <= model.beginOrderAmount) {
+                    amout = model.beginOrderAmount
                     reduce?.isEnabled = false
                 } else {
                     reduce?.isEnabled = true
@@ -111,18 +115,24 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
                 }
                 //更改对象的amount 数量
                 model.orderAmount = amout
-                buyAmount?.setText(if (TextUtils.isEmpty(amout.toString())) "0" else amout.toString())
+                buyAmount?.setText(if (TextUtils.isEmpty(amout.toString())) model.beginOrderAmount.toString() else amout.toString())
                 fragment.countTotal(amout, model)
                 // total.text = (amout * model!!.price!!).toString()
             }
             buyAmount?.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
                     if (s?.length != 0) {
-                        model.orderAmount = s.toString().toInt()
+
+                        model.orderAmount = if (s.toString().toInt() <= model.beginOrderAmount) {
+                            model.beginOrderAmount
+                        } else {
+                            s.toString().toInt()
+                        }
+
                         fragment.countTotal(s.toString().toInt(), model)
                     } else {
-                        buyAmount?.setText("0")
-                        fragment.countTotal(0, model)
+                        buyAmount?.setText(model.beginOrderAmount.toString())
+                        fragment.countTotal(model.beginOrderAmount, model)
                     }
 
                 }

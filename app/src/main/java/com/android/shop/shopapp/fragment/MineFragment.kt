@@ -34,6 +34,7 @@ class MineFragment : Fragment(), View.OnClickListener {
         if (!(activity.application as ShopApplication).isLoggedIn) {
             startActivity(Intent(activity, LoginActivity::class.java))
             activity.finish()
+            return
         }
         audit.setOnClickListener(this)
         upload.setOnClickListener(this)
@@ -71,7 +72,7 @@ class MineFragment : Fragment(), View.OnClickListener {
                 mProLayout.visibility = View.VISIBLE
                 dailiLayout.visibility = View.GONE
             }
-            USER_STATE_USER -> {
+            USER_STATE_USER , USER_STATE_AGENT_SUB_USER-> {
                 muLayout.visibility = View.GONE
                 mProLayout.visibility = View.GONE
                 dailiLayout.visibility = View.GONE

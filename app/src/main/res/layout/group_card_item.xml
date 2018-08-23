@@ -22,8 +22,7 @@
                 android:id="@+id/img"
                 android:layout_width="140dp"
                 android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_logo2" />
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/desc"

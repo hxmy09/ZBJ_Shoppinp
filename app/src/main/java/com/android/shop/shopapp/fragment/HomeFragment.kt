@@ -49,7 +49,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onActivityCreated(savedInstanceState)
         pageIndicator = PageIndicator.HOME_PAGE
         findViews()
-        getNewsProducts(1)
+        getNewsProducts(MSG_CODE_REFRESH)
         pullLoadMoreRecyclerView.setRefreshing(true)
         searchBtn.setOnClickListener {
             val intent = Intent(activity, SearchableActivity::class.java)

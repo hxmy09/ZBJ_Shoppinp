@@ -13,15 +13,7 @@ class ProductModel() : Parcelable {
     var groupName: String? = null
     @SerializedName("img_urls")
     var imageUrls: List<String>? = null
-//        get() {
-//            if (field != null && field!!.isNotEmpty()) {
-//                return field
-//            } else {
-//                var list = arrayListOf<String>()
-//                list.add(imageUrl!!)
-//                return list
-//            }
-//        }
+
     @SerializedName("img_url")
     var imageUrl: String? = null
     var desc: String? = null
@@ -39,6 +31,10 @@ class ProductModel() : Parcelable {
 
     @SerializedName("key_words")
     var keyWords: String? = null
+
+    //起订量
+    @SerializedName("beginOrderAmount")
+    var beginOrderAmount: Int = 1
 
     var details: List<Detail>? = null
     //这个字段主要是为了购买商品加入购物车之后的流程中使用，识别唯一商品

@@ -43,7 +43,6 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
 
 
     private var product = ProductModel()
-    //    var addImgsFragment = StaggeredGridLayoutFragment()
     private lateinit var presenter: FileUploaderPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -185,20 +184,21 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
                 Toast.makeText(this@UploadActivity, "请上传商品图片信息", Toast.LENGTH_SHORT).show()
             } else {
 
-//                for(i in 0..3000) {
-//                v?.isEnabled = false
                 startAnim()
                 product.groupName = spinner.text.toString()//URLEncoder.encode(spinner.text.toString(), "utf-8")
                 product.price = edit_price.text.toString().toDouble()
                 product.desc = edit_desc.text.toString()//URLEncoder.encode(edit_desc.text.toString(), "utf-8")
-//                product.productId = System.currentTimeMillis().toString()
                 product.userName = (application as ShopApplication).sharedPreferences?.getString("userName", "")// URLEncoder.encode((application as ShopApplication).sharedPreferences?.getString("userName", ""), "utf-8")//(application as ShopApplication).sharedPreferences?.getString("userName","")
                 product.details = (recyclerView.adapter as UploadAdapter).contents
                 product.keyWords = keyword.text.toString()
+
+                //起订量
+                product.beginOrderAmount = if (edit_beginOrderAmount.text.toString().isNotBlank()) {
+                    edit_beginOrderAmount.text.toString().toInt()
+                } else 1
                 //上传商品信息
                 presenter.onImageSelected(product, this@UploadActivity)
 
-//                }
 
             }
         } else if (v?.id == R.id.add) {
@@ -211,7 +211,7 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
             try {
                 val detail = Detail()
                 detail.color = if (colorView.text.toString().isEmpty()) {
-                    "默认"
+                    "随机"
                 } else {
                     colorView.text.toString()
                 }
@@ -232,24 +232,13 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
                 val sizeText = sizeView.text.toString()
                 if (sizeText.isEmpty()) {
                     val size = Size()
-                    size.size = "默认"
+                    size.size = "均码"
                     size.amount = 0
                     sizeList.add(size)
                 } else {
                     var formatText = sizeText.replace("，", ",")
                     val sizeArr = formatText.split(",")
                     sizeArr.forEach {
-
-                        //                        if (!TextUtils.isEmpty(it)) {
-//                            val arr = it.split("/")
-//
-//                            size.amount = if (arr.size == 2) {
-//                                arr[1].toInt()
-//                            } else {
-//                                0
-//                            }
-//
-//                        }
                         val size = Size()
                         size.size = it
                         sizeList.add(size)

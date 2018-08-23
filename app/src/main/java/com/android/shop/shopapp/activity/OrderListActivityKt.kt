@@ -140,7 +140,7 @@ class PageFragment : Fragment() {
         val request = ShoppingModel()
         when (userState) {
             USER_STATE_MANAGER -> request.seller = userName
-            USER_STATE_USER -> request.buyer = userName
+            USER_STATE_USER,USER_STATE_AGENT_SUB_USER -> request.buyer = userName
             USER_STATE_AGENT -> request.buyer = if (userState == USER_STATE_AGENT && userStateForCurrentBuyer != -1) {
                 activity?.intent?.getStringExtra("userName")
             } else userName//如果等于1 查询出所有商家订单

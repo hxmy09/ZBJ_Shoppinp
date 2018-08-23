@@ -57,6 +57,10 @@ class ShoppingModel() : Parcelable {
     @SerializedName("seller_phone")
     var sellerPhone: String? = null
 
+    //起订量
+    @SerializedName("beginOrderAmount")
+    var beginOrderAmount: Int = 1
+
     constructor(parcel: Parcel) : this() {
         productId = parcel.readString()
         imageUrl = parcel.readString()

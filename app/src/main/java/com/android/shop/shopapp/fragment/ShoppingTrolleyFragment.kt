@@ -180,6 +180,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         if (!(activity.application as ShopApplication).isLoggedIn) {
             startActivity(Intent(activity, LoginActivity::class.java))
             activity.finish()
+            return
         }
 
         (activity as MainActivity).setSupportActionBar(this.view.findViewById(R.id.toolbar))

@@ -106,7 +106,7 @@ class AgentUserOrdersListActivity : BaseActivity() {
         val request = ShoppingModel()
         when (userState) {
             USER_STATE_MANAGER -> request.seller = userName
-            USER_STATE_USER -> request.buyer = userName
+            USER_STATE_USER,USER_STATE_AGENT_SUB_USER -> request.buyer = userName
             USER_STATE_AGENT -> request.buyer = userName
             USER_STATE_ADMIN -> {
 

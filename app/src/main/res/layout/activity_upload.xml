@@ -76,6 +76,16 @@
                             app:met_underlineColor="@android:color/holo_orange_dark" />
 
                         <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/edit_beginOrderAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="最低购买数量（选填 - 默认1件起订)"
+                            app:met_baseColor="@android:color/black"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAlwaysShown="true"
+                            app:met_primaryColor="?colorAccent"
+                            app:met_underlineColor="@android:color/holo_orange_dark" />
+                        <com.rengwuxian.materialedittext.MaterialEditText
                             android:id="@+id/keyword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

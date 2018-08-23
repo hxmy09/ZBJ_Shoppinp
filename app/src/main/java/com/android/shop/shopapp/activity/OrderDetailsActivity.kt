@@ -96,7 +96,7 @@ class OrderDetailsActivity : BaseActivity() {
 //        request.productState = intent.getIntExtra("ProductState", 1)
         val productState = intent.getIntExtra("ProductState", 0)//0购物车1未付款2代发货3已发货4售后
 
-        if (userState == USER_STATE_USER || (userState == USER_STATE_AGENT && (products as ArrayList<ShoppingModel>)[0].buyer == (application as ShopApplication).userName)) {
+        if (userState == USER_STATE_USER || userState == USER_STATE_AGENT_SUB_USER || (userState == USER_STATE_AGENT && (products as ArrayList<ShoppingModel>)[0].buyer == (application as ShopApplication).userName)) {
 
             if (productState == WEI_FU_KUAN) {
                 action.text = "付款"
