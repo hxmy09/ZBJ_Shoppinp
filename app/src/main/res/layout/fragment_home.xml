@@ -88,7 +88,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="45dp">
 
             <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -99,23 +100,20 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:id="@+id/tejia"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="bottom|right"-->
-    <!--android:layout_marginBottom="65dp"-->
-    <!--android:layout_marginEnd="20dp"-->
-    <!--android:src="@drawable/ic_close"-->
-    <!--app:backgroundTint="@color/primaryColor"-->
-    <!--app:backgroundTintMode="src_over"-->
-    <!--app:borderWidth="0dp"-->
-    <!--app:elevation="@dimen/activity_horizontal_margin"-->
-    <!--app:fabCustomSize="70dp"-->
-    <!--app:fabSize="normal"-->
-    <!--app:layout_anchorGravity="bottom"-->
-    <!--app:layout_insetEdge="top"-->
-    <!--app:pressedTranslationZ="@dimen/activity_horizontal_margin"-->
-    <!--app:rippleColor="@color/primaryDarkColor"-->
-    <!--app:useCompatPadding="true" />-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/tejia"
+        android:layout_width="wrap_content"
+        android:layout_height="139dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="65dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_lingshou"
+        app:borderWidth="0dp"
+        app:elevation="@dimen/activity_horizontal_margin"
+        app:fabSize="normal"
+        app:fabCustomSize="60dp"
+        android:scaleType="center"
+        app:pressedTranslationZ="@dimen/activity_horizontal_margin"
+        app:rippleColor="@color/primaryDarkColor"
+ />
 </android.support.design.widget.CoordinatorLayout>

@@ -82,6 +82,7 @@
                             android:hint="最低购买数量（选填 - 默认1件起订)"
                             app:met_baseColor="@android:color/black"
                             app:met_floatingLabel="highlight"
+                            android:inputType="number"
                             app:met_floatingLabelAlwaysShown="true"
                             app:met_primaryColor="?colorAccent"
                             app:met_underlineColor="@android:color/holo_orange_dark" />

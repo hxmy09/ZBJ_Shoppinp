@@ -71,21 +71,22 @@
                     android:layout_below="@id/desc"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/color"
                     android:maxLines="1"
                     android:text=""
-                    android:layout_toEndOf="@id/color"
                     android:textSize="12sp" />
 
 
                 <TextView
+                    android:id="@+id/amountText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/color"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:maxLines="1"
                     android:text="起订量:"
                     android:textSize="12sp" />
+
                 <TextView
                     android:id="@+id/beginOrderAmount"
                     android:layout_width="wrap_content"
@@ -93,18 +94,21 @@
                     android:layout_below="@id/color"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/amountText"
                     android:maxLines="1"
                     android:text="1"
+                    android:textColor="@color/green"
                     android:textSize="12sp" />
+
                 <TextView
+                    android:id="@+id/sign"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/beginOrderAmount"
                     android:layout_marginTop="8dp"
                     android:text="￥"
                     android:textColor="@android:color/holo_red_light"
-                    android:textSize="12sp"
-                    android:id="@+id/sign"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/price"
@@ -112,19 +116,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/beginOrderAmount"
                     android:layout_marginTop="8dp"
-                    android:text=""
                     android:layout_toEndOf="@id/sign"
+                    android:text=""
                     android:textColor="@android:color/holo_red_light"
                     android:textSize="12sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|end"
-                    android:gravity="center_vertical|end"
-                    android:orientation="horizontal"
                     android:layout_below="@id/beginOrderAmount"
-                    android:layout_toEndOf="@id/price">
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_toEndOf="@id/price"
+                    android:gravity="center_vertical|end"
+                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/reduce"

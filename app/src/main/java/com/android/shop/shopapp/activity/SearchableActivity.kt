@@ -32,8 +32,8 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
         }
         mGroup = intent.getStringExtra(GROUP) ?: ""
         queryText = intent.getStringExtra(QUERY_TEXT) ?: ""
-        initSearchView()
         findViews()
+        initSearchView()
         bindEvents()
     }
 
@@ -192,6 +192,9 @@ class SearchableActivity : BaseActivity(), View.OnClickListener {
         val group = when (v?.id) {
             R.id.baihuo -> {
                 G_BAIHUO
+            }
+            R.id.nanzhuang -> {
+                G_NANZHUANG
             }
             R.id.nvzhuang -> {
                 G_NVZHUANG

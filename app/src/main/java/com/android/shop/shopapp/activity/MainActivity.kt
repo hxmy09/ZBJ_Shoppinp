@@ -1,5 +1,6 @@
 package com.android.shop.shopapp.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.design.widget.BottomNavigationView
@@ -10,6 +11,8 @@ import com.android.shop.shopapp.R
 import com.android.shop.shopapp.fragment.HomeFragment
 import com.android.shop.shopapp.fragment.MineFragment
 import com.android.shop.shopapp.fragment.ShoppingTrolleyFragment
+import com.android.shop.shopapp.util.GROUP
+import com.android.shop.shopapp.util.G_LINGSHOU
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

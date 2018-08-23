@@ -28,6 +28,7 @@ const val G_WUJIN = "童装"
 const val G_XIEZI = "鞋子"
 const val G_FANGZHIPIN = "纺织品"
 const val G_TEJIA = "特价"
+const val G_LINGSHOU = "零售"
 
 const val PAGE_NUMBER = 20
 

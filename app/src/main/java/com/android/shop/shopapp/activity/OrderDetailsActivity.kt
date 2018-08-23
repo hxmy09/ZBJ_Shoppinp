@@ -62,19 +62,18 @@ class OrderDetailsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orderdetail)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(findViewById(R.id.toolbar))
+//        setSupportActionBar(findViewById(R.id.toolbar))
         val collapsingToolbarTayout = findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbarLayout)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 //        toolbar.title = "订单详细//
         //如果有collapsingToolbarLayout ，如果需要设置toolbar title , 需要设置如下
-        collapsingToolbarTayout.title = "订单详细"
+//        collapsingToolbarTayout.title = "订单详细"
         //显示哪个组的信息
         products = intent.getParcelableArrayListExtra("orders")
         findViews()
 
         // Get a support ActionBar corresponding to this toolbar and enable the Up button
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         getOrderDetails(MSG_CODE_REFRESH)
 
         val userState = (application as ShopApplication).userState //用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
@@ -125,7 +124,7 @@ class OrderDetailsActivity : BaseActivity() {
             }
         } else if (userState == USER_STATE_ADMIN) {
             action.visibility = View.GONE
-        }else{
+        } else {
             action.visibility = View.GONE
         }
 
@@ -147,41 +146,20 @@ class OrderDetailsActivity : BaseActivity() {
             ""
         }
         action.setOnClickListener {
-            if (action.text == "售后") {
-                MaterialDialog.Builder(this)
+            when {
+                action.text == "售后" -> MaterialDialog.Builder(this)
                         .content(message)
                         .positiveText("确定")
                         .show()
-            } else if (action.text == "付款") {
+                action.text == "付款" -> {
 
-                val intent = Intent(this@OrderDetailsActivity, PayActivity::class.java).apply {
-                    putExtra("order_number", shoppingModel.orderNumber)
-                    putExtra("payAmount", intent.getDoubleExtra("total", 0.00).toString())
+                    val intent = Intent(this@OrderDetailsActivity, PayActivity::class.java).apply {
+                        putExtra("order_number", shoppingModel.orderNumber)
+                        putExtra("payAmount", intent.getDoubleExtra("total", 0.00).toString())
+                    }
+                    startActivityForResult(intent, 0x11)
                 }
-                startActivityForResult(intent, 0x11)
-//                            val orderService = RetrofitHelper().getOrdersService()
-//                            var request = ShoppingModel()
-//                            request.orderNumber = intent.getStringExtra("OrderNum")
-//                            request.orderState = orderState//0购物车100未付款200代发货300已发货400售后
-//                            mCompositeDisposable.add(orderService.updateOrderStatus(request)
-//                                    .subscribeOn(Schedulers.io())
-//                                    .observeOn(AndroidSchedulers.mainThread())
-//                                    .subscribe({ t ->
-//                                        if (t.code == "100") {
-//                                            Toast.makeText(this@OrderDetailsActivity, "操作成功", Toast.LENGTH_LONG).show()
-//                                            action.visibility = View.GONE
-//                                            setResult(Activity.RESULT_OK)
-//                                            finish()
-//                                        } else {
-//                                            Toast.makeText(this@OrderDetailsActivity, "操作失败", Toast.LENGTH_LONG).show()
-//                                        }
-//
-//                                    }, { e ->
-//                                        Toast.makeText(this@OrderDetailsActivity, "操作失败", Toast.LENGTH_LONG).show()
-//                                        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-//                                    }))
-            } else {
-                MaterialDialog.Builder(this)
+                else -> MaterialDialog.Builder(this)
                         .content(message)
                         .positiveText("确定")
                         .negativeText("取消")
@@ -212,6 +190,8 @@ class OrderDetailsActivity : BaseActivity() {
             }
 
         }
+
+        backImg.setOnClickListener { onBackPressed() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -245,25 +225,6 @@ class OrderDetailsActivity : BaseActivity() {
     var start = 0;
     var end = DEFAULT_ITEM_SIZE
     private fun getOrderDetails(loadingType: Int) {
-//        if (loadingType == MSG_CODE_LOADMORE) {
-//            start = mAdapter.contents.size
-//            end = mAdapter.contents.size + DEFAULT_ITEM_SIZE
-//        } else {
-//            start = 0
-//            end = DEFAULT_ITEM_SIZE
-//        }
-//
-//        if (end >= products?.size!!) {
-//            end = products?.size!!
-//        }
-//        currentData?.clear()
-//        for (index in start until end) {
-//            currentData?.add(products?.get(index)!!)
-//        }
-//        if (currentData?.size!! > 0) {
-//            mAdapter.contents = currentData!!
-//
-//        }
         currentData?.clear()
         products?.map {
             currentData?.add(it)
@@ -271,10 +232,5 @@ class OrderDetailsActivity : BaseActivity() {
             mAdapter.notifyDataSetChanged()
             pullLoadMoreRecyclerView.setPullLoadMoreCompleted()
         }
-//        currentData?.addAll(products)
-
-
-
-
     }
 }
