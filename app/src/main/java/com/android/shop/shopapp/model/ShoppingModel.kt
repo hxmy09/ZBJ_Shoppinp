@@ -58,8 +58,8 @@ class ShoppingModel() : Parcelable {
     var sellerPhone: String? = null
 
     //起订量
-    @SerializedName("beginOrderAmount")
-    var beginOrderAmount: Int = 1
+    @SerializedName("min_order")
+    var minOrder: String? = "1"
 
     constructor(parcel: Parcel) : this() {
         productId = parcel.readString()

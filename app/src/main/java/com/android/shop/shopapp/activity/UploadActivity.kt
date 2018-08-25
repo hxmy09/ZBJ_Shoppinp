@@ -193,9 +193,9 @@ class UploadActivity : BaseActivity(), View.OnClickListener, FileUploaderContrac
                 product.keyWords = keyword.text.toString()
 
                 //起订量
-                product.beginOrderAmount = if (edit_beginOrderAmount.text.toString().isNotBlank()) {
-                    edit_beginOrderAmount.text.toString().toInt()
-                } else 1
+                product.minOrder = if (edit_beginOrderAmount.text.toString().isNotBlank()) {
+                    edit_beginOrderAmount.text.toString()
+                } else "1"
                 //上传商品信息
                 presenter.onImageSelected(product, this@UploadActivity)
 

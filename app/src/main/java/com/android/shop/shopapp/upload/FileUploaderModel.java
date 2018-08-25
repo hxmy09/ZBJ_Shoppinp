@@ -55,7 +55,7 @@ public class FileUploaderModel implements FileUploaderContract.Model {
     public Single<ResponseBody> uploadImageWithoutProgress(ProductModel request) {
         //这个现在有问题。不能运行
 
-        return service.postImage(parseRequestBody(request.getDetails().toString()), null, parseRequestBody(request.getDesc()), parseRequestBody(String.valueOf(request.getPrice())), parseRequestBody(request.getGroupName()), parseRequestBody(request.getUserName()), parseRequestBody(request.getKeyWords()));
+        return service.postImage(parseRequestBody(request.getDetails().toString()), null, parseRequestBody(request.getDesc()), parseRequestBody(String.valueOf(request.getPrice())), parseRequestBody(request.getGroupName()), parseRequestBody(request.getUserName()), parseRequestBody(request.getKeyWords()), parseRequestBody(request.getMinOrder()));
     }
 
     private List<MultipartBody.Part> createMultipartBody(List<String> paths) {
@@ -75,7 +75,16 @@ public class FileUploaderModel implements FileUploaderContract.Model {
 
     @Override
     public Flowable<Double> uploadImage(ProductModel request, Context context) {
-        return Flowable.create(emitter -> service.postImage(parseRequestBody(new Gson().toJson(request.getDetails())), createMultipartBody(request.getDetails(), context, emitter), parseRequestBody(request.getDesc()), parseRequestBody(String.valueOf(request.getPrice())), parseRequestBody(request.getGroupName()), parseRequestBody(request.getUserName()), parseRequestBody("")).subscribe(result -> emitter.onComplete(), emitter::onError), BackpressureStrategy.LATEST);
+        return Flowable.create(emitter -> service.postImage(
+                parseRequestBody(new Gson().toJson(request.getDetails())),
+                createMultipartBody(request.getDetails(), context, emitter),
+                parseRequestBody(request.getDesc()),
+                parseRequestBody(String.valueOf(request.getPrice())),
+                parseRequestBody(request.getGroupName()),
+                parseRequestBody(request.getUserName()),
+                parseRequestBody(request.getKeyWords()),
+                parseRequestBody(request.getMinOrder())
+        ).subscribe(result -> emitter.onComplete(), emitter::onError), BackpressureStrategy.LATEST);
     }
 
     private MultipartBody.Part[] createMultipartBody(List<Detail> paths, Context context, FlowableEmitter<Double> emitter) {

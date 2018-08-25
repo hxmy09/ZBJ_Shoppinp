@@ -80,10 +80,10 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
 
         fun bind(model: ShoppingModel, fragment: ShoppingTrolleyFragment) {
 
-            beginOrderAmountView?.text = model.beginOrderAmount.toString()
+            beginOrderAmountView?.text = model.minOrder
             price?.text = model.price.toString()
             desc?.text = model.desc
-            buyAmount?.setText(if (model.orderAmount!! < model.beginOrderAmount) model.beginOrderAmount.toString() else model.orderAmount!!.toString())
+            buyAmount?.setText(if (model.orderAmount!! < model.minOrder?.toInt()?: 0) model.minOrder else model.orderAmount!!.toString())
 
             Picasso.get().load(model.imageUrl).into(imageView)
             sizeView?.text = model.size
@@ -106,8 +106,8 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
             reduce?.setOnClickListener {
                 var amout = buyAmount?.text.toString().toInt()
                 amout--
-                if (amout <= model.beginOrderAmount) {
-                    amout = model.beginOrderAmount
+                if (amout <= model.minOrder?.toInt() ?: 0) {
+                    amout = model.minOrder?.toInt() ?: 0
                     reduce?.isEnabled = false
                 } else {
                     reduce?.isEnabled = true
@@ -115,7 +115,7 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
                 }
                 //更改对象的amount 数量
                 model.orderAmount = amout
-                buyAmount?.setText(if (TextUtils.isEmpty(amout.toString())) model.beginOrderAmount.toString() else amout.toString())
+                buyAmount?.setText(if (TextUtils.isEmpty(amout.toString())) model.minOrder else amout.toString())
                 fragment.countTotal(amout, model)
                 // total.text = (amout * model!!.price!!).toString()
             }
@@ -123,16 +123,16 @@ class ShoppingAdapter(var context: Context?, var fragment: ShoppingTrolleyFragme
                 override fun afterTextChanged(s: Editable?) {
                     if (s?.length != 0) {
 
-                        model.orderAmount = if (s.toString().toInt() <= model.beginOrderAmount) {
-                            model.beginOrderAmount
+                        model.orderAmount = if (s.toString().toInt() <= model.minOrder?.toInt()?: 0) {
+                            model.minOrder?.toInt()
                         } else {
                             s.toString().toInt()
                         }
 
                         fragment.countTotal(s.toString().toInt(), model)
                     } else {
-                        buyAmount?.setText(model.beginOrderAmount.toString())
-                        fragment.countTotal(model.beginOrderAmount, model)
+                        buyAmount?.setText(model.minOrder.toString())
+                        fragment.countTotal(model.minOrder?.toInt()?: 0, model)
                     }
 
                 }

@@ -20,7 +20,8 @@ data class OrderModel(
         @SerializedName("order_number") var orderNumber: String?,//订单号
         @SerializedName("img_url") var imgUrl: String?,
         @SerializedName("desc") var desc: String?,
-        @SerializedName("price") var price: Double?
+        @SerializedName("price") var price: Double?,
+        @SerializedName("min_order") var minOrder: String = "1"
 
 ) : Parcelable {
     constructor(parcel: Parcel) : this(

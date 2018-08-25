@@ -23,7 +23,7 @@ interface UploadsImService {
     @POST("mall/api/product/add")
     @Headers(*arrayOf( "session_id:24b75be656d4c9a34f6e16eb427daec4"))
     @JsonAndXmlConverters.Json
-    fun postImage(@Part("details") details: RequestBody, @Part img: Array<MultipartBody.Part>, @Part("desc") desc: RequestBody, @Part("price") price: RequestBody, @Part("group_name") groupName: RequestBody, @Part("user_name") userName: RequestBody, @Part("key_words") keyWord: RequestBody): Single<ResponseBody>
+    fun postImage(@Part("details") details: RequestBody, @Part img: Array<MultipartBody.Part>, @Part("desc") desc: RequestBody, @Part("price") price: RequestBody, @Part("group_name") groupName: RequestBody, @Part("user_name") userName: RequestBody, @Part("key_words") keyWord: RequestBody, @Part("min_order") minOrder: RequestBody): Single<ResponseBody>
 
 
 //    @Header("session_id") session_id: String = "24b75be656d4c9a34f6e16eb427daec4", @Header("desc") desc: String, @Header("price") price: String, @Header("groupName") group: String, @Header("userName") userName: String,

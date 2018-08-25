@@ -24,23 +24,23 @@
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="8dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="8dp">
 
 
                 <FrameLayout
+                    android:id="@+id/imgsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:minWidth="150dp"
-                    android:id="@+id/imgsContainer">
+                    android:minWidth="150dp">
 
                     <!--<android.support.v7.widget.AppCompatImageView-->
-                        <!--android:id="@+id/img"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="300dp"-->
-                        <!--android:scaleType="centerCrop"-->
-                        <!--android:src="@drawable/login" />-->
+                    <!--android:id="@+id/img"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="300dp"-->
+                    <!--android:scaleType="centerCrop"-->
+                    <!--android:src="@drawable/login" />-->
                 </FrameLayout>
 
                 <LinearLayout
@@ -75,9 +75,32 @@
                         android:id="@+id/desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_marginTop="10dp"
                         android:text="zheli" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/amountText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="起订量:"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/minOrder"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:maxLines="1"
+                            android:text="1"
+                            android:textColor="@color/green"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -112,24 +135,24 @@
             android:gravity="center_vertical|end">
 
 
-        <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginStart="30dp"-->
-                <!--android:text="合计："-->
-                <!--android:textColor="@android:color/black" />-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="30dp"-->
+            <!--android:text="合计："-->
+            <!--android:textColor="@android:color/black" />-->
 
             <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="￥"-->
-                <!--android:textColor="@color/red" />-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="￥"-->
+            <!--android:textColor="@color/red" />-->
 
             <!--<TextView-->
-                <!--android:id="@+id/total"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textColor="@color/red" />-->
+            <!--android:id="@+id/total"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/red" />-->
 
             <Button
                 android:id="@+id/result"

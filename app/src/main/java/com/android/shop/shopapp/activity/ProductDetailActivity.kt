@@ -9,6 +9,7 @@ import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -140,31 +141,40 @@ class ProductDetailActivity : BaseActivity(), AttributeEvent {
 
         priceView.text = model.price?.toString()
         descView.text = model.desc
+        minOrder.text = model.minOrder
+        buyAmount?.setText(model.minOrder ?: "1")
 
         add.setOnClickListener {
             var amout = buyAmount.text.toString().toInt()
             buyAmount.setText((++amout).toString())
-            reduce.isEnabled = amout > 0
+            reduce.isEnabled = amout > model.minOrder?.toInt() ?: 0
         }
 
         reduce.setOnClickListener {
             var amout = buyAmount.text.toString().toInt()
             amout--
-            if (amout <= 0) {
-                amout = 0
+            if (amout <= model.minOrder?.toInt() ?: 0) {
+                amout = model.minOrder?.toInt() ?: 0
                 reduce.isEnabled = false
             } else {
                 reduce.isEnabled = true
 
             }
-            buyAmount.setText(amout.toString())
+//            buyAmount.setText(amout.toString())
+            buyAmount?.setText(if (TextUtils.isEmpty(amout.toString())) model.minOrder else amout.toString())
         }
 
         buyAmount?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s?.length != 0) {
+                    model.orderAmount = if (s.toString().toInt() <= model.minOrder?.toInt() ?: 0) {
+                        model.minOrder?.toInt()
+                    } else {
+                        s.toString().toInt()
+                    }
+
                 } else {
-                    buyAmount?.setText("0")
+                    buyAmount?.setText(model.minOrder?.toInt() ?: 0)
                 }
 
             }
@@ -194,7 +204,8 @@ class ProductDetailActivity : BaseActivity(), AttributeEvent {
                 imageUrl = model.imageUrls!![selectedColor]
             }
 
-            var orderModel = OrderModel(seller, buyer, productId, productState, color, size, orderAmount, orderTime, orderNumber, imageUrl, model.desc, model.price)
+            var orderModel = OrderModel(seller, buyer, productId, productState, color, size, orderAmount, orderTime, orderNumber, imageUrl, model.desc, model.price, model.minOrder
+                    ?: "")
 
             val detailService = RetrofitHelper().getProductDetailService()
             mCompositeDisposable.add(detailService.addShoppingTrolley(orderModel)

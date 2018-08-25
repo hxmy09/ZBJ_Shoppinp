@@ -33,8 +33,8 @@ class ProductModel() : Parcelable {
     var keyWords: String? = null
 
     //起订量
-    @SerializedName("beginOrderAmount")
-    var beginOrderAmount: Int = 1
+    @SerializedName("min_order")
+    var minOrder: String? = "1"
 
     var details: List<Detail>? = null
     //这个字段主要是为了购买商品加入购物车之后的流程中使用，识别唯一商品

@@ -74,7 +74,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
         xieziLayout.setOnClickListener(this)
         fangzhipinLayout.setOnClickListener(this)
         imgTejia.setOnClickListener(this)
-        tejia.setOnClickListener(this)
+//        tejia.setOnClickListener(this)
+        imgMiaosha.setOnClickListener(this)
     }
     lateinit var mAdapter: HomeAdapter
     private fun findViews() {
@@ -156,7 +157,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             R.id.xieziLayout -> G_XIEZI
             R.id.fangzhipinLayout -> G_FANGZHIPIN
             R.id.imgTejia -> G_TEJIA
-            R.id.tejia -> G_LINGSHOU
+            R.id.imgMiaosha -> G_LINGSHOU
             else -> {
                 ""
             }
