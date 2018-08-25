@@ -2,20 +2,27 @@ package com.android.shop.shopapp.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.model.request.LoginRequest
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 
 
-class LoginActivity : BaseActivity() {
-
+class LoginActivity : AppCompatActivity() {
+    val mCompositeDisposable = CompositeDisposable()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //去掉Activity上面的状态栏
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_login)
 
         val loggedIn = (application as ShopApplication).isLoggedIn
@@ -103,5 +110,9 @@ class LoginActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
-
+    override fun onDestroy() {
+        // DO NOT CALL .dispose()
+        mCompositeDisposable.clear()
+        super.onDestroy()
+    }
 }

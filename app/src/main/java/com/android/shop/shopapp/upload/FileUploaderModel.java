@@ -107,9 +107,9 @@ public class FileUploaderModel implements FileUploaderContract.Model {
         File compressedImageFile = null;
         try {
             compressedImageFile = new Compressor(context)
-                    .setMaxWidth(320)
-                    .setMaxHeight(280)
-                    .setQuality(75)
+                    .setMaxWidth(640)
+                    .setMaxHeight(480)
+                    .setQuality(90)
                     .setCompressFormat(Bitmap.CompressFormat.JPEG)
                     .setDestinationDirectoryPath(Environment.getExternalStoragePublicDirectory(
                             Environment.DIRECTORY_PICTURES).getAbsolutePath())

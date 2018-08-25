@@ -47,6 +47,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.ShowImageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name=".activity.UploadActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/upload_title"

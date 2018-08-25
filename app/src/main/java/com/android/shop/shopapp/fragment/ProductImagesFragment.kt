@@ -2,6 +2,7 @@ package com.android.shop.shopapp.fragment
 
 import android.app.Fragment
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.android.shop.shopapp.R
+import com.android.shop.shopapp.activity.EXTRA_IMAGEURL
+import com.android.shop.shopapp.activity.ShowImageActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_adv.*
 
@@ -36,6 +39,7 @@ class ProductImagesFragment : Fragment() {
         viewPager.adapter = ImageSliderAdapter(activity, imageList)
 
         indicator.setViewPager(viewPager)
+
     }
 
     class ImageSliderAdapter(private val mContext: Context, private val imageList: List<ImageSlider>) : PagerAdapter() {
@@ -45,6 +49,12 @@ class ProductImagesFragment : Fragment() {
             val imageLayout = inflater.inflate(R.layout.slider_home, collection, false) as ViewGroup
             Picasso.get().load(imageList[position].url).into((imageLayout.findViewById<View>(R.id.imageView) as ImageView))
             collection.addView(imageLayout)
+            imageLayout.setOnClickListener {
+                val intent = Intent(mContext, ShowImageActivity::class.java).apply {
+                    this.putExtra(EXTRA_IMAGEURL, imageList[position].url)
+                }
+                mContext.startActivity(intent)
+            }
             return imageLayout
         }
 
