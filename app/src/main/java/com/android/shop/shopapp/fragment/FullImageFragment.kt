@@ -4,8 +4,6 @@ import android.app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
@@ -16,32 +14,35 @@ import com.android.shop.shopapp.activity.EXTRA_IMAGEURL
 import com.android.shop.shopapp.activity.EXTRA_SELECTED_IMAGE
 import com.android.shop.shopapp.activity.ShowImageActivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_adv.*
+import kotlinx.android.synthetic.main.fragment_full_imgs.*
 
 
 /**
  * Created by myron on 3/29/18.
  */
 
-class ProductImagesFragment : Fragment() {
+class FullImageFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_top_imgs, container, false)
+        return inflater?.inflate(R.layout.fragment_full_imgs, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        var list = arguments.getStringArrayList("IMAGESURLS")
-        val imageList = arrayListOf<ImageSlider>()
-        list?.let {
-            for (url in list) {
-                imageList.add(ImageSlider(url, url))
-            }
-        }
-        viewPager.adapter = ImageSliderAdapter(activity, imageList)
+        val list = activity.intent.extras.getParcelableArrayList<ImageSlider>(EXTRA_IMAGEURL)
+        val selected = activity.intent.extras.getInt(EXTRA_SELECTED_IMAGE, 0)
+
+//        val imageList = arrayListOf<ImageSlider>()
+//        list?.let {
+//            for (slide in list) {
+//                imageList.add(ImageSlider(slide.url, slide.url))
+//            }
+//        }
+        viewPager.adapter = ImageSliderAdapter(activity, list)
 
         indicator.setViewPager(viewPager)
+        viewPager.currentItem = selected
 
     }
 
@@ -52,13 +53,13 @@ class ProductImagesFragment : Fragment() {
             val imageLayout = inflater.inflate(R.layout.slider_home, collection, false) as ViewGroup
             Picasso.get().load(imageList[position].url).into((imageLayout.findViewById<View>(R.id.imageView) as ImageView))
             collection.addView(imageLayout)
-            imageLayout.setOnClickListener {
-                val intent = Intent(mContext, ShowImageActivity::class.java).apply {
-                    this.putExtra(EXTRA_IMAGEURL, imageList)
-                    this.putExtra(EXTRA_SELECTED_IMAGE, position)
-                }
-                mContext.startActivity(intent)
-            }
+//            imageLayout.setOnClickListener {
+//                val intent = Intent(mContext, ShowImageActivity::class.java).apply {
+//                    this.putExtra(EXTRA_IMAGEURL, imageList)
+//                    this.putExtra(EXTRA_SELECTED_IMAGE, imageList[position].url)
+//                }
+//                mContext.startActivity(intent)
+//            }
             return imageLayout
         }
 
@@ -81,38 +82,5 @@ class ProductImagesFragment : Fragment() {
 
     }
 
-
 }
 
-class ImageSlider(val name: String, //optional @DrawableRes
-                  val url: String) : Parcelable {
-
-    constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString()) {
-    }
-
-    override fun toString(): String {
-        return name
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeString(url)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<ImageSlider> {
-        override fun createFromParcel(parcel: Parcel): ImageSlider {
-            return ImageSlider(parcel)
-        }
-
-        override fun newArray(size: Int): Array<ImageSlider?> {
-            return arrayOfNulls(size)
-        }
-    }
-
-}

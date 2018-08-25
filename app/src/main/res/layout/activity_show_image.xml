@@ -8,10 +8,19 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/fullImage"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:id="@+id/imgsContainer">
+
+        <!--<android.support.v7.widget.AppCompatImageView-->
+        <!--android:id="@+id/img"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@drawable/login" />-->
+    </FrameLayout>
 
 
 </LinearLayout>

@@ -2,14 +2,13 @@ package com.android.shop.shopapp.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.Window
 import android.view.WindowManager
 import com.android.shop.shopapp.R
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_show_image.*
+import com.android.shop.shopapp.fragment.FullImageFragment
 
 
 const val EXTRA_IMAGEURL = "imageUrl"
+const val EXTRA_SELECTED_IMAGE = "selectedimage"
 
 class ShowImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +19,6 @@ class ShowImageActivity : AppCompatActivity() {
                 WindowManager.LayoutParams. FLAG_FULLSCREEN)
         setContentView(R.layout.activity_show_image)
         supportActionBar?.hide()
-        val imageUrl = intent.extras.getString(EXTRA_IMAGEURL)
-        Picasso.get().load(imageUrl).into(fullImage)
+        fragmentManager.beginTransaction().add(R.id.imgsContainer, FullImageFragment(), "IMAGES").commit()
     }
 }
