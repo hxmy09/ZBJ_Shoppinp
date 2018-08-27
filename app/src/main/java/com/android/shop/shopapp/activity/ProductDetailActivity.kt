@@ -141,7 +141,7 @@ class ProductDetailActivity : BaseActivity(), AttributeEvent {
 
         priceView.text = model.price?.toString()
         descView.text = model.desc
-        minOrder.text = model.minOrder
+        minOrder.text = model.minOrder ?: "1"
         buyAmount?.setText(model.minOrder ?: "1")
 
         add.setOnClickListener {

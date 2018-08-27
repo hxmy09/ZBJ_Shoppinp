@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:ellipsize="end"
-                    android:maxLines="4"
+                    android:maxLines="2"
                     android:text="这里是全球最大的商品展示中心" />
 
                 <TextView
