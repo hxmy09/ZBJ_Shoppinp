@@ -230,7 +230,7 @@ class OrderDetailsActivity : BaseActivity() {
             currentData?.add(it)
         }.run {
             mAdapter.notifyDataSetChanged()
-            pullLoadMoreRecyclerView.setPullLoadMoreCompleted()
         }
+        pullLoadMoreRecyclerView.setPullLoadMoreCompleted()
     }
 }
