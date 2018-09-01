@@ -1,8 +1,8 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,17 +23,16 @@ class MineFragment : Fragment(), View.OnClickListener {
 
     var list = arrayListOf<ProductModel>()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return inflater?.inflate(R.layout.fragment_mine, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_mine, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (!(activity.application as ShopApplication).isLoggedIn) {
-            startActivity(Intent(activity, LoginActivity::class.java))
-            activity.finish()
+        if (!(activity!!.application as ShopApplication).isLoggedIn) {
+            startActivity(Intent(activity!!, LoginActivity::class.java))
+            activity?.finish()
             return
         }
         audit.setOnClickListener(this)
@@ -53,7 +52,7 @@ class MineFragment : Fragment(), View.OnClickListener {
 //        var userNameStr = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
 //        var addressStr = (activity.application as ShopApplication).sharedPreferences?.getString("address", "")
 //        var phoneStr = (activity.application as ShopApplication).sharedPreferences?.getString("phone", "")
-        val userState = (activity.application as ShopApplication).userState
+        val userState = (activity!!.application as ShopApplication).userState
 //        address.text = addressStr
 //        phone.text = phoneStr
 //        userName.text = userNameStr
@@ -82,7 +81,7 @@ class MineFragment : Fragment(), View.OnClickListener {
                 mProLayout.visibility = View.GONE
                 dailiLayout.visibility = View.VISIBLE
 
-                tuijianma.text = (activity.application as ShopApplication).id
+                tuijianma.text = (activity!!.application as ShopApplication).id
             }
             else -> {
                 mProLayout.visibility = View.GONE
@@ -105,12 +104,12 @@ class MineFragment : Fragment(), View.OnClickListener {
             }
 
             R.id.exit -> {
-                (activity.application as ShopApplication).sharedPreferences?.edit()?.remove("loggedin")?.apply()
-                (activity.application as ShopApplication).sharedPreferences?.edit()?.remove("userState")?.apply() //1管理员，0 普通客户
+                (activity!!.application as ShopApplication).sharedPreferences?.edit()?.remove("loggedin")?.apply()
+                (activity!!.application as ShopApplication).sharedPreferences?.edit()?.remove("userState")?.apply() //1管理员，0 普通客户
                 var intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
                 Toast.makeText(activity, "退出登录", Toast.LENGTH_SHORT).show()
-                activity.finish()
+                activity!!.finish()
             }
             R.id.manageProduct -> {
                 var intent = Intent(activity, ManageProductsActivity::class.java)

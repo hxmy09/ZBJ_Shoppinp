@@ -1,12 +1,9 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.RecyclerView
+import android.support.v4.app.Fragment
 import android.view.*
-import android.widget.LinearLayout
 import android.widget.Toast
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.ShopApplication
@@ -16,16 +13,12 @@ import com.android.shop.shopapp.data.HomeAdapter
 import com.android.shop.shopapp.model.ProductModel
 import com.android.shop.shopapp.model.network.RetrofitHelper
 import com.android.shop.shopapp.network.services.ProductParameterRequest
-import com.android.shop.shopapp.util.DEFAULT_ITEM_SIZE
-import com.android.shop.shopapp.util.MSG_CODE_LOADMORE
-import com.android.shop.shopapp.util.MSG_CODE_REFRESH
-import com.android.shop.shopapp.util.QUERY_TEXT
+import com.android.shop.shopapp.util.*
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
-import com.android.shop.shopapp.util.*
 import kotlinx.android.synthetic.main.naviation_item.*
 
 /**
@@ -33,7 +26,7 @@ import kotlinx.android.synthetic.main.naviation_item.*
  */
 class HomeFragment : Fragment(), View.OnClickListener {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -77,6 +70,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 //        tejia.setOnClickListener(this)
         imgMiaosha.setOnClickListener(this)
     }
+
     lateinit var mAdapter: HomeAdapter
     private fun findViews() {
 
@@ -104,7 +98,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val productService = RetrofitHelper().getProductsService()
         val request = ProductParameterRequest()
 //        var userState = (activity.application as ShopApplication).sharedPreferences?.getInt("userState", 0)
-        val userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
+        val userName = (activity?.application as ShopApplication).sharedPreferences?.getString("userName", "")
         request.userState = 1//超级管理员，查询所有数据
         request.userName = userName
 
@@ -166,7 +160,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
             putExtra(GROUP, group)
         }
-        activity.startActivity(intent)
+        activity?.startActivity(intent)
     }
 
 //    class ViewHolderNavigation(itemView: View) : View.OnClickListener {

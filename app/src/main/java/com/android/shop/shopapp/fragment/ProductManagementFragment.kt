@@ -1,7 +1,7 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +33,7 @@ open class ProductManagementFragment : Fragment() {
 
     lateinit var search_view: MaterialSearchView
     private val mCompositeDisposable = CompositeDisposable()
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_product_management, container, false)
     }
 
@@ -63,7 +63,7 @@ open class ProductManagementFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        search_view = activity.findViewById(R.id.search_view)
+        search_view = activity!!.findViewById(R.id.search_view)
         findViews()
 
         selectAll.setOnCheckedChangeListener { _: CompoundButton, b: Boolean ->
@@ -154,8 +154,8 @@ open class ProductManagementFragment : Fragment() {
 
     private fun fetchProducts(loadingType: Int, keyWord: String?) {
         val productsService = RetrofitHelper().getProductsService()
-        var userState = (activity.application as ShopApplication).userState
-        var userName = (activity.application as ShopApplication).userName
+        var userState = (activity!!.application as ShopApplication).userState
+        var userName = (activity!!.application as ShopApplication).userName
 
         var request = ProductParameterRequest()
         request.userName = userName

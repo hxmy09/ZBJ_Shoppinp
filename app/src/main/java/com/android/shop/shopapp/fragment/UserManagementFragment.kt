@@ -1,7 +1,7 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -32,13 +32,14 @@ open class UserManagementFragment : Fragment() {
     lateinit var search_view: MaterialSearchView
     private val mCompositeDisposable = CompositeDisposable()
     var adapter: UsersManagementAdapter? = null
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_users_management, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        search_view = activity.findViewById(R.id.search_view)
+        search_view = activity!!.findViewById(R.id.search_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
         adapter = UsersManagementAdapter(activity, this@UserManagementFragment, list)
@@ -74,7 +75,7 @@ open class UserManagementFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            MaterialDialog.Builder(activity)
+            MaterialDialog.Builder(activity!!)
                     .content("你确定要删除此用户吗？")
                     .positiveText("确定")
                     .negativeText("取消")

@@ -1,11 +1,11 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v4.app.Fragment
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
@@ -25,21 +25,21 @@ import kotlinx.android.synthetic.main.fragment_adv.*
 
 class ProductImagesFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_top_imgs, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        var list = arguments.getStringArrayList("IMAGESURLS")
+        var list = arguments?.getStringArrayList("IMAGESURLS") ?: arrayListOf()
         val imageList = arrayListOf<ImageSlider>()
         list?.let {
             for (url in list) {
                 imageList.add(ImageSlider(url, url))
             }
         }
-        viewPager.adapter = ImageSliderAdapter(activity, imageList)
+        viewPager.adapter = ImageSliderAdapter(activity!!, imageList)
 
         indicator.setViewPager(viewPager)
 

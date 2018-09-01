@@ -15,7 +15,7 @@ class ManageProductsActivity : BaseActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        fragmentManager.beginTransaction().add(R.id.fra_management, ProductManagementFragment(), "MANAGE").commit()
+        supportFragmentManager.beginTransaction().add(R.id.fra_management, ProductManagementFragment(), "MANAGE").commit()
 //        backImg.setOnClickListener{
 //            onBackPressed()
 //        }

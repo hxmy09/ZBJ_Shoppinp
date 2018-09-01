@@ -134,7 +134,7 @@ class ProductDetailActivity : BaseActivity(), AttributeEvent {
         bundle.putStringArrayList("IMAGESURLS", tempList)
         var imagesFragment = ProductImagesFragment()
         imagesFragment.arguments = bundle
-        fragmentManager.beginTransaction().add(R.id.imgsContainer, imagesFragment, "IMAGES").commit()
+        supportFragmentManager.beginTransaction().add(R.id.imgsContainer, imagesFragment, "IMAGES").commit()
 
 
 

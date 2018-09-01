@@ -19,6 +19,6 @@ class ShowImageActivity : AppCompatActivity() {
                 WindowManager.LayoutParams. FLAG_FULLSCREEN)
         setContentView(R.layout.activity_show_image)
         supportActionBar?.hide()
-        fragmentManager.beginTransaction().add(R.id.imgsContainer, FullImageFragment(), "IMAGES").commit()
+        supportFragmentManager.beginTransaction().add(R.id.imgsContainer, FullImageFragment(), "IMAGES").commit()
     }
 }

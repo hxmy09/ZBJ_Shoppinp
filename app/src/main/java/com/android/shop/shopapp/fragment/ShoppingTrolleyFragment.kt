@@ -1,8 +1,8 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -87,8 +87,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         total.text = format.format(amount)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_shopping_trolley, container, false)
     }
 
@@ -106,7 +105,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
             request.end = DEFAULT_ITEM_SIZE
         }
 //        startAnim()
-        request.userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
+        request.userName = (activity!!.application as ShopApplication).sharedPreferences?.getString("userName", "")
         val detailService = RetrofitHelper().getProductDetailService()
         mCompositeDisposable.add(detailService.queryShoppingTrolley(request)
                 .subscribeOn(Schedulers.io())
@@ -177,13 +176,13 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (!(activity.application as ShopApplication).isLoggedIn) {
+        if (!(activity!!.application as ShopApplication).isLoggedIn) {
             startActivity(Intent(activity, LoginActivity::class.java))
-            activity.finish()
+            activity!!.finish()
             return
         }
 
-        (activity as MainActivity).setSupportActionBar(this.view.findViewById(R.id.toolbar))
+        (activity as MainActivity).setSupportActionBar(this.view!!.findViewById(R.id.toolbar))
 //        (activity as MainActivity).title ="购物车"
         findViews()
         fetchData(MSG_CODE_REFRESH)
@@ -200,10 +199,10 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         }
         result.setOnClickListener {
             startAnim()
-            var userState = (activity.application as ShopApplication).userState//用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+            var userState = (activity!!.application as ShopApplication).userState//用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
 
             if (userState == USER_STATE_ADMIN || userState == USER_STATE_MANAGER) {
-                MaterialDialog.Builder(activity)
+                MaterialDialog.Builder(activity!!)
                         .content("对不起，你的客户端不支持购买商品，请注册其他账户，有任何问题，请你拨打电话0579-85876692")
                         .positiveText("确定")
                         .show()

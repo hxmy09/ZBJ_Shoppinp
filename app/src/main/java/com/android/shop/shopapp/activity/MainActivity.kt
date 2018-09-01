@@ -1,18 +1,14 @@
 package com.android.shop.shopapp.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.design.widget.BottomNavigationView
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.fragment.HomeFragment
 import com.android.shop.shopapp.fragment.MineFragment
 import com.android.shop.shopapp.fragment.ShoppingTrolleyFragment
-import com.android.shop.shopapp.util.GROUP
-import com.android.shop.shopapp.util.G_LINGSHOU
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -23,8 +19,8 @@ class MainActivity : BaseActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                if (fragmentManager.findFragmentByTag("HOME") == null) {
-                    fragmentManager.beginTransaction().replace(R.id.home, homeFragment, "HOME").commit()
+                if (supportFragmentManager.findFragmentByTag("HOME") == null) {
+                    supportFragmentManager.beginTransaction().replace(R.id.home, homeFragment, "HOME").commit()
                 }
                 shopping.visibility = View.GONE
                 mine.visibility = View.GONE
@@ -35,7 +31,7 @@ class MainActivity : BaseActivity() {
             }
             R.id.navigation_shopping -> {
                 //if (fragmentManager.findFragmentByTag("Shopping") == null) {
-                fragmentManager.beginTransaction().replace(R.id.shopping, shoppingFragment, "Shopping").commit()
+                supportFragmentManager.beginTransaction().replace(R.id.shopping, shoppingFragment, "Shopping").commit()
                 // }
                 isShowMenu = true
                 shopping.visibility = View.VISIBLE
@@ -45,8 +41,8 @@ class MainActivity : BaseActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_mine -> {
-                if (fragmentManager.findFragmentByTag("Mine") == null) {
-                    fragmentManager.beginTransaction().replace(R.id.mine, mineFragment, "Mine").commit()
+                if (supportFragmentManager.findFragmentByTag("Mine") == null) {
+                    supportFragmentManager.beginTransaction().replace(R.id.mine, mineFragment, "Mine").commit()
                 }
                 isShowMenu = false
                 shopping.visibility = View.GONE
@@ -69,7 +65,8 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        fragmentManager.beginTransaction().add(R.id.home, HomeFragment(), "HOME").commit()
+
+        supportFragmentManager.beginTransaction().add(R.id.home, HomeFragment(), "HOME").commit()
         @IdRes var id = intent?.getIntExtra("selectedItemId", R.id.navigation_home)
                 ?: R.id.navigation_home
         navigation.selectedItemId = id

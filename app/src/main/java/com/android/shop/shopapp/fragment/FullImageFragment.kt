@@ -1,9 +1,8 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Fragment
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import android.widget.ImageView
 import com.android.shop.shopapp.R
 import com.android.shop.shopapp.activity.EXTRA_IMAGEURL
 import com.android.shop.shopapp.activity.EXTRA_SELECTED_IMAGE
-import com.android.shop.shopapp.activity.ShowImageActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_full_imgs.*
 
@@ -23,15 +21,17 @@ import kotlinx.android.synthetic.main.fragment_full_imgs.*
 
 class FullImageFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_full_imgs, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_full_imgs, container, false)
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val list = activity.intent.extras.getParcelableArrayList<ImageSlider>(EXTRA_IMAGEURL)
-        val selected = activity.intent.extras.getInt(EXTRA_SELECTED_IMAGE, 0)
+        val list = activity?.intent?.extras?.getParcelableArrayList<ImageSlider>(EXTRA_IMAGEURL)
+                ?: arrayListOf()
+        val selected = activity?.intent?.extras?.getInt(EXTRA_SELECTED_IMAGE, 0) ?: 0
 
 //        val imageList = arrayListOf<ImageSlider>()
 //        list?.let {
@@ -39,7 +39,7 @@ class FullImageFragment : Fragment() {
 //                imageList.add(ImageSlider(slide.url, slide.url))
 //            }
 //        }
-        viewPager.adapter = ImageSliderAdapter(activity, list)
+        viewPager.adapter = ImageSliderAdapter(activity!!.applicationContext, list)
 
         indicator.setViewPager(viewPager)
         viewPager.currentItem = selected
