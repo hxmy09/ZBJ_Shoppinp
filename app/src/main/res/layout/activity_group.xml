@@ -23,7 +23,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                android:background="#00000000"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:popupTheme="@style/AppTheme">
 
@@ -43,13 +42,14 @@
 
                     <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/searchBtn"
-                        android:layout_width="320dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ic_search_icon_bitmap"
                         android:editable="false"
+                        android:layout_weight="1"
                         android:focusable="false"
                         android:gravity="center"
-                        android:hint="查询"
+                        android:hint="查      询"
                         android:includeFontPadding="true"
                         android:inputType="none"
                         android:paddingBottom="8dp"

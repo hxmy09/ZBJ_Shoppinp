@@ -51,20 +51,20 @@
 
                     <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/searchBtn"
-                        android:layout_width="320dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ic_search_icon_bitmap"
                         android:editable="false"
                         android:focusable="false"
                         android:gravity="center"
-                        android:hint="查询"
+                        android:hint="查      询"
+
                         android:includeFontPadding="true"
                         android:inputType="none"
-                        android:paddingBottom="8dp"
-                        android:paddingEnd="8dp"
+                        android:padding="8dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:maxLines="1"
-                        android:paddingStart="10dp"
-                        android:paddingTop="8dp"
                         android:scaleType="centerCrop" />
 
                     <!--<android.support.v7.widget.AppCompatImageButton-->
