@@ -41,30 +41,24 @@
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/ic_arrow_back" />
 
-                    <android.support.v7.widget.SearchView
-                        android:id="@+id/search_view"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:scaleType="centerCrop"
-                        app:iconifiedByDefault="false"
-                        android:padding="8dp"
-                        app:queryHint="特价"
-                        app:searchIcon="@null"
-                        android:focusable="false"
-                        android:background="@drawable/ic_search_icon_bitmap" />
-
-                    <android.support.v7.widget.AppCompatImageButton
+                    <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/searchBtn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="320dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/ic_search_icon_bitmap"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:gravity="center"
+                        android:hint="查询"
+                        android:includeFontPadding="true"
+                        android:inputType="none"
+                        android:paddingBottom="8dp"
+                        android:paddingEnd="8dp"
+                        android:maxLines="1"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/ic_search" />
+                        android:paddingStart="10dp"
+                        android:paddingTop="8dp"
+                        android:scaleType="centerCrop" />
                 </LinearLayout>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>

@@ -38,6 +38,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="8dp">
 
@@ -48,30 +49,34 @@
                     <!--android:layout_gravity="center_vertical"-->
                     <!--android:background="@drawable/ic_arrow_back" />-->
 
-                    <android.support.v7.widget.SearchView
-                        android:id="@+id/search_view"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_search_icon_bitmap"
-                        android:focusable="false"
-                        android:padding="8dp"
-                        android:scaleType="centerCrop"
-                        app:iconifiedByDefault="false"
-                        app:queryHint="特价"
-                        app:searchIcon="@null" />
-
-                    <android.support.v7.widget.AppCompatImageButton
+                    <android.support.v7.widget.AppCompatEditText
                         android:id="@+id/searchBtn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="320dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/ic_search" />
+                        android:background="@drawable/ic_search_icon_bitmap"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:gravity="center"
+                        android:hint="查询"
+                        android:includeFontPadding="true"
+                        android:inputType="none"
+                        android:paddingBottom="8dp"
+                        android:paddingEnd="8dp"
+                        android:maxLines="1"
+                        android:paddingStart="10dp"
+                        android:paddingTop="8dp"
+                        android:scaleType="centerCrop" />
+
+                    <!--<android.support.v7.widget.AppCompatImageButton-->
+                    <!--android:id="@+id/searchBtn"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:layout_marginBottom="8dp"-->
+                    <!--android:layout_marginEnd="20dp"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:background="@drawable/ic_search" />-->
                 </LinearLayout>
 
             </android.support.v7.widget.Toolbar>
@@ -83,13 +88,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:focusableInTouchMode="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
             android:orientation="vertical"
-            android:paddingBottom="45dp">
+            android:paddingBottom="46dp">
 
             <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -101,19 +108,19 @@
     </android.support.v4.widget.NestedScrollView>
 
     <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/tejia"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="139dp"-->
-        <!--android:layout_gravity="bottom|right"-->
-        <!--android:layout_marginBottom="65dp"-->
-        <!--android:layout_marginEnd="20dp"-->
-        <!--android:src="@drawable/ic_lingshou"-->
-        <!--app:borderWidth="0dp"-->
-        <!--app:elevation="@dimen/activity_horizontal_margin"-->
-        <!--app:fabSize="normal"-->
-        <!--app:fabCustomSize="60dp"-->
-        <!--android:scaleType="center"-->
-        <!--app:pressedTranslationZ="@dimen/activity_horizontal_margin"-->
-        <!--app:rippleColor="@color/primaryDarkColor"-->
- />
+    <!--android:id="@+id/tejia"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="139dp"-->
+    <!--android:layout_gravity="bottom|right"-->
+    <!--android:layout_marginBottom="65dp"-->
+    <!--android:layout_marginEnd="20dp"-->
+    <!--android:src="@drawable/ic_lingshou"-->
+    <!--app:borderWidth="0dp"-->
+    <!--app:elevation="@dimen/activity_horizontal_margin"-->
+    <!--app:fabSize="normal"-->
+    <!--app:fabCustomSize="60dp"-->
+    <!--android:scaleType="center"-->
+    <!--app:pressedTranslationZ="@dimen/activity_horizontal_margin"-->
+    <!--app:rippleColor="@color/primaryDarkColor"-->
+    />
 </android.support.design.widget.CoordinatorLayout>

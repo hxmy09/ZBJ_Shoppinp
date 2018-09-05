@@ -89,7 +89,7 @@ class ProductShowActivity : BaseActivity() {
         searchBtn.setOnClickListener {
             val intent = Intent(this, SearchableActivity::class.java)
             intent.putExtra(GROUP, mGroup)
-            intent.putExtra(QUERY_TEXT, search_view.query.toString())
+//            intent.putExtra(QUERY_TEXT, search_view.query.toString())
             startActivity(intent)
         }
 
