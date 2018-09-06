@@ -16,13 +16,13 @@
             <FrameLayout
                 android:id="@+id/colorLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></FrameLayout>
+                android:layout_height="wrap_content"/>
 
 
             <FrameLayout
                 android:id="@+id/sizeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></FrameLayout>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 

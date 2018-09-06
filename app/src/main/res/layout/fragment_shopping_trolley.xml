@@ -8,12 +8,12 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primaryColor">
+        app:backgroundTint="@color/primaryColor">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/primaryColor"
+            app:backgroundTint="@color/primaryColor"
             app:contentScrim="@color/primaryColor"
             app:expandedTitleMarginStart="10dp"
             app:layout_scrollFlags="exitUntilCollapsed|scroll">

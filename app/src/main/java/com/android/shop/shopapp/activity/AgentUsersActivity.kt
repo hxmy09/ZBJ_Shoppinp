@@ -14,7 +14,7 @@ class AgentUsersActivity : BaseActivity() {
         setContentView(R.layout.activity_manager)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setSupportActionBar(findViewById(R.id.toolbar))
-        fragmentManager.beginTransaction().add(R.id.fra_management, AgentManagementFragment(), "MANAGE").commit()
+        supportFragmentManager.beginTransaction().add(R.id.fra_management, AgentManagementFragment(), "MANAGE").commit()
 //        backImg.setOnClickListener{
 //            onBackPressed()
 //        }

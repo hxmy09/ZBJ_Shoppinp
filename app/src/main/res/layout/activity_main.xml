@@ -15,17 +15,17 @@
         <FrameLayout
             android:id="@+id/home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent"/>
 
         <FrameLayout
             android:id="@+id/shopping"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent"/>
 
         <FrameLayout
             android:id="@+id/mine"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent"/>
 
     </FrameLayout>
 

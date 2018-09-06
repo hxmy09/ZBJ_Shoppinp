@@ -1,7 +1,7 @@
 package com.android.shop.shopapp.fragment
 
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -33,13 +33,13 @@ open class AgentManagementFragment : Fragment() {
     lateinit var search_view: MaterialSearchView
     private val mCompositeDisposable = CompositeDisposable()
     var adapter: AgentUserManagementAdapter? = null
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_daili_users_management, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        search_view = activity.findViewById(R.id.search_view)
+        search_view = activity!!.findViewById(R.id.search_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
         adapter = AgentUserManagementAdapter(activity, this@AgentManagementFragment, list)
@@ -70,7 +70,7 @@ open class AgentManagementFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            MaterialDialog.Builder(activity)
+            MaterialDialog.Builder(activity!!)
                     .content("你确定要删除此用户吗？")
                     .positiveText("确定")
                     .negativeText("取消")
@@ -159,7 +159,7 @@ open class AgentManagementFragment : Fragment() {
     private fun fetchUsers() {
         val usersServices = RetrofitHelper().getAgentUsersService()
         var request = AgentUserReqeust()
-        request.id = (activity.application as ShopApplication).id //代理商
+        request.id = (activity!!.application as ShopApplication).id //代理商
         mCompositeDisposable.add(usersServices.getAllUsers(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

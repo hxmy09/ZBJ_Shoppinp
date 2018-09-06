@@ -144,11 +144,9 @@
                             android:id="@+id/btnUploadImage"
                             android:layout_width="100dp"
                             android:layout_height="40dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerInParent="true"
                             android:layout_marginTop="10dp"
                             android:text="选择图片"
-                            android:textColor="@android:color/white"></Button>
+                            android:textColor="@android:color/white"/>
 
                         <ImageView
                             android:id="@+id/imgView"
@@ -186,7 +184,7 @@
                             android:layout_marginTop="10dp"
                             android:background="@android:color/holo_orange_dark"
                             android:text="添加"
-                            android:textColor="@android:color/white"></Button>
+                            android:textColor="@android:color/white"/>
 
                         <TextView
                             android:id="@+id/uploadHint"
@@ -244,7 +242,7 @@
             android:layout_marginTop="5dp"
             android:background="@android:color/holo_orange_dark"
             android:text="上传"
-            android:textColor="@android:color/white"></Button>
+            android:textColor="@android:color/white"/>
     </FrameLayout>
 
     <com.wang.avi.AVLoadingIndicatorView

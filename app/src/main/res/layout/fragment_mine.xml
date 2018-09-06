@@ -8,12 +8,12 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primaryColor">
+        app:backgroundTint="@color/primaryColor">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/primaryColor"
+            app:backgroundTint="@color/primaryColor"
             app:contentScrim="@color/primaryColor"
             app:expandedTitleMarginStart="10dp"
             app:layout_scrollFlags="exitUntilCollapsed|scroll">
@@ -57,7 +57,6 @@
                             android:id="@+id/userName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
                             android:layout_gravity="center_vertical"
                             android:drawableLeft="@drawable/logo_mine"
                             android:ellipsize="end"
@@ -77,7 +76,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
                             android:ellipsize="end"
                             android:gravity="center_vertical"
                             android:maxLines="1"
@@ -101,7 +99,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
                         android:layout_marginBottom="8dp"
                         android:orientation="horizontal">
 
@@ -204,7 +201,6 @@
                         android:id="@+id/daiFukuan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_daifukuan"
@@ -219,7 +215,6 @@
                         android:id="@+id/daiFahuo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_daifahuo"
@@ -235,7 +230,6 @@
                         android:id="@+id/daiShouHuo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_daishouhuo"
@@ -252,7 +246,6 @@
                         android:id="@+id/tuihuoshouhou"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_shouhou"
@@ -303,7 +296,6 @@
                         android:id="@+id/audit"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_audit"
@@ -319,7 +311,6 @@
                         android:id="@+id/manageUser"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_yonghuguanli"
@@ -367,7 +358,6 @@
                         android:id="@+id/upload"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_upload"
@@ -383,7 +373,6 @@
                         android:id="@+id/manageProduct"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_manageproduct"
@@ -453,7 +442,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
                             android:background="?attr/selectableItemBackground"
                             android:ellipsize="end"
                             android:gravity="center"
@@ -467,7 +455,6 @@
                             android:id="@+id/tuijianma"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
                             android:background="?attr/selectableItemBackground"
                             android:ellipsize="end"
                             android:gravity="center"
@@ -482,7 +469,6 @@
                         android:id="@+id/dailimanageUser"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:layout_weight="1"
                         android:background="?attr/selectableItemBackground"
                         android:drawableTop="@drawable/ic_yonghuguanli"
@@ -522,7 +508,6 @@
                         android:id="@+id/exit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
                         android:background="?attr/selectableItemBackground"
                         android:ellipsize="end"
                         android:gravity="center"

@@ -7,13 +7,13 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primaryColor">
+        app:backgroundTint="@color/primaryColor">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/primaryColor"
+            app:backgroundTint="@color/primaryColor"
             app:contentScrim="@color/primaryColor"
             app:expandedTitleMarginStart="10dp"
             app:layout_scrollFlags="exitUntilCollapsed|scroll">
@@ -249,7 +249,7 @@
                 android:layout_height="2dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/primaryColor"></View>
+                android:background="@color/primaryColor"/>
             <!--<android.support.v7.widget.CardView-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
