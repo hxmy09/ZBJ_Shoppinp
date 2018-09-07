@@ -181,7 +181,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
             return
         }
 
-        (activity as MainActivity).setSupportActionBar(this.view!!.findViewById(R.id.toolbar))
+//        (activity as MainActivity).setSupportActionBar(this.view!!.findViewById(R.id.toolbar))
 //        (activity as MainActivity).title ="购物车"
         findViews()
         fetchData(MSG_CODE_REFRESH)

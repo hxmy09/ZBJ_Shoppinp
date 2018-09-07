@@ -19,11 +19,11 @@
             app:layout_scrollFlags="exitUntilCollapsed|scroll">
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme"
-                android:id="@+id/toolbar">
+                app:popupTheme="@style/AppTheme">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -35,9 +35,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:text="购物车"
                         android:textColor="@color/ef_white"
-                        android:textSize="22sp"
-                        android:text="购物车" />
+                        android:textSize="22sp" />
                 </LinearLayout>
 
             </android.support.v7.widget.Toolbar>
@@ -51,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        android:focusableInTouchMode="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -58,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#DDD"
+            android:descendantFocusability="blocksDescendants"
             android:paddingBottom="45dp">
 
 
@@ -65,8 +67,7 @@
                 android:id="@+id/swipeRefreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                android:layout_alignParentStart="true">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerView"
@@ -84,7 +85,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:paddingBottom="50dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+             />
 
 
             <com.wang.avi.AVLoadingIndicatorView
@@ -104,11 +105,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="45dp"
         app:cardCornerRadius="2dp"
         app:cardElevation="2dp"
         app:cardPreventCornerOverlap="false"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="45dp"
         app:contentPaddingLeft="0dp">
 
         <LinearLayout
