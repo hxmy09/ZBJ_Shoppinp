@@ -26,7 +26,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_shopping_trolley.*
-import com.android.shop.shopapp.util.*
 import java.text.DecimalFormat
 
 /**
@@ -37,8 +36,8 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
 
     var list: MutableList<ShoppingModel> = arrayListOf()
     val mCompositeDisposable = CompositeDisposable()
-    override fun countTotal(number: Int, model: ShoppingModel) {
-        model.orderAmount = number
+    override fun countTotal(am: Int, model: ShoppingModel) {
+        model.orderAmount = am
         cal()
     }
 
@@ -68,33 +67,33 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
     }
 
     private fun startAnim() {
-        avi.show();
+        avi.show()
     }
 
     private fun stopAnim() {
-        avi.hide();
+        avi.hide()
     }
 
     private fun cal() {
-        var amount: Double = 0.00
+        var amount = 0.00
         mAdapter.contents.forEach {
             if (it.isSelected) {
                 val mul = DoubleUtil.mul(it.price, it.orderAmount?.toDouble())
                 amount = DoubleUtil.add(mul, amount)
             }
         }
-        var format = DecimalFormat("#.00")
+        val format = DecimalFormat("#.00")
         total.text = format.format(amount)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_shopping_trolley, container, false)
+        return inflater.inflate(R.layout.fragment_shopping_trolley, container, false)
     }
 
 
     private fun fetchData(loadingType: Int) {
         //查询购物车商品。 需要传入userName 和 productState = 0
-        var request = ProductParameterRequest()
+        val request = ProductParameterRequest()
         request.productState = 0 //购物车
 
         if (loadingType == MSG_CODE_LOADMORE) {
@@ -143,7 +142,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
     //删除购物车内容的话，根据唯一的购物id
     private fun deleteByProductId(shoppingIds: List<String>) {
         startAnim()
-        var request = ProductParameterRequest()
+        val request = ProductParameterRequest()
 //        request.userName = (activity.application as ShopApplication).sharedPreferences?.getString("userName", "")
         request.shoppingIds = shoppingIds
         val detailService = RetrofitHelper().getProductDetailService()
@@ -199,7 +198,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         }
         result.setOnClickListener {
             startAnim()
-            var userState = (activity!!.application as ShopApplication).userState//用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
+            val userState = (activity!!.application as ShopApplication).userState//用户状态 0 - 未审核，1 - 超级管理员 2-普通管理员 3- 普通会员
 
             if (userState == USER_STATE_ADMIN || userState == USER_STATE_MANAGER) {
                 MaterialDialog.Builder(activity!!)
@@ -212,7 +211,7 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
             val orderList = mAdapter.contents.filter { it.isSelected }
             val orderService = RetrofitHelper().getOrdersService()
             val totalAmount = total.text.toString().toDouble()
-            var order = ProductOrder(orderList, "", totalAmount)
+            val order = ProductOrder(orderList, "", totalAmount)
             mCompositeDisposable.add(orderService.buyProducts(order)//.flatMap { fetchData() }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -235,13 +234,13 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
         }
 
         delete.setOnClickListener {
-            var filterList = mAdapter.contents.filter { it.isSelected }
+            val filterList = mAdapter.contents.filter { it.isSelected }
 
-            if (filterList.size <= 0) {
+            if (filterList.isEmpty()) {
                 Toast.makeText(activity, "请选择至少一条数据", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            var productsIds = arrayListOf<String>()
+            val productsIds = arrayListOf<String>()
             filterList.forEach { productsIds.add(it.shoppingId!!) }
             deleteByProductId(productsIds)
 

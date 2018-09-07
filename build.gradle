@@ -3,16 +3,16 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        jcenter()//     mavenCentral()
     }
 
 
     ext {
         _javaSdkVersion = JavaVersion.VERSION_1_8
-        _compileSdkVersion = 27
+        _compileSdkVersion = 28
         _minSdkVersion = 19
-        _targetSdkVersion = 27
-        _kotlin_version = '1.2.31'
+        _targetSdkVersion = 28
+        _kotlin_version = '1.2.50'
         _kotlin_mock_version = '1.5.0'
         _kotlinx_coroutines_version = '0.22.3'
         _supportLibraryVersion = "27.1.0"
@@ -44,7 +44,7 @@ buildscript {
         _isCiEnv = System.getenv("IS_DOCKER_ENV") != null
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$_kotlin_version"
         classpath 'me.tatarka:gradle-retrolambda:3.7.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
