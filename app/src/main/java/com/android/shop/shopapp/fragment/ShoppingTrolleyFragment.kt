@@ -250,6 +250,10 @@ class ShoppingTrolleyFragment : Fragment(), CountTotalCallBack {
             resultLayout.visibility = View.VISIBLE
         }
 
+        edit.setOnClickListener{
+            editLayout.visibility = View.VISIBLE
+            resultLayout.visibility = View.GONE
+        }
         setHasOptionsMenu(true)
     }
 
