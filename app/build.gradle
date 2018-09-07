@@ -23,8 +23,8 @@ android {
         applicationId "com.android.shop.shopapp"
         minSdkVersion _minSdkVersion
         targetSdkVersion _targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 //        multiDexEnabled true
     }
