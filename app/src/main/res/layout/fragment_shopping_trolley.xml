@@ -45,6 +45,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:text="编辑"
+                        android:padding="8dp"
                         android:background="?attr/selectableItemBackground"
                         android:layout_marginEnd="12dp"
                         android:textColor="@color/ef_white"
